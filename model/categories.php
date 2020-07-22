@@ -87,4 +87,14 @@ class categoryModel{
  
          return $result;
      }
+
+    function getFullData(){
+        $query = "select * from categories";
+        $result = $this->db->select($query);
+        $data = [];
+        foreach ($result->fetch_all() as $value){
+            array_push($data, new category($value[0],$value[1],$value[2],$value[3],$value[4],$value[5]));
+        }
+        return $data;
+    }
 }

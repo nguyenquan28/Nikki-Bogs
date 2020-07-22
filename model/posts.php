@@ -129,4 +129,47 @@ class postModel{
 
         return $result;
     }
+
+    function PostsTop($sl){
+        $query = "SELECT * from posts where status = 1 LIMIT $sl";
+        $result = $this->db->select($query);
+        $data = [];
+        foreach ($result->fetch_all() as $value){
+            array_push($data, new post($value[0],$value[1],$value[2],$value[3],$value[4],$value[5],$value[6],$value[7],$value[8],$value[9],$value[10],$value[11]));
+        }
+
+        return $data;
+
+    }
+
+    function PostsSumPage(){
+        $page=1;
+        $limit=6;
+        $qrid= "select post_id from posts";
+        $arrs_list = $this->db->select($qrid);
+        $total_record = $arrs_list->num_rows;
+        $total_page=ceil($total_record/$limit);
+        return $total_page;
+    }
+    function GetAllPostsPage(){
+        $limit=6;
+        $page=1;
+        $a = new postModel();
+        $total_page = $a->PostsSumPage();
+
+        //xem trang có vượt giới hạn không:
+        if(isset($_GET["page"]))
+            $page=$_GET["page"];//nếu biến $_GET["page"] tồn tại thì trang hiện tại là trang $_GET["page"]
+        if($page<1) $page=1; //nếu trang hiện tại nhỏ hơn 1 thì gán bằng 1
+        if($page>$total_page) $page=$total_page;
+        $start=($page-1)*$limit;
+        $qrall = "select * from posts limit $start,$limit";
+        $result = $this->db->select($qrall);
+        $datagetall = [];
+        foreach ($result->fetch_all() as $value){
+            array_push($datagetall, new post($value[0],$value[1],$value[2],$value[3],$value[4],$value[5],$value[6],$value[7],$value[8],$value[9],$value[10],$value[11]));
+        }
+        return $datagetall;
+//        print_r($datagetall);
+    }
 }
