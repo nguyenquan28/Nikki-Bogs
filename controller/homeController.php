@@ -7,7 +7,16 @@ class homeController
         require_once '../views/home.php';
     }
     function a(){
-        $a = new PostsModel();
-        $a->GetAllPostsPage();
+        $a = new postModel();
+        print_r($a->getAllByIdCateAndPage());
+
     }
+    function viewArchive(){
+        require_once '../views/archive-blog.php';
+    }
+    function viewSinglePost(){
+        require_once '../views/single-post.php';
+    }
+
+
 }

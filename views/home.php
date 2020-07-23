@@ -32,7 +32,8 @@ require_once __DIR__ . '/ins/content.php';
                     <div class="row">
 
                         <?php
-                        $dataLimitPost1 = $PostsModel->PostsTop(1);
+                        $data = $PostsModel->PostsTop(1);
+                        $dataLimitPost1 =$PostsModel->pushDataPost($data);
                         foreach ($dataLimitPost1 as $post1){
                             $nameCategory = $CategoryModel->getName($post1->categories_id);
                             $nameUser = $UserModel->getName($post1->user_id)
@@ -46,7 +47,7 @@ require_once __DIR__ . '/ins/content.php';
                                     <!-- Featured Post Content -->
                                     <div class="featured-post-content">
                                         <p class="post-date"><?=$post1->time?> / <?=$nameCategory['name']?></p>
-                                        <a href="#" class="post-title">
+                                        <a href="index.php?c=home&a=viewSinglePost&idpost=<?=$post1->post_id?>" class="post-title">
                                             <h2><?=$post1->title?></h2>
                                         </a>
                                         <p class="post-excerpt"><?=$post1->intro?></p>
@@ -77,7 +78,8 @@ require_once __DIR__ . '/ins/content.php';
 
                         <!-- Single Blog Post -->
                         <?php
-                        $dataGetAllPost = $PostsModel->GetAllPostsPage();
+                        $data = $PostsModel->GetAllPostsPage();
+                        $dataGetAllPost = $PostsModel->pushDataPost($data);
                         foreach ($dataGetAllPost as $getallpost){
                             $nameCategory = $CategoryModel->getName($getallpost->categories_id);
                             ?>
@@ -90,7 +92,7 @@ require_once __DIR__ . '/ins/content.php';
                                     <!-- Content -->
                                     <div class="post-content">
                                         <p class="post-date"><?=$getallpost->time?> / <?=$nameCategory['name']?></p>
-                                        <a href="#" class="post-title">
+                                        <a href="index.php?c=home&a=viewSinglePost&idpost=<?=$getallpost->post_id?>" class="post-title">
                                             <h4><?=$getallpost->title?></h4>
                                         </a>
                                         <p class="post-excerpt"><?=$getallpost->intro?></p>
@@ -117,7 +119,7 @@ require_once __DIR__ . '/ins/content.php';
                     for ($i = 1; $i <= $total_pages; $i++) {
                         ?>
 
-                        <li class="page-item"><a class="page-link" href="index.php?page=<?= $i; ?>"><?= $i; ?></a></li>
+                        <li class="page-item"><a class="page-link" style=" width: 46px;line-height: 28px;" href="index.php?page=<?= $i; ?>"><?= $i; ?></a></li>
 
                     <?php } ?>
                     <li><a href="index.php?page=<?= $total_pages; ?>">Older <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></li>

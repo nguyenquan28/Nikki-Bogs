@@ -24,7 +24,8 @@ $CategoryModel = new categoryModel();
 
         <!-- Single Hero Post -->
         <?php
-        $dataLimitPost3 = $PostsModel->PostsTop(3);
+        $data = $PostsModel->PostsTop(3);
+        $dataLimitPost3 = $PostsModel->pushDataPost($data);
         foreach ($dataLimitPost3 as $post3){
             $nameCategory = $CategoryModel->getName($post3->categories_id);
 
@@ -42,7 +43,7 @@ $CategoryModel = new categoryModel();
                             <h2><?=$post3->title?></h2>
                         </a>
                         <p class="post-excerpt" data-animation="fadeIn" data-delay="500ms"><?=$post3->intro?></p>
-                        <a href="#" class="btn nikki-btn" data-animation="fadeIn" data-delay="700ms">Read More</a>
+                        <a href="index.php?c=home&a=viewSinglePost&idpost=<?=$post3->post_id?>" class="btn nikki-btn" data-animation="fadeIn" data-delay="700ms">Read More</a>
                     </div>
                     <!-- Page Count -->
                     <div class="page-count"></div>

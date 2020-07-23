@@ -52,7 +52,8 @@ $CategoryModel = new categoryModel();
             </div>
 
             <?php
-            $dataLimitPost5 = $PostsModel->PostsTop(5);
+            $data = $PostsModel->PostsTop(5);
+            $dataLimitPost5 = $PostsModel->pushDataPost($data);
             foreach ($dataLimitPost5 as $Posts5){
                 $byName = $UserModel->getName($Posts5->user_id);
                 ?>
@@ -62,7 +63,7 @@ $CategoryModel = new categoryModel();
                         <img src="img/blog-img/lp1.jpg" alt="">
                     </div>
                     <div class="post-content">
-                        <a href="#" class="post-title">
+                        <a href="index.php?c=home&a=viewSinglePost&idpost=<?=$Posts5->post_id?>" class="post-title">
                             <h6><?=$Posts5->title ?></h6>
                         </a>
                         <a href="#" class="post-author" style="text-transform: capitalize;"><span>by</span> <?=$byName['name']?></a>
@@ -105,7 +106,7 @@ $CategoryModel = new categoryModel();
         <div class="single-widget-area mb-30">
             <!-- Title -->
             <div class="widget-title">
-                <h6>popular tags</h6>
+                <h6>CATEGORIES</h6>
             </div>
             <!-- Tags -->
             <ol class="popular-tags d-flex flex-wrap">
@@ -113,7 +114,7 @@ $CategoryModel = new categoryModel();
                 $getAllCategory = $CategoryModel->getFullData();
                 foreach ($getAllCategory as $value){
                     ?>
-                    <li><a href="#"><?= $value->name?></a></li>
+                    <li><a href="index.php?c=home&a=viewArchive&idcate=<?= $value->category_id?>"><?= $value->name?></a></li>
                     <?php
                 }
                 ?>

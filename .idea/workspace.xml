@@ -20,13 +20,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e23419f6-d42f-4e0b-b032-ebc4aeb785cc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/controller/homeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/categories.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/categories.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/homeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/homeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/comments.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/comments.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/posts.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/posts.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/archive-blog.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/archive-blog.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/home.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/ins/content.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/ins/content.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/ins/menu.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/ins/menu.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/ins/sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/ins/sidebar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/single-post.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/single-post.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +67,9 @@
       <updated>1595405828402</updated>
       <workItem from="1595405836940" duration="1396000" />
       <workItem from="1595407264014" duration="1273000" />
-      <workItem from="1595408586572" duration="643000" />
+      <workItem from="1595408586572" duration="1242000" />
+      <workItem from="1595467969233" duration="5836000" />
+      <workItem from="1595474254196" duration="10744000" />
     </task>
     <servers />
   </component>
@@ -81,11 +86,16 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="510" y="155" key="NewPhpClassDialog" timestamp="1595408692776">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="510" y="155" key="NewPhpClassDialog/0.0.1536.864@0.0.1536.864" timestamp="1595408692776" />
+    <state x="431" y="181" width="672" height="678" key="search.everywhere.popup" timestamp="1595479833424">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="431" y="181" width="672" height="678" key="search.everywhere.popup/0.0.1536.864@0.0.1536.864" timestamp="1595479833424" />
   </component>
 </project>
