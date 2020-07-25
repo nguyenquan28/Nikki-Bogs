@@ -88,4 +88,35 @@ class commentMoldel{
  
          return $result;
      }
+
+//===============================
+    function saveComment(comment $comment){
+        $query = "INSERT INTO comments values ('$comment->comment_id','$comment->user_id','$comment->post_id','$comment->content',$comment->status,$comment->active,'$comment->time')";
+        $result = $this->db->insert($query);
+        return $result;
+//        print_r($query);
+    }
+    //dem xem bai post co bao nhieu binh luan hien ra
+    function countCommentByIdPost($idpost){
+        $query = "SELECT COUNT(comment_id) FROM comments WHERE post_id = $idpost and status = 1";
+        $data = $this->db->select($query);
+        $result = $data->fetch_assoc();
+        return $result;
+    }
+    function searchByIdPost($idpost){
+        $query = "SELECT * FROM comments WHERE post_id = $idpost and status = 1";
+        $resule = $this->db->select($query);
+        return $resule;
+    }
+
+    //tra ve 1 object chuyen object sang  array co key = value
+    function pushDataComment($result){
+        $data=[];
+        foreach ($result->fetch_all() as $value) {
+            array_push($data, new comment($value[0], $value[1], $value[2], $value[3], $value[4], $value[5], $value[6]));
+        }
+        return $data;
+    }
+
+
 }

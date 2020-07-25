@@ -6,25 +6,43 @@ require_once __DIR__ . '/ins/head.php';
 ?>
 
 <body>
-    <?php
-    # Header Area Start
-    require_once __DIR__ . '/ins/menu.php';
+<?php
+require_once '../model/posts.php';
+$PostsModel = new postModel();
+require_once '../model/user.php';
+$UserModel = new userModel();
+require_once '../model/categories.php';
+$CategoryModel = new categoryModel();
+require_once '../model/comments.php';
+$CommentModel = new commentMoldel();
+# Header Area Start
+require_once __DIR__ . '/ins/menu.php';
 
-    # Hero Area Start
-    require_once __DIR__ . '/ins/content.php';
-    ?>
+# Hero Area Start
+require_once __DIR__ . '/ins/content.php';
+?>
 
-    <!-- ##### Blog Content Area End ##### -->
-    <section class="blog-content-area section-padding-100">
-        <div class="container">
+<!-- ##### Blog Content Area End ##### -->
+<section class="blog-content-area section-padding-100">
+    <div class="container">
 
-            <div class="row justify-content-center">
-                <!-- Blog Posts Area -->
-                <div class="col-12 col-lg-8">
-                    <div class="blog-posts-area">
-                        <div class="row">
+        <div class="row justify-content-center">
+            <!-- Blog Posts Area -->
+            <div class="col-12 col-lg-8">
+                <div class="blog-posts-area">
+                    <div class="row">
 
-                            <!-- Featured Post Area -->
+                        <?php
+                        //lay du lieu bai post dau tien
+                        $data = $PostsModel->PostsTop(1);
+                        $dataLimitPost1 =$PostsModel->pushDataPost($data);
+                        foreach ($dataLimitPost1 as $post1){
+                            //lay name tag theo id cate cua post
+                            $nameCategory = $CategoryModel->getName($post1->categories_id);
+                            //lay name user theo id cate cua post
+                            $nameUser = $UserModel->getName($post1->user_id);
+                            $countComment = $CommentModel->countCommentByIdPost($post1->post_id);
+                            ?>
                             <div class="col-12">
                                 <div class="featured-post-area mb-50">
                                     <!-- Thumbnail -->
@@ -33,18 +51,18 @@ require_once __DIR__ . '/ins/head.php';
                                     </div>
                                     <!-- Featured Post Content -->
                                     <div class="featured-post-content">
-                                        <p class="post-date">MAY 7, 2018 / lifestyle</p>
-                                        <a href="#" class="post-title">
-                                            <h2>A Closer Look At Our Front Porch Items From Lowe’s</h2>
+                                        <p class="post-date"><?=$post1->time?> / <?=$nameCategory['name']?></p>
+                                        <a href="index.php?c=home&a=viewSinglePost&idpost=<?=$post1->post_id?>" class="post-title">
+                                            <h2><?=$post1->title?></h2>
                                         </a>
-                                        <p class="post-excerpt">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium</p>
+                                        <p class="post-excerpt"><?=$post1->intro?></p>
                                     </div>
                                     <!-- Post Meta -->
                                     <div class="post-meta d-flex align-items-center justify-content-between">
                                         <!-- Author Comments -->
                                         <div class="author-comments">
-                                            <a href="#"><span>by</span> Colorlib</a>
-                                            <a href="#">03 <span>Comments</span></a>
+                                            <a href="#"><span>by</span>  <?=$nameUser['name']?></a>
+                                            <a href="#"><?=$countComment['COUNT(comment_id)']?><span> Comments</span></a>
                                         </div>
                                         <!-- Social Info -->
                                         <div class="social-info">
@@ -57,7 +75,19 @@ require_once __DIR__ . '/ins/head.php';
                                 </div>
                             </div>
 
-                            <!-- Single Blog Post -->
+                            <?php
+                        }
+                        ?>
+                        <!-- Featured Post Area -->
+
+
+                        <!-- Single Blog Post -->
+                        <?php
+                        $data = $PostsModel->GetAllPostsPage();
+                        $dataGetAllPost = $PostsModel->pushDataPost($data);
+                        foreach ($dataGetAllPost as $getallpost){
+                            $nameCategory = $CategoryModel->getName($getallpost->categories_id);
+                            ?>
                             <div class="col-12 col-sm-6">
                                 <div class="single-blog-post mb-50">
                                     <!-- Thumbnail -->
@@ -66,134 +96,62 @@ require_once __DIR__ . '/ins/head.php';
                                     </div>
                                     <!-- Content -->
                                     <div class="post-content">
-                                        <p class="post-date">MAY 10, 2018 / life</p>
-                                        <a href="#" class="post-title">
-                                            <h4>Travel Tuesday: Answering Your Most Frequent International Transportation Questions</h4>
+                                        <p class="post-date"><?=$getallpost->time?> / <?=$nameCategory['name']?></p>
+                                        <a href="index.php?c=home&a=viewSinglePost&idpost=<?=$getallpost->post_id?>" class="post-title">
+                                            <h4><?=$getallpost->title?></h4>
                                         </a>
-                                        <p class="post-excerpt">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit.</p>
+                                        <p class="post-excerpt"><?=$getallpost->intro?></p>
                                     </div>
                                 </div>
                             </div>
+                            <?php
+                        }
+                        ?>
 
-                            <!-- Single Blog Post -->
-                            <div class="col-12 col-sm-6">
-                                <div class="single-blog-post mb-50">
-                                    <!-- Thumbnail -->
-                                    <div class="post-thumbnail">
-                                        <a href="#"><img src="img/blog-img/2.jpg" alt=""></a>
-                                    </div>
-                                    <!-- Content -->
-                                    <div class="post-content">
-                                        <p class="post-date">MAY 17, 2018 / Sport</p>
-                                        <a href="#" class="post-title">
-                                            <h4>A Closer Look At Our Front Porch Items From Lowe’s</h4>
-                                        </a>
-                                        <p class="post-excerpt">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <!-- Single Blog Post -->
-                            <div class="col-12 col-sm-6">
-                                <div class="single-blog-post mb-50">
-                                    <!-- Thumbnail -->
-                                    <div class="post-thumbnail">
-                                        <a href="#"><img src="img/blog-img/3.jpg" alt=""></a>
-                                    </div>
-                                    <!-- Content -->
-                                    <div class="post-content">
-                                        <p class="post-date">MAY 22, 2018 / lifestyle</p>
-                                        <a href="#" class="post-title">
-                                            <h4>Wedding Guest Style: From Beach Casual to Black-Tie Formal</h4>
-                                        </a>
-                                        <p class="post-excerpt">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <!-- Single Blog Post -->
-                            <div class="col-12 col-sm-6">
-                                <div class="single-blog-post mb-50">
-                                    <!-- Thumbnail -->
-                                    <div class="post-thumbnail">
-                                        <a href="#"><img src="img/blog-img/4.jpg" alt=""></a>
-                                    </div>
-                                    <!-- Content -->
-                                    <div class="post-content">
-                                        <p class="post-date">MAY 25, 2018 / Fashion</p>
-                                        <a href="#" class="post-title">
-                                            <h4>5 Things to Know About Dating a Bisexual</h4>
-                                        </a>
-                                        <p class="post-excerpt">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <!-- Single Blog Post -->
-                            <div class="col-12 col-sm-6">
-                                <div class="single-blog-post mb-50">
-                                    <!-- Thumbnail -->
-                                    <div class="post-thumbnail">
-                                        <a href="#"><img src="img/blog-img/5.jpg" alt=""></a>
-                                    </div>
-                                    <!-- Content -->
-                                    <div class="post-content">
-                                        <p class="post-date">MAY 29, 2018 / food</p>
-                                        <a href="#" class="post-title">
-                                            <h4>7 Things Wealthy Women Do With Their Money That You Can Do Too</h4>
-                                        </a>
-                                        <p class="post-excerpt">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <!-- Single Blog Post -->
-                            <div class="col-12 col-sm-6">
-                                <div class="single-blog-post mb-50">
-                                    <!-- Thumbnail -->
-                                    <div class="post-thumbnail">
-                                        <a href="#"><img src="img/blog-img/6.jpg" alt=""></a>
-                                    </div>
-                                    <!-- Content -->
-                                    <div class="post-content">
-                                        <p class="post-date">Jun 02, 2018 / SummerHoliday</p>
-                                        <a href="#" class="post-title">
-                                            <h4>The 10 Most Instagrammable Spots in San Diego</h4>
-                                        </a>
-                                        <p class="post-excerpt">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
                     </div>
-
-                    <!-- Pager -->
-                    <ol class="nikki-pager">
-                        <li><a href="#"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Newer</a></li>
-                        <li><a href="#">Older <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></li>
-                    </ol>
                 </div>
 
-                <!-- Blog Sidebar Area -->
-                <?php
-                    require_once __DIR__ . '/ins/sidebar.php';
-                ?>
+                <!-- Pager -->
+
+                <ol class="nikki-pager">
+                    <li><a href="index.php?page=1"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Newer</a></li>
+                    <?php
+                    $total_pages = $PostsModel->PostsSumPage();
+                    for ($i = 1; $i <= $total_pages; $i++) {
+                        ?>
+
+                        <li class="page-item"><a class="page-link" style=" width: 46px;line-height: 28px;" href="index.php?page=<?= $i; ?>"><?= $i; ?></a></li>
+
+                    <?php } ?>
+                    <li><a href="index.php?page=<?= $total_pages; ?>">Older <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></li>
+                </ol>
             </div>
+
+            <!-- Blog Sidebar Area -->
+            <?php
+            require_once __DIR__ . '/ins/sidebar.php';
+            ?>
         </div>
-    </section>
+    </div>
+</section>
 
-    <?php
-        # Instagram Area Start
-        require_once __DIR__ . '/ins/instargam.php';
-        
-        # Footer Area Start
-        require_once __DIR__ . '/ins/footer.php';
+<?php
+# Instagram Area Start
+require_once __DIR__ . '/ins/instargam.php';
 
-        # All Javascript Script
-        require_once __DIR__ . '/ins/script.php';
-    ?>
-    
+# Footer Area Start
+require_once __DIR__ . '/ins/footer.php';
+
+# All Javascript Script
+require_once __DIR__ . '/ins/script.php';
+?>
+<!-- Paging -->
+
+
 </body>
 
 </html>

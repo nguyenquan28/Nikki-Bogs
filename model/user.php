@@ -70,6 +70,7 @@ class userModel
         return $result;
     }
 
+<<<<<<< HEAD
     // get delete record in table post
     function delete($user_id)
     {
@@ -105,3 +106,29 @@ class userModel
         $result = $this->db->insert($query);
     }
 }
+=======
+     // get delete record in table post
+     function delete($user_id)
+     {
+         $query = "DELETE FROM user WHERE user_id = '$user_id'";
+         $result = $this->db->delete($query);
+     }
+ 
+     // Search by ID
+     function searchByID($user_id)
+     {
+         $query = "SELECT * FROM user WHERE user_id = '$user_id'";
+         $result = $this->db->select($query);
+         return $result;
+     }
+ 
+     // Seaerch by Name
+     function searchByName($name){
+         $query = "SELECT * FROM user WHERE name = '$name' ";
+         $result = $this->db->select($query);
+ 
+         return $result;
+     }
+
+}
+>>>>>>> origin/HloiNhat

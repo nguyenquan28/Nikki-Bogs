@@ -129,4 +129,96 @@ class postModel{
 
         return $result;
     }
+
+    function PostsTop($sl){
+        $query = "SELECT * from posts where status = 1 LIMIT $sl";
+        $result = $this->db->select($query);
+        return $result;
+
+    }
+
+    //get top 2 post where
+    //get all by Id category
+    function getAllByIdCateAndPage(){
+        $limit=6;
+        $page=1;
+        $id_cate = '';
+        $postModel = new postModel();
+        $total_page = $postModel->PostsSumPage();
+
+        if(isset($_GET["page"])){
+            $page=$_GET["page"];
+        }
+        if (isset($_GET['idcate'])){
+            $id_cate =$_GET['idcate'];
+        }else{
+            return $data = $postModel->GetAllPostsPage();
+        }
+
+        if($page<1) $page=1;
+        if($page>$total_page) $page=$total_page;
+        $start=($page-1)*$limit;
+        $query = "SELECT * FROM posts WHERE `status` = 1 and categories_id = $id_cate LIMIT $start, $limit";
+        $result = $this->db->select($query);
+        return $result;
+    }
+
+    //get all page
+    function PostsSumPage(){
+        $page=1;
+        $limit=6;
+        $qrid= "select post_id from posts";
+        $arrs_list = $this->db->select($qrid);
+        $total_record = $arrs_list->num_rows;
+        $total_page=ceil($total_record/$limit);
+        return $total_page;
+    }
+    //lay ra tat ca du lieu va phan trang
+    function GetAllPostsPage(){
+        $limit=6;
+        $page=1;
+        $postModel = new postModel();
+        $total_page = $postModel->PostsSumPage();
+
+        //xem trang có vượt giới hạn không:
+        if(isset($_GET["page"]))
+            $page=$_GET["page"];
+        if($page<1) $page=1;
+        if($page>$total_page) $page=$total_page;
+        $start=($page-1)*$limit;
+        $qrall = "select * from posts limit $start,$limit";
+        $result = $this->db->select($qrall);
+        return $result;
+//        print_r($datagetall);
+    }
+    //RELATED POSTS by id category
+    function RelatedByIdCateTop2($id_cate){
+        $query = "select * from posts where status = 1 and categories_id = $id_cate limit 2";
+        $result = $this->db->select($query);
+        return $result;
+    }
+
+
+//tra ve 1 object chuyen object sang  array co key = value
+    function pushDataPost($result){
+        $data=[];
+        foreach ($result->fetch_all() as $value) {
+            array_push($data, new post($value[0], $value[1], $value[2], $value[3], $value[4], $value[5], $value[6], $value[7], $value[8], $value[9], $value[10], $value[11]));
+        }
+        return $data;
+    }
+    //dem co bao nhieu bai theo tag
+    function countPostByIdCate($idCate){
+        $query = "SELECT COUNT(post_id) FROM posts WHERE categories_id= $idCate";
+        $data = $this->db->select($query);
+        $result = $data->fetch_assoc();
+        return $result;
+    }
+    //tim kiem search
+    function searchLikeTitle($title){
+        $query = "SELECT categories_id FROM posts WHERE title like '%$title%';";
+        $data = $this->db->select($query);
+        $result = $data->fetch_assoc();
+        return $result;
+    }
 }
