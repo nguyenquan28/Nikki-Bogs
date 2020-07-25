@@ -15,6 +15,11 @@
     $CommentsModel = new commentMoldel();
     require_once '../model/user.php';
     $UserModel = new userModel();
+    require_once '../config/session.php';
+    Session::init();
+
+//    session_start();
+//    $_SESSION['a']='a';
 ?>
 <body>
     <!-- ##### Header Area Start ##### -->
@@ -53,11 +58,15 @@
                         <?php
                             if (isset($_GET['idpost'])){
                                 $idpost = $_GET['idpost'];
+                                //tim kiem  1 bai post theo id
                                 $data = $PostsModel->searchByID($idpost);
                                 $SinglePost = $PostsModel->pushDataPost($data);
 //                                print_r($SinglePost);
                                 foreach ($SinglePost as $datasingle){
+                                    //lay ten cua category theo id
                                     $namecate = $CategoryModel->getName($datasingle->categories_id);
+                                    $countCommert = $CommentsModel->countCommentByIdPost($datasingle->post_id);
+                                    $nameUser = $UserModel->getName($datasingle->user_id)
                          ?>
                                     <div class="post-content">
 
@@ -66,8 +75,8 @@
                                             <h2 class="post-title"><?=$datasingle->title?></h2>
                                             <!-- Post Meta -->
                                             <div class="post-meta">
-                                                <a href="#"><span>by</span> Colorlib</a>
-                                                <a href="#">03 <span>Comments</span></a>
+                                                <a href="#"><span>by</span> <?=$nameUser['name']?></a>
+                                                <a href="#"><?=$countCommert['COUNT(comment_id)']?><span>Comments</span></a>
                                             </div>
                                         </div>
 
@@ -176,13 +185,14 @@
 
                                             <!-- Comment Area Start -->
                                             <div class="comment_area clearfix">
-                                                <h4 class="headline">12 Comments</h4>
+                                                <h4 class="headline">Comments</h4>
                                                 <ol>
                                                     <?php
                                                         $datacmts = $CommentsModel->searchByIdPost($datasingle->post_id);
                                                         $datacmt = $CommentsModel->pushDataComment($datacmts);
                                                         foreach ($datacmt as $datacmt){
                                                             $nameUser = $UserModel->getName($datacmt->user_id);
+//                                                            Session::set('idUser',$datacmt->user_id);
                                                     ?>
                                                         <li class="single_comment_area">
                                                             <div class="comment-wrapper d-flex">
@@ -211,20 +221,8 @@
                                             <div class="leave-comment-area clearfix">
                                                 <div class="comment-form">
                                                     <h4 class="headline">Leave A Comment</h4>
-
-                                                    <!-- Comment Form -->
-                                                    <form action="#" method="post">
+                                                    <form method="post">
                                                         <div class="row">
-                                                            <div class="col-12 col-md-6">
-                                                                <div class="form-group">
-                                                                    <input type="text" class="form-control" id="contact-name" placeholder="Name">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-12 col-md-6">
-                                                                <div class="form-group">
-                                                                    <input type="email" class="form-control" id="contact-email" placeholder="Email">
-                                                                </div>
-                                                            </div>
                                                             <div class="col-12">
                                                                 <div class="form-group">
                                                                     <textarea class="form-control" name="message" id="message" cols="30" rows="10" placeholder="Comment"></textarea>
@@ -235,6 +233,26 @@
                                                             </div>
                                                         </div>
                                                     </form>
+
+                                                    <?php
+                                                    if (isset($_SESSION['idUser'])) {
+                                                        if (isset($_POST['message'])) {
+                                                                $user = Session::get('idUser');
+                                                                print_r($user);
+                                                                die();
+                                                                $postid = $datasingle->post_id;
+                                                                $comment= $_POST['message'];
+                                                                $today = date("Y-m-d");
+                                                                    $comment = new comment('',$user,$postid,$comment,0,1,$today);
+                                                                    $result =$CommentsModel->saveComment($comment);
+//                                                            print_r($result);
+                                                                //$comment = new comment();
+                                                        }
+                                                    }
+                                                    ?>
+
+                                                    <!-- Comment Form -->
+
                                                 </div>
                                             </div>
                                         </div>

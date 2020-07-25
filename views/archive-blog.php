@@ -127,10 +127,13 @@
 
                             <ol class="nikki-catagories">
                                 <?php
+                                // lay ra tat ca du lieu cua ban category la show ra name
                                 $getAllCategory = $CategoryModel->getFullData();
                                 foreach ($getAllCategory as $value){
+                                    //dem so luong bai post theo tag
+                                    $countpost=$PostsModel->countPostByIdCate($value->category_id);
                                     ?>
-                                    <li><a href="?c=home&a=viewArchive&idcate=<?=$value->category_id?>"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> <?= $value->name?></span> <span>(3)</span></a></li>
+                                    <li><a href="?c=home&a=viewArchive&idcate=<?=$value->category_id?>"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> <?= $value->name?></span> <span>(<?=$countpost['COUNT(post_id)']?>)</span></a></li>
                                     <?php
                                 }
                                 ?>

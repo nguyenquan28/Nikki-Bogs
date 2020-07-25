@@ -13,7 +13,8 @@ require_once '../model/user.php';
 $UserModel = new userModel();
 require_once '../model/categories.php';
 $CategoryModel = new categoryModel();
-
+require_once '../model/comments.php';
+$CommentModel = new commentMoldel();
 # Header Area Start
 require_once __DIR__ . '/ins/menu.php';
 
@@ -32,11 +33,15 @@ require_once __DIR__ . '/ins/content.php';
                     <div class="row">
 
                         <?php
+                        //lay du lieu bai post dau tien
                         $data = $PostsModel->PostsTop(1);
                         $dataLimitPost1 =$PostsModel->pushDataPost($data);
                         foreach ($dataLimitPost1 as $post1){
+                            //lay name tag theo id cate cua post
                             $nameCategory = $CategoryModel->getName($post1->categories_id);
-                            $nameUser = $UserModel->getName($post1->user_id)
+                            //lay name user theo id cate cua post
+                            $nameUser = $UserModel->getName($post1->user_id);
+                            $countComment = $CommentModel->countCommentByIdPost($post1->post_id);
                             ?>
                             <div class="col-12">
                                 <div class="featured-post-area mb-50">
@@ -57,7 +62,7 @@ require_once __DIR__ . '/ins/content.php';
                                         <!-- Author Comments -->
                                         <div class="author-comments">
                                             <a href="#"><span>by</span>  <?=$nameUser['name']?></a>
-                                            <a href="#">03 <span>Comments</span></a>
+                                            <a href="#"><?=$countComment['COUNT(comment_id)']?><span> Comments</span></a>
                                         </div>
                                         <!-- Social Info -->
                                         <div class="social-info">

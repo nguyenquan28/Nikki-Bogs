@@ -90,8 +90,21 @@ class commentMoldel{
      }
 
 //===============================
+    function saveComment(comment $comment){
+        $query = "INSERT INTO comments values ('$comment->comment_id','$comment->user_id','$comment->post_id','$comment->content',$comment->status,$comment->active,'$comment->time')";
+        $result = $this->db->insert($query);
+        return $result;
+//        print_r($query);
+    }
+    //dem xem bai post co bao nhieu binh luan hien ra
+    function countCommentByIdPost($idpost){
+        $query = "SELECT COUNT(comment_id) FROM comments WHERE post_id = $idpost and status = 1";
+        $data = $this->db->select($query);
+        $result = $data->fetch_assoc();
+        return $result;
+    }
     function searchByIdPost($idpost){
-        $query = "SELECT * FROM comments WHERE post_id = $idpost";
+        $query = "SELECT * FROM comments WHERE post_id = $idpost and status = 1";
         $resule = $this->db->select($query);
         return $resule;
     }
@@ -104,5 +117,6 @@ class commentMoldel{
         }
         return $data;
     }
+
 
 }

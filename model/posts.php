@@ -173,6 +173,7 @@ class postModel{
         $total_page=ceil($total_record/$limit);
         return $total_page;
     }
+    //lay ra tat ca du lieu va phan trang
     function GetAllPostsPage(){
         $limit=6;
         $page=1;
@@ -205,5 +206,19 @@ class postModel{
             array_push($data, new post($value[0], $value[1], $value[2], $value[3], $value[4], $value[5], $value[6], $value[7], $value[8], $value[9], $value[10], $value[11]));
         }
         return $data;
+    }
+    //dem co bao nhieu bai theo tag
+    function countPostByIdCate($idCate){
+        $query = "SELECT COUNT(post_id) FROM posts WHERE categories_id= $idCate";
+        $data = $this->db->select($query);
+        $result = $data->fetch_assoc();
+        return $result;
+    }
+    //tim kiem search
+    function searchLikeTitle($title){
+        $query = "SELECT categories_id FROM posts WHERE title like '%$title%';";
+        $data = $this->db->select($query);
+        $result = $data->fetch_assoc();
+        return $result;
     }
 }
