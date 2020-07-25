@@ -13,8 +13,9 @@ class category
     public $slug;
     public $active;
 
-    function __construct($name, $tag, $description, $slug, $active)
+    function __construct($category_id,$name, $tag, $description, $slug, $active)
     {
+        $this->category_id=$category_id;
         $this->name = $name;
         $this->tag = $tag;
         $this->description = $description;
@@ -86,7 +87,7 @@ class categoryModel{
  
          return $result;
      }
-<<<<<<< HEAD
+
      
      function changeStt($id, $status){
         $query = "UPDATE categories SET active = $status WHERE categories_id = $id";
@@ -98,8 +99,8 @@ class categoryModel{
         $query = "INSERT INTO categories (name, tag, description, slug, active) 
         VALUE ('$cat->name', '$cat->tag', '$cat->description', '$cat->slug', '$cat->active')";
         $this->db->insert($query);
-=======
 
+    }
     function getFullData(){
         $query = "select * from categories";
         $result = $this->db->select($query);
@@ -107,7 +108,7 @@ class categoryModel{
         foreach ($result->fetch_all() as $value){
             array_push($data, new category($value[0],$value[1],$value[2],$value[3],$value[4],$value[5]));
         }
+//        print_r($data);
         return $data;
->>>>>>> origin/HloiNhat
     }
 }

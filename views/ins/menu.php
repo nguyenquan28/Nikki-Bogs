@@ -90,15 +90,7 @@
                                         <button type="submit"><i class="fa fa-search"></i></button>
                                     </form>
                                 </div>
-                                <?php
-                                $PostsModel = new postModel();
-                                if (isset($_POST['search'])){
-                                    $data = $_POST['search'];
-                                    $search = str_replace(' ','%',$data);
-                                    $data = $PostsModel->searchLikeTitle($search);
-                                    print_r($data['categories_id']);
-                                }
-                                ?>
+<!--                                -->
                                 <!-- Social Button -->
                                 <div class="top-social-info">
                                     <a href="#" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
