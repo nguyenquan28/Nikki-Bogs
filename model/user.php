@@ -4,19 +4,21 @@ Session::init();
 require_once __DIR__ . '/../config/connectDB.php';
 require_once __DIR__ . '/../config/format.php';
 
-class user{
+class user
+{
     public $user_id;
     public $name;
+    public $email;
     public $password;
     public $gender;
     public $birthday;
     public $status;
     public $permission;
 
-    function __construct($user_id, $name, $password, $gender, $birthday, $status, $permission)
-    {   
-        $this->user_id = $user_id;
+    function __construct($name, $email, $password, $gender, $birthday, $status, $permission)
+    {
         $this->name = $name;
+        $this->email = $email;
         $this->password = $password;
         $this->gender = $gender;
         $this->birthday = $birthday;
@@ -25,7 +27,8 @@ class user{
     }
 }
 
-class userModel{
+class userModel
+{
     private $db;
     private $fm;
 
@@ -33,7 +36,7 @@ class userModel{
     {
         $this->db = new Database();
         $this->fm = new Format();
-    }  
+    }
 
     // Function paginasion
     function paginasion($no_of_records_per_page)
@@ -48,17 +51,18 @@ class userModel{
 
     // get all data in table post
     function getAll($offset, $no_of_records_per_page)
-    {   
+    {
 
-        $query = "SELECT * FROM user ORDER BY time DESC, active ASC LIMIT $offset, $no_of_records_per_page";
+        $query = "SELECT * FROM user ORDER BY status ASC LIMIT $offset, $no_of_records_per_page";
         $result = $this->db->select($query);
-        
+
         return $result;
     }
 
 
     // Get name user by id
-    function getName($user_id){
+    function getName($user_id)
+    {
         $query = "SELECT name FROM user WHERE user_id = '$user_id' ";
         $data = $this->db->select($query);
         $result = $data->fetch_assoc();
@@ -66,26 +70,38 @@ class userModel{
         return $result;
     }
 
-     // get delete record in table post
-     function delete($user_id)
-     {
-         $query = "DELETE FROM user WHERE user_id = '$user_id'";
-         $result = $this->db->delete($query);
-     }
- 
-     // Search by ID
-     function searchByID($user_id)
-     {
-         $query = "SELECT * FROM user WHERE user_id = '$user_id'";
-         $result = $this->db->select($query);
-         return $result;
-     }
- 
-     // Seaerch by Name
-     function searchByName($name){
-         $query = "SELECT * FROM user WHERE name = '$name' ";
-         $result = $this->db->select($query);
- 
-         return $result;
-     }
+    // get delete record in table post
+    function delete($user_id)
+    {
+        $query = "DELETE FROM user WHERE user_id = '$user_id'";
+        $result = $this->db->delete($query);
+    }
+
+    // Search by ID
+    function searchByID($user_id)
+    {
+        $query = "SELECT * FROM user WHERE user_id = '$user_id'";
+        $result = $this->db->select($query);
+        return $result;
+    }
+
+    // Seaerch by Name
+    function searchByEmai($email)
+    {
+        $query = "SELECT * FROM user WHERE email = '$email' LIMIT 1";
+        $result = $this->db->select($query);
+        return $result;
+    }
+
+    function changeStt($id, $status)
+    {
+        $query = "UPDATE user SET status = $status WHERE user_id = $id";
+        $result = $this->db->select($query);
+    }
+
+    function insert(user $user){
+        $query = "INSERT INTO user(name, email, password, gender, birthday, status, permission) 
+        VALUE ('$user->name', '$user->email', '$user->password', $user->gender, '$user->birthday', $user->status, $user->permission) ";
+        $result = $this->db->insert($query);
+    }
 }

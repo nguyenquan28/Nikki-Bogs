@@ -9,16 +9,15 @@ class category
     public $category_id;
     public $name;
     public $tag;
-    public $desciption;
+    public $description;
     public $slug;
     public $active;
 
-    function __construct($category_id, $name, $tag, $desciption, $slug, $active)
+    function __construct($name, $tag, $description, $slug, $active)
     {
-        $this->category_id = $category_id;
         $this->name = $name;
         $this->tag = $tag;
-        $this->desciption = $desciption;
+        $this->description = $description;
         $this->slug = $slug;
         $this->active = $active;
     }
@@ -49,7 +48,7 @@ class categoryModel{
     function getAll($offset, $no_of_records_per_page)
     {   
 
-        $query = "SELECT * FROM categories ORDER BY time DESC, active ASC LIMIT $offset, $no_of_records_per_page";
+        $query = "SELECT * FROM categories ORDER BY active DESC LIMIT $offset, $no_of_records_per_page";
         $result = $this->db->select($query);
         
         return $result;
@@ -68,7 +67,7 @@ class categoryModel{
      // get delete record in table post
      function delete($category_id)
      {
-         $query = "DELETE FROM categories WHERE category_id = '$category_id'";
+         $query = "DELETE FROM categories WHERE categories_id = '$category_id'";
          $result = $this->db->delete($query);
      }
  
@@ -87,4 +86,16 @@ class categoryModel{
  
          return $result;
      }
+     
+     function changeStt($id, $status){
+        $query = "UPDATE categories SET active = $status WHERE categories_id = $id";
+        $result = $this->db->select($query);
+    }
+
+    function insert(category $cat)
+    {
+        $query = "INSERT INTO categories (name, tag, description, slug, active) 
+        VALUE ('$cat->name', '$cat->tag', '$cat->description', '$cat->slug', '$cat->active')";
+        $this->db->insert($query);
+    }
 }

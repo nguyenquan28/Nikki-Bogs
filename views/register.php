@@ -2,6 +2,8 @@
 <html lang="en">
 
 <?php
+require_once __DIR__ . '/../config/session.php';
+Session::init();
 require_once __DIR__ . '/ins/head.php';
 ?>
 
@@ -12,7 +14,7 @@ require_once __DIR__ . '/ins/head.php';
     ?>
 
     <!-- ##### Breadcrumb Area Start ##### -->
-    <div class="breadcrumb-area">
+    <div class="breadcrumb-area pb-1">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -39,25 +41,36 @@ require_once __DIR__ . '/ins/head.php';
 
                         <!-- Contact Form Area -->
                         <div class="contact-form-area">
-                            <form action="#" method="post">
+                            <small class="text-danger font-italic d-flex justify-content-end mb-3">
+                                <?php if (isset($_SESSION['registerError'])) echo Session::get('registerError');
+                                else echo 'no'; ?>
+                            </small>
+                            <form action="index.php?c=user&a=register" method="post">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Name">
+                                    <input type="text" class="form-control" name="name" placeholder="Name">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" type="date" id="example-date-input" placeholder="Birthday">
+                                    <select class="form-control" name="gender">
+                                        <option value="1">Man</option>
+                                        <option value="0">Woman</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Email">
+                                    <input class="form-control" type="date" name="birthday" placeholder="Birthday">
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Password">
+                                    <input type="email" class="form-control" name="email" placeholder="Email">
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Re-password">
+                                    <input type="password" class="form-control" name="pass" placeholder="Password">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" name="re-pass" placeholder="Re-password">
                                 </div>
                                 <div class="text-warning">
                                     <label for="">By creating an account, you agree to Nikki's <a href="#">Conditions of Use</a> and <a href="#">Privacy Notice</a>.</label>
                                 </div>
+
                                 <div class="d-flex justify-content-center mt-2">
                                     <button type="submit" class="btn nikki-btn">Register</button>
                                 </div>
@@ -71,9 +84,6 @@ require_once __DIR__ . '/ins/head.php';
     </section>
 
     <?php
-    # Instagram Area
-    require_once __DIR__ . '/ins/instargam.php';
-
     # Footer Area
     require_once __DIR__ . '/ins/footer.php';
 
