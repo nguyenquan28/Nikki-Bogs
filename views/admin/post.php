@@ -39,11 +39,11 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                     <?php if (!empty($_SESSION['errorAdd'])) echo $_SESSION['errorAdd']; ?>
                 </p>
                 <header class="mt-3 mb-3 d-flex justify-content-between">
-                    <h3>List Posts</h3>
+                    <h4>List Posts</h4>
                 </header>
 
                 <!-- list post -->
-                <table class="table table-bordered">
+                <table class="table table-striped table-bordered">
                     <thead>
                         <tr>
                             <th class="text-center" scope="col">Author</th>
@@ -62,11 +62,11 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                             $userName = $user->getName($value->user_id);
                         ?>
                             <tr class = <?php if($value->status == true) echo ' "tr-color" '; else echo '""';?> >
-                                <th class="text-center"><?= $userName['name'] ?></th>
-                                <th class="text-center"><?= $catName['name'] ?></th>
-                                <th><?= $value->title ?></th>
-                                <th><?= $value->intro ?></th>
-                                <th class="text-center" style="width:  8%"><?= date('d-M-Y', strtotime($value->time)) ?></th>
+                                <td class="text-center"><?= $userName['name'] ?></td>
+                                <td class="text-center"><?= $catName['name'] ?></td>
+                                <td><?= $value->title ?></td>
+                                <td><?= $value->intro ?></td>
+                                <td class="text-center" style="width:  8%"><?= date('d-M-Y', strtotime($value->time)) ?></th>
                                 <td class="text-center" title="Delete"><a href="./index.php?c=post&a=detailPost&id=<?= $value->post_id ?>"><i class="fas fa-info-circle"></i></a></td>
                                 <td class="text-center" title="Updata"><a href="./index.php?c=post&a=editStatus&id=<?= $value->post_id ?>&status=<?= $value->status ?>"><i class="fas fa-tools text-warning"></i></a></td>
                                 <td class="text-center" title="Delete"><a href="./index.php?c=post&a=delPost&id=<?= $value->post_id ?>"><i class="far fa-trash-alt text-danger"></i></a></td>
@@ -80,11 +80,11 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                 <!-- Paging -->
                 <nav aria-label="Page navigation" class="d-flex justify-content-end">
                     <ul class="pagination">
-                        <li class="page-item"><a class="page-link" href="index.php?c=admin&a=post&pageno=1">First</a></li>
+                        <li class="page-item"><a class="page-link" href="index.php?c=post&a=getAll&pageno=1">First</a></li>
                         <?php for ($i = 1; $i <= $total_pages; $i++) { ?>
-                            <li class="page-item"><a class="page-link" href="index.php?c=admin&a=post&pageno=<?= $i; ?>"><?= $i; ?></a></li>
+                            <li class="page-item"><a class="page-link" href="index.php?c=post&a=getAll&pageno=<?= $i; ?>"><?= $i; ?></a></li>
                         <?php } ?>
-                        <li class="page-item"><a class="page-link" href="index.php?c=admin&a=post&pageno=<?= $total_pages; ?>">Last</a></li>
+                        <li class="page-item"><a class="page-link" href="index.php?c=post&a=getAll&pageno=<?= $total_pages; ?>">Last</a></li>
                     </ul>
                 </nav>
             </div>

@@ -35,7 +35,7 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                     <?php if (!empty($_SESSION['errorAdd'])) echo $_SESSION['errorAdd']; ?>
                 </p>
                 <header class="mt-3 mb-3 d-flex justify-content-between">
-                    <h3>List Contact</h3>
+                    <h4>List Contact</h4>
                 </header>
 
                 <!-- list post -->
