@@ -3,6 +3,8 @@
 
 <?php
 require_once __DIR__ . '/ins/head.php';
+require_once __DIR__ . '/../config/session.php';
+Session::init();
 ?>
 
 <body>
@@ -29,7 +31,7 @@ require_once __DIR__ . '/ins/head.php';
     <!-- ##### Breadcrumb Area End ##### -->
 
     <!-- ##### Contact Area Start ##### -->
-    <section class="contact-area">
+    <section class="contact-area mb-100">
         <div class="container">
             <div class="row d-flex justify-content-center">
 
@@ -39,13 +41,16 @@ require_once __DIR__ . '/ins/head.php';
 
                         <!-- Contact Form Area -->
                         <div class="contact-form-area">
-                            <form action="#" method="post">
+                            <form action="index.php?c=user&a=login" method="POST">
                                 <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Email">
+                                    <input type="email" class="form-control" name="email" placeholder="Email">
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Password">
+                                    <input type="password" class="form-control" name="pass" placeholder="Password">
                                 </div>
+                                <small class="text-danger font-italic d-flex justify-content-end mb-3">
+                                    <?php if(isset($_SESSION['loginError'])) echo Session::get('loginError'); else echo ''; ?>
+                                </small>
                                 <div class="d-flex justify-content-center">
                                     <button type="submit" class="btn nikki-btn">Login</button>
                                 </div>
@@ -59,8 +64,6 @@ require_once __DIR__ . '/ins/head.php';
     </section>
 
     <?php
-    # Instagram Area
-    require_once __DIR__ . '/ins/instargam.php';
 
     # Footer Area
     require_once __DIR__ . '/ins/footer.php';
