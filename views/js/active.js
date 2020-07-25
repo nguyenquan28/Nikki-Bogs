@@ -111,3 +111,19 @@
     }
 
 })(jQuery);
+// cường nha
+window.onscroll = function() {roll()};
+var header = document.getElementById("profile");
+var background = document.getElementById("img-background");
+var sticky = header.offsetTop - 70;
+
+function roll() {
+  if (window.pageYOffset > sticky) {
+    background.classList.add("sticky-background");
+    header.classList.add("sticky");
+    header.classList.remove("position-absolute");
+  } else {
+    header.classList.add("position-absolute");
+    header.classList.remove("sticky");
+  }
+}

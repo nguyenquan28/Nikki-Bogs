@@ -78,6 +78,7 @@
                                     </li>
                                     <li><a href="about-us.php">About</a></li>
                                     <li><a href="contact.php">Contact</a></li>
+                                    <li><a href="contact.php">Login</a></li>
                                 </ul>
 
                                 <!-- Search Form -->
@@ -87,6 +88,8 @@
                                         <button type="submit"><i class="fa fa-search"></i></button>
                                     </form>
                                 </div>
+
+
 
                                 <!-- Social Button -->
                                 <div class="top-social-info">

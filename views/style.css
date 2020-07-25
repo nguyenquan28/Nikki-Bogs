@@ -1603,6 +1603,27 @@ blockquote {
     border-color: #d1bb95; }
 .contact-form-area textarea.form-control {
   height: 120px; }
+/* cường */
+.img-background{
+  background: url(https://travelsgcc.com/wp-content/uploads/2020/06/chinh-phuc-ngon-nui-tay-bac-san-anh-dai-ngan-dep-nhu-tranh-ve-2.jpg) no-repeat center center;
+  background-size: cover;
+  
+  height: 350px;
+  overflow: hidden;
+}
+.top-250{
+  top: 300px;
+}
+.sticky {
+  position: fixed;
+  top: 70px;
+}
+
+
+.box {
+box-shadow: 0 0 10px 5px rgba(146, 124, 65, 0.32);
+}
+
 
 /* ======= The End ======= */
 
