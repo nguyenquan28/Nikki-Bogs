@@ -2,13 +2,15 @@
 <html lang="en">
 
 <?php
-    require_once __DIR__ . '/ins/head.php';
+include __DIR__ . '/../config/session.php';
+Session::init();
+require_once __DIR__ . '/ins/head.php';
 ?>
 
 <body>
     <!-- ##### Header Area Start ##### -->
     <?php
-        require_once __DIR__ . '/ins/menu.php';
+    require_once __DIR__ . '/ins/menu.php';
     ?>
     <!-- ##### Header Area End ##### -->
 
@@ -89,14 +91,14 @@
 
     <!-- #### Start ##### -->
     <?php
-        # Instagram Area
-        require_once __DIR__ . '/ins/instargam.php';
+    # Instagram Area
+    require_once __DIR__ . '/ins/instargam.php';
 
-        # Footer Area
-        require_once __DIR__ . '/ins/footer.php';
+    # Footer Area
+    require_once __DIR__ . '/ins/footer.php';
 
-        # All Javascript Script
-        require_once __DIR__ . '/ins/script.php';
+    # All Javascript Script
+    require_once __DIR__ . '/ins/script.php';
     ?>
 
 </body>

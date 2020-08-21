@@ -2,7 +2,9 @@
 <html lang="en">
 
 <?php
-    require_once __DIR__ . '/ins/head.php';
+include __DIR__ . '/../config/session.php';
+Session::init();
+require_once __DIR__ . '/ins/head.php';
 ?>
 <?php
     require_once '../model/posts.php';
@@ -24,7 +26,7 @@
 <body>
     <!-- ##### Header Area Start ##### -->
     <?php
-        require_once __DIR__ .'/ins/menu.php';
+    require_once __DIR__ . '/ins/menu.php';
     ?>
     <!-- ##### Header Area End ##### -->
 
@@ -214,7 +216,29 @@
                                                     ?>
                                                     <!-- Single Comment Area -->
 
+<<<<<<< HEAD
                                                 </ol>
+=======
+                                <!-- Comment Area Start -->
+                                <div class="comment_area clearfix">
+                                    <h4 class="headline">12 Comments</h4>
+                                    <ol>
+                                        <!-- Single Comment Area -->
+                                        <li class="single_comment_area">
+                                            <div class="comment-wrapper d-flex">
+                                                <!-- Comment Meta -->
+                                                <div class="comment-author">
+                                                    <img src="img/blog-img/9.jpg" alt="">
+                                                </div>
+                                                <!-- Comment Content -->
+                                                <div class="comment-content">
+                                                    <span class="comment-date">MAY 10, 2018</span>
+                                                    <h5>Calantha Flower</h5>
+                                                    <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi</p>
+                                                    <a href="#">Like</a>
+                                                    <a class="active" href="#">Reply</a>
+                                                </div>
+>>>>>>> origin/quandt
                                             </div>
 
                                             <!-- Leave A Comment -->
@@ -271,13 +295,13 @@
     <!-- ##### Blog Content Area End ##### -->
 
     <?php
-        # Instagram Area
-        require_once __DIR__ . '/ins/instargam.php';
+    # Instagram Area
+    require_once __DIR__ . '/ins/instargam.php';
 
-        # Footer Area
-        require_once __DIR__ . '/ins/footer.php';
+    # Footer Area
+    require_once __DIR__ . '/ins/footer.php';
     ?>
-    
+
 </body>
 
 </html>

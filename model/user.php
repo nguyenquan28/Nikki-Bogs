@@ -49,11 +49,11 @@ class userModel
         return $total_pages;
     }
 
-    // get all data in table post
+    // get all data in table user
     function getAll($offset, $no_of_records_per_page)
     {
 
-        $query = "SELECT * FROM user ORDER BY status ASC LIMIT $offset, $no_of_records_per_page";
+        $query = "SELECT * FROM user ORDER BY status DESC LIMIT $offset, $no_of_records_per_page";
         $result = $this->db->select($query);
 
         return $result;
@@ -94,6 +94,20 @@ class userModel
         return $result;
     }
 
+    // Search all
+    function search($tags){
+        $query = "SELECT * FROM user 
+                    WHERE user_id REGEXP '". $tags ."'
+                    OR name REGEXP '" . $tags . "' 
+                    OR email REGEXP '" . $tags . "' 
+                    OR gender REGEXP '" . $tags . "' 
+                    OR birthday REGEXP '" . $tags . "' 
+                    OR status REGEXP '" . $tags . "'
+                ";
+        $result = $this->db->select($query);
+        return $result;
+    }
+
     function changeStt($id, $status)
     {
         $query = "UPDATE user SET status = $status WHERE user_id = $id";
@@ -111,11 +125,12 @@ class userModel
         $query = "SELECT * FROM user WHERE name = '$name' ";
         $result = $this->db->select($query);
 
+    }
+    // Count status
+    function countStt(){
+        $query = "SELECT COUNT(*) FROM user WHERE status = '1'";
+        $result = $this->db->select($query);
+        
         return $result;
     }
 }
-
-
-
-
-

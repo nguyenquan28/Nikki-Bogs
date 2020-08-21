@@ -2,6 +2,8 @@
 <html lang="en">
 
 <?php
+include __DIR__ . '/../config/session.php';
+Session::init();
 require_once __DIR__ . '/ins/head.php';
 ?>
 
@@ -72,15 +74,15 @@ require_once __DIR__ . '/ins/head.php';
 
                         <!-- Contact Form Area -->
                         <div class="contact-form-area">
-                            <form action="#" method="post">
+                            <form action="index.php?c=contact&a=insert" method="post">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="contact-name" placeholder="Name">
+                                    <input type="text" class="form-control" name="name" id="contact-name" placeholder="Name">
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control" id="contact-email" placeholder="Email">
+                                    <input type="email" class="form-control" name="email" id="contact-email" placeholder="Email">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="contact-phone" placeholder="Phone">
+                                    <input type="text" class="form-control" name="phone" id="contact-phone" placeholder="Phone">
                                 </div>
                                 <div class="form-group">
                                     <textarea class="form-control" name="message" id="message" cols="30" rows="10" placeholder="Message"></textarea>

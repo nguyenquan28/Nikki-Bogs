@@ -42,10 +42,10 @@ require __DIR__.'/ins-admin/headerAdmin.php';
                         foreach ($data->fetch_all() as $key => $value) {
                         ?>
                             <tr class = <?php if($value['5'] == true) echo ' "tr-color" '; else echo '""';?>>
-                                <th class="text-center" ><?= $value['0'] ?></th>
-                                <th class="text-center"><?= $value['1'] ?></th>
-                                <th class="text-center" ><?= $value['2'] ?></th>
-                                <th class="text-center" ><?= $value['4']?></th>
+                                <td class="text-center" ><?= $value['0'] ?></td>
+                                <td class="text-center"><?= $value['1'] ?></td>
+                                <td class="text-center" ><?= $value['2'] ?></td>
+                                <td ><?= $value['4']?></td>
                                 <td class="text-center" title="Update"><a href="./index.php?c=category&a=editStatus&id=<?= $value['0'] ?>&status=<?= $value['5']?>"><i class="fas fa-tools"></i></a></td>
                                 <td class="text-center" title="Delete"><a href="./index.php?c=category&a=delCat&id=<?= $value['0'] ?>"><i class="far fa-trash-alt text-danger"></i></a></td>
                             </tr>
@@ -54,6 +54,17 @@ require __DIR__.'/ins-admin/headerAdmin.php';
                         ?>
                     </tbody>
                 </table>
+
+                <!-- Paging -->
+                <nav aria-label="Page navigation" class="d-flex justify-content-end">
+                    <ul class="pagination">
+                        <li class="page-item"><a class="page-link" href="index.php?c=category&a=getAll&pageno=1">First</a></li>
+                        <?php for ($i = 1; $i <= $total_pages; $i++) { ?>
+                            <li class="page-item"><a class="page-link" href="index.php?c=category&a=getAll&pageno=<?= $i; ?>"><?= $i; ?></a></li>
+                        <?php } ?>
+                        <li class="page-item"><a class="page-link" href="index.php?c=category&a=getAll&pageno=<?= $total_pages; ?>">Last</a></li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </div>

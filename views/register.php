@@ -2,7 +2,7 @@
 <html lang="en">
 
 <?php
-require_once __DIR__ . '/../config/session.php';
+include __DIR__ . '/../config/session.php';
 Session::init();
 require_once __DIR__ . '/ins/head.php';
 ?>
@@ -43,7 +43,7 @@ require_once __DIR__ . '/ins/head.php';
                         <div class="contact-form-area">
                             <small class="text-danger font-italic d-flex justify-content-end mb-3">
                                 <?php if (isset($_SESSION['registerError'])) echo Session::get('registerError');
-                                else echo 'no'; ?>
+                                else ''; ?>
                             </small>
                             <form action="index.php?c=user&a=register" method="post">
                                 <div class="form-group">

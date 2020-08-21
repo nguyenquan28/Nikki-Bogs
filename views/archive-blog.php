@@ -2,7 +2,9 @@
 <html lang="en">
 
 <?php
-    require_once __DIR__ . '/ins/head.php';
+include __DIR__ . '/../config/session.php';
+Session::init();
+require_once __DIR__ . '/ins/head.php';
 ?>
 
 <?php
@@ -17,7 +19,11 @@
 <body>
     <!-- ##### Header Area Start ##### -->
     <?php
+<<<<<<< HEAD
         require_once __DIR__ . '/ins/menu.php';
+=======
+    require_once __DIR__ . '/ins/menu.php';
+>>>>>>> origin/quandt
     ?>
 
     <!-- ##### Breadcrumb Area Start ##### -->
@@ -219,14 +225,22 @@
     <!-- ##### Blog Content Area End ##### -->
 
     <?php
+<<<<<<< HEAD
         # Instagram Area
         require_once __DIR__ . '/ins/instargam.php';
 
         # Footer Area
         require_once __DIR__ . '/ins/footer.php';
+=======
+    # Instagram Area
+    require_once __DIR__ . '/ins/instargam.php';
 
-        ## All Javascript Script
-        require_once __DIR__ . '/ins/script.php';
+    # Footer Area
+    require_once __DIR__ . '/ins/footer.php';
+>>>>>>> origin/quandt
+
+    ## All Javascript Script
+    require_once __DIR__ . '/ins/script.php';
     ?>
 
 </body>
