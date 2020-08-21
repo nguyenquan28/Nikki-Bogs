@@ -116,8 +116,6 @@ require_once __DIR__ . '/ins/content.php';
 
                     </div>
                 </div>
-
-<<<<<<< HEAD
                 <!-- Pager -->
 
                 <ol class="nikki-pager">
@@ -132,12 +130,6 @@ require_once __DIR__ . '/ins/content.php';
                     <?php } ?>
                     <li><a href="index.php?page=<?= $total_pages; ?>">Older <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></li>
                 </ol>
-=======
-                <!-- Blog Sidebar Area -->
-                <?php
-                require_once __DIR__ . '/ins/sidebar.php';
-                ?>
->>>>>>> origin/quandt
             </div>
 
             <!-- Blog Sidebar Area -->
@@ -145,23 +137,6 @@ require_once __DIR__ . '/ins/content.php';
             require_once __DIR__ . '/ins/sidebar.php';
             ?>
         </div>
-<<<<<<< HEAD
-    </div>
-</section>
-
-<?php
-# Instagram Area Start
-require_once __DIR__ . '/ins/instargam.php';
-
-# Footer Area Start
-require_once __DIR__ . '/ins/footer.php';
-
-# All Javascript Script
-require_once __DIR__ . '/ins/script.php';
-?>
-<!-- Paging -->
-
-=======
     </section>
 
     <?php
@@ -174,7 +149,6 @@ require_once __DIR__ . '/ins/script.php';
     # All Javascript Script
     require_once __DIR__ . '/ins/script.php';
     ?>
->>>>>>> origin/quandt
 
 </body>
 

@@ -134,7 +134,7 @@ class postModel
     }
 
     function PostsTop($sl){
-        $query = "SELECT * from posts where status = 1 LIMIT $sl";
+        $query = "SELECT * from posts where active = 1 LIMIT $sl";
         $result = $this->db->select($query);
         return $result;
 
