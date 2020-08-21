@@ -31,9 +31,6 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
             <div class="col">
 
                 <!-- Form create post -->
-                <p class="text-danger mt-2">
-                    <?php if (!empty($_SESSION['errorAdd'])) echo $_SESSION['errorAdd']; ?>
-                </p>
                 <header class="mt-3 mb-3 d-flex justify-content-between">
                     <h4>List Contact</h4>
 
@@ -42,15 +39,19 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                             <div>
                                 <input class="form-control mr-sm-2 d-flex flex-row font-italic pr-5" name="input" type="text" id="tags" placeholder="Search for Name" aria-label="Search">
                             </div>
-                            
+
                             <div class="search_btn d-flex flex-row">
-                                <a class="search_icon" ><i class="fas fa-search"></i></a>
+                                <a class="search_icon"><i class="fas fa-search"></i></a>
                             </div>
                         </div>
                     </form>
                 </header>
 
                 <!-- list post -->
+                <small class="text-danger font-italic d-flex justify-content-start mb-3">
+                    <?php if (isset($_SESSION['ConSearchErr'])) echo Session::get('ConSearchErr');
+                    else echo ''; ?>
+                </small>
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
@@ -67,7 +68,8 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                         <?php
                         foreach ($data as $value) {
                         ?>
-                            <tr class = <?php if($value->status == true) echo ' "tr-color" '; else echo '""';?>> 
+                            <tr class=<?php if ($value->status == true) echo ' "tr-color" ';
+                                        else echo '""'; ?>>
                                 <td class="text-center"><?= $value->fullname ?></td>
                                 <td class="text-center"><?= $value->email ?></td>
                                 <td class="text-center"><?= $value->phone_number ?></td>
@@ -86,12 +88,13 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                     <ul class="pagination">
                         <li class="page-item"><a class="page-link" href="index.php?c=admin&a=post&pageno=1">First</a></li>
                         <?php
-                            if(isset($_GET['a']) && $_GET['a'] === 'search'){
-                                echo '<li class="page-item"><a class="page-link" href="#">1</a></li> ';
-                            }else{
+                        if (isset($_GET['a']) && $_GET['a'] === 'search') {
+                            echo '<li class="page-item"><a class="page-link" href="#">1</a></li> ';
+                        } else {
                             for ($i = 1; $i <= $total_pages; $i++) { ?>
                                 <li class="page-item"><a class="page-link" href="index.php?c=admin&a=post&pageno=<?= $i; ?>"><?= $i; ?></a></li>
-                        <?php }} ?>
+                        <?php }
+                        } ?>
                         <li class="page-item"><a class="page-link" href="index.php?c=admin&a=post&pageno=<?= $total_pages; ?>">Last</a></li>
                     </ul>
                 </nav>

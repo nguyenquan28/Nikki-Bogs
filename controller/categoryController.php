@@ -86,4 +86,23 @@ class categoryController
         }
 
     }
+
+// Search all
+    function search(){
+        $catModel = new categoryModel();
+        if (isset($_POST["input"])) {
+            $search = str_replace(", ", "|", $_POST["input"]);
+            $data = $catModel->search($search);
+            if(!empty($data)){
+                Session::unset('CarSearchErr');
+                require_once __DIR__ . '../../views/admin/category.php'; 
+            }else{
+                Session::set('CarSearchErr', 'Input not match!');
+                header('location: index.php?c=category');
+            }
+        } else {
+            Session::set('CarSearchErr', 'Input not match!');
+            header('location: index.php?c=category');
+        }
+    }
 }

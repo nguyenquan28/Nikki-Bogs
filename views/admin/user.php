@@ -25,6 +25,7 @@ require __DIR__.'/ins-admin/headerAdmin.php';
                 <header class="mt-3 mb-3 d-flex justify-content-between">
                     <h4>List User</h4>
 
+                    <!-- Search -->
                     <form class="form-outline col-md-3 p-0" action="index.php?c=user&a=search" method="POST">
                         <div class="md-form my-0">
                             <div>
@@ -37,6 +38,13 @@ require __DIR__.'/ins-admin/headerAdmin.php';
                         </div>
                     </form>
                 </header>
+
+                <!-- Alert Error -->
+                <small class="text-danger font-italic d-flex justify-content-start mb-3">
+                    <?php if (isset($_SESSION['UserSearchErr'])) echo Session::get('UserSearchErr');
+                    else echo ''; ?>
+                </small>
+
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>

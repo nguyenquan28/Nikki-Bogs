@@ -91,7 +91,22 @@ class categoryModel
         return $result;
     }
 
+    //  Search all
+    function search($tags)
+    {
+        $query = "SELECT * FROM categories 
+                WHERE categories_id REGEXP '" . $tags . "'
+                OR name REGEXP '" . $tags . "' 
+                OR tag REGEXP '" . $tags . "' 
+                OR description REGEXP '" . $tags . "' 
+                OR slug REGEXP '" . $tags . "' 
+                OR active REGEXP '" . $tags . "'
+            ";
+        $data = $this->db->select($query);
+        return $data;
+    }
 
+    // Change status
     function changeStt($id, $status)
     {
         $query = "UPDATE categories SET active = $status WHERE categories_id = $id";

@@ -34,10 +34,7 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
 
             <div class="col">
 
-                <!-- Form create post -->
-                <p class="text-danger mt-2">
-                    <?php if (!empty($_SESSION['errorAdd'])) echo $_SESSION['errorAdd']; ?>
-                </p>
+                <!-- Header -->
                 <header class="mt-3 mb-3 d-flex justify-content-between">
                     <h4>List Posts</h4>
                     <!-- Search -->
@@ -46,15 +43,20 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                             <div>
                                 <input class="form-control mr-sm-2 d-flex flex-row font-italic pr-5" name="input" type="text" id="tags" placeholder="Search for Name" aria-label="Search">
                             </div>
-                            
+
                             <div class="search_btn d-flex flex-row">
-                                <a class="search_icon" ><i class="fas fa-search"></i></a>
+                                <a class="search_icon"><i class="fas fa-search"></i></a>
                             </div>
                         </div>
                     </form>
                 </header>
 
-                <small><?= Session::get('erSearch') ?></small>
+                <!-- Alert Error -->
+                <small class="text-danger font-italic d-flex justify-content-start mb-3">
+                    <?php if (isset($_SESSION['erSearch'])) echo Session::get('erSearch');
+                    else echo ''; ?>
+                </small>
+
                 <!-- list post -->
                 <table class="table table-bordered table-striped">
                     <thead>
@@ -94,13 +96,14 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                 <nav aria-label="Page navigation" class="d-flex justify-content-end">
                     <ul class="pagination">
                         <li class="page-item"><a class="page-link" href="index.php?c=post&a=getAll&pageno=1">First</a></li>
-                        <?php 
-                            if(isset($_GET['a']) && $_GET['a'] === 'search'){
-                                echo '<li class="page-item"><a class="page-link" href="#">1</a></li> ';
-                            }else{
+                        <?php
+                        if (isset($_GET['a']) && $_GET['a'] === 'search') {
+                            echo '<li class="page-item"><a class="page-link" href="#">1</a></li> ';
+                        } else {
                             for ($i = 1; $i <= $total_pages; $i++) { ?>
-                               <li class="page-item"><a class="page-link" href="index.php?c=post&a=getAll&pageno=<?= $i; ?>"><?= $i; ?></a></li>
-                        <?php }} ?>
+                                <li class="page-item"><a class="page-link" href="index.php?c=post&a=getAll&pageno=<?= $i; ?>"><?= $i; ?></a></li>
+                        <?php }
+                        } ?>
                         <li class="page-item"><a class="page-link" href="index.php?c=post&a=getAll&pageno=<?= $total_pages; ?>">Last</a></li>
                     </ul>
                 </nav>

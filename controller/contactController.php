@@ -46,9 +46,15 @@ class contactController
         if (isset($_POST["input"])) {
             $search = str_replace(", ", "|", $_POST["input"]);
             $data = $contact->search($search);
-
-            require_once __DIR__ . '../../views/admin/contact.php'; 
+            if(!empty($data)){
+                Session::unset('ConSearchErr');
+                require_once __DIR__ . '../../views/admin/contact.php'; 
+            }else{
+                Session::set('ConSearchErr', 'Input not match!');
+                header('location: index.php?c=contact');
+            }
         } else {
+            Session::set('ConSearchErr', 'Input not empty!');
             header('location: index.php?c=contact');
         }
     }

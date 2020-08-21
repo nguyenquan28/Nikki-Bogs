@@ -4,7 +4,8 @@ Session::init();
 require_once __DIR__ . '/../config/connectDB.php';
 require_once __DIR__ . '/../config/format.php';
 
-class contact{
+class contact
+{
     public $contacts_id;
     public $fullname;
     public $email;
@@ -27,7 +28,8 @@ class contact{
     }
 }
 
-class contactMoldel{
+class contactMoldel
+{
     private $db;
     private $fm;
 
@@ -35,7 +37,7 @@ class contactMoldel{
     {
         $this->db = new Database();
         $this->fm = new Format();
-    }  
+    }
 
     // Function paginasion
     function paginasion($no_of_records_per_page)
@@ -50,13 +52,13 @@ class contactMoldel{
 
     // get all data in table contact
     function getAll($offset, $no_of_records_per_page)
-    {   
+    {
 
         $query = "SELECT * FROM contacts ORDER BY status DESC LIMIT $offset, $no_of_records_per_page";
         $data = $this->db->select($query);
-        
+
         $result = [];
-        foreach($data->fetch_all() as $value){
+        foreach ($data->fetch_all() as $value) {
             array_push($result, new contact($value[0], $value[1], $value[2], $value[3], $value[4], $value[5], $value[6], $value[7]));
         }
         return $result;
@@ -64,7 +66,8 @@ class contactMoldel{
 
 
     // Get name contacts by id
-    function getName($contacts_id){
+    function getName($contacts_id)
+    {
         $query = "SELECT name FROM contacts WHERE contacts_id = '$contacts_id' ";
         $data = $this->db->select($query);
         $result = $data->fetch_assoc();
@@ -72,33 +75,35 @@ class contactMoldel{
         return $result;
     }
 
-     // get delete record in table post
-     function delete($contacts_id)
-     {
-         $query = "DELETE FROM contacts WHERE contacts_id = '$contacts_id'";
-         $result = $this->db->delete($query);
-     }
- 
-     // Search by ID
-     function searchByID($contacts_id)
-     {
-         $query = "SELECT * FROM contacts WHERE contacts_id = '$contacts_id'";
-         $result = $this->db->select($query);
-         return $result;
-     }
- 
-     // Seaerch by Name
-     function searchByName($name){
-         $query = "SELECT * FROM contacts WHERE name = '$name' ";
-         $result = $this->db->select($query);
- 
-         return $result;
-     }
+    // get delete record in table post
+    function delete($contacts_id)
+    {
+        $query = "DELETE FROM contacts WHERE contacts_id = '$contacts_id'";
+        $result = $this->db->delete($query);
+    }
+
+    // Search by ID
+    function searchByID($contacts_id)
+    {
+        $query = "SELECT * FROM contacts WHERE contacts_id = '$contacts_id'";
+        $result = $this->db->select($query);
+        return $result;
+    }
+
+    // Seaerch by Name
+    function searchByName($name)
+    {
+        $query = "SELECT * FROM contacts WHERE name = '$name' ";
+        $result = $this->db->select($query);
+
+        return $result;
+    }
 
     //  Search all
-    function search($tags){
+    function search($tags)
+    {
         $query = "SELECT * FROM contacts 
-                    WHERE contacts_id REGEXP '". $tags ."'
+                    WHERE contacts_id REGEXP '" . $tags . "'
                     OR email REGEXP '" . $tags . "' 
                     OR phone_number REGEXP '" . $tags . "' 
                     OR title REGEXP '" . $tags . "' 
@@ -107,20 +112,24 @@ class contactMoldel{
                 ";
         $data = $this->db->select($query);
         $result = [];
-        foreach($data->fetch_all() as $value){
-            array_push($result, new contact($value[0], $value[1], $value[2], $value[3], $value[4], $value[5], $value[6], $value[7]));
+        if (!empty($data)) {
+            foreach ($data->fetch_all() as $value) {
+                array_push($result, new contact($value[0], $value[1], $value[2], $value[3], $value[4], $value[5], $value[6], $value[7]));
+            }
         }
         return $result;
     }
 
     //  Change status
-     function changeStt($id, $status){
+    function changeStt($id, $status)
+    {
         $query = "UPDATE contacts SET status = $status WHERE contacts_id = $id";
         $result = $this->db->update($query);
     }
 
     // Count status
-    function countStt(){
+    function countStt()
+    {
         $query = "SELECT COUNT(*) FROM contacts WHERE status = '1'";
         $result = $this->db->select($query);
 
@@ -128,7 +137,8 @@ class contactMoldel{
     }
 
     // Insert record $contacts_id, $fullname, $email, $phone_number, $title, $content, $status, $active
-    function insert(contact $contact){
+    function insert(contact $contact)
+    {
         $query = "INSERT INTO contacts (contacts_id, fullname, email, phone_number, title, content, status, active) 
                   VALUE ('$contact->contacts_id', '$contact->fullname', '$contact->email', '$contact->phone_number',
                 '$contact->title', '$contact->content', $contact->status, $contact->active)";
