@@ -4,7 +4,7 @@
                 <div class="col-12">
                     <!-- Footer Social Info -->
                     <div class="footer-social-info d-flex align-items-center justify-content-between">
-                        <a href="#"><i class="fa fa-facebook"></i><span>Facebook</span></a>
+                        <a href="#"><i class="fa fa-facebook"></i><span>Facebook.</span></a>
                         <a href="#"><i class="fa fa-twitter"></i><span>Twitter</span></a>
                         <a href="#"><i class="fa fa-google-plus"></i><span>Google +</span></a>
                         <a href="#"><i class="fa fa-linkedin"></i><span>linkedin</span></a>
