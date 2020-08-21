@@ -14,7 +14,7 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
         ?>
 
         <!-- container -->
-        <div class="row mt-5 pt-1" id="body-row">
+        <div class="row mt-5" id="body-row">
 
             <!-- Side bar -->
             <?php
@@ -41,6 +41,10 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                             <input type="text" class="form-control" name="des" placeholder="Description">
                         </div>
                         <button type="submit" class="btn btn-primary">Add</button>
+                        <small class="text-danger font-italic d-flex justify-content-end mb-3">
+                            <?php if (isset($_SESSION['CatErr'])) echo Session::get('CatErr');
+                            else echo ''; ?>
+                        </small>
                     </form>
                 </div>
             </div>

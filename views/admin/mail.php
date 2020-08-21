@@ -62,6 +62,9 @@ require_once __DIR__ . '/ins-admin/head.php';
                         <div class="contact-form-area">
                             <form action="mailer/phpmailer.php" method="post">
                                 <div class="form-group">
+                                    <input type="hidden" class="form-control" name="email" id="contact-name" placeholder="Name" value="<?= $result['email'] ?>">
+                                </div>
+                                <div class="form-group">
                                     <input type="text" class="form-control" name="name" id="contact-name" placeholder="Name" value="I'm Admin">
                                 </div>
                                 <div class="form-group">

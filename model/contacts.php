@@ -126,4 +126,12 @@ class contactMoldel{
 
         return $result;
     }
+
+    // Insert record $contacts_id, $fullname, $email, $phone_number, $title, $content, $status, $active
+    function insert(contact $contact){
+        $query = "INSERT INTO contacts (contacts_id, fullname, email, phone_number, title, content, status, active) 
+                  VALUE ('$contact->contacts_id', '$contact->fullname', '$contact->email', '$contact->phone_number',
+                '$contact->title', '$contact->content', $contact->status, $contact->active)";
+        $result = $this->db->insert($query);
+    }
 }
