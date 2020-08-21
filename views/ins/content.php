@@ -4,7 +4,7 @@ $PostsModel = new postModel();
 require_once '../model/categories.php';
 $CategoryModel = new categoryModel();
 ?>
-
+<!---->
 
 <section class="hero-area">
     <!-- Preloader -->
