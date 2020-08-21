@@ -19,13 +19,14 @@ class post
     public $status;
     public $user_id;
 
-    function __construct($post_id,$categories_id,$title, $intro, $content,$tag, $description, $slug, $active, $time, $status, $user_id){
+    function __construct($post_id, $categories_id, $title, $intro, $content, $tag, $description, $slug, $active, $time, $status, $user_id)
+    {
         $this->post_id = $post_id;
         $this->categories_id = $categories_id;
         $this->title = $title;
         $this->intro = $intro;
         $this->content = $content;
-        $this->tag= $tag;
+        $this->tag = $tag;
         $this->description = $description;
         $this->slug = $slug;
         $this->active = $active;
@@ -33,10 +34,10 @@ class post
         $this->status = $status;
         $this->user_id = $user_id;
     }
-    
 }
 
-class postModel{
+class postModel
+{
 
     private $db;
     private $fm;
@@ -45,7 +46,7 @@ class postModel{
     {
         $this->db = new Database();
         $this->fm = new Format();
-    }  
+    }
 
     // Function paginasion
     function paginasion($no_of_records_per_page)
@@ -60,13 +61,13 @@ class postModel{
 
     // get all data in table post
     function getAll($offset, $no_of_records_per_page)
-    {   
+    {
 
-        $query = "SELECT * FROM posts ORDER BY time DESC, active ASC LIMIT $offset, $no_of_records_per_page";
+        $query = "SELECT * FROM posts ORDER BY time DESC, status DESC LIMIT $offset, $no_of_records_per_page";
         $data = $this->db->select($query);
-        
+
         $result = [];
-        foreach($data->fetch_all() as $value){
+        foreach ($data->fetch_all() as $value) {
             array_push($result, new post($value[0], $value[1], $value[2], $value[3], $value[4], $value[5], $value[6], $value[7], $value[8], $value[9], $value[10], $value[11]));
         }
         return $result;
@@ -98,13 +99,14 @@ class postModel{
                         status = '$post->status';
                         user_id = '$post->user_id';
                     WHERE post_id = '$post->post_id' ";
-                        
+
         $this->db->update($query);
     }
 
-    function changeStt($id, $status){
+    function changeStt($id, $status)
+    {
         $query = "UPDATE posts SET status = $status WHERE post_id = $id";
-        $result = $this->db->select($query);
+        $result = $this->db->update($query);
     }
 
     // get delete record in table post
@@ -123,8 +125,57 @@ class postModel{
     }
 
     // Seaerch by Name
-    function searchByTitle($title){
+    function searchByTitle($title)
+    {
         $query = "SELECT * FROM posts WHERE title = '$title' ";
+        $result = $this->db->select($query);
+
+        return $result;
+    }
+
+    //  Search all
+    function search($tags)
+    {
+        
+        $result = [];
+        $query = "SELECT * FROM posts, user 
+                    WHERE posts.post_id REGEXP '" . $tags . "' 
+                    OR user.name REGEXP '" . $tags . "'
+                    OR posts.intro REGEXP '" . $tags . "' 
+                    OR posts.title REGEXP '" . $tags . "' 
+                    OR posts.content REGEXP '" . $tags . "' 
+                    OR posts.tag REGEXP '" . $tags . "'
+                    OR posts.time REGEXP '" . $tags . "'
+                    GROUP BY posts.post_id
+                ";
+        $data = $this->db->select($query);
+        // echo '<pre>';
+        // print_r($data->fetch_all());
+        // echo '</pre>';
+        if (empty($data)) {
+            return '';
+        } else {
+            foreach ($data->fetch_all() as $value) {
+                array_push($result, new post($value[0], $value[1], $value[2], $value[3], $value[4], $value[5], $value[6], $value[7], $value[8], $value[9], $value[10], $value[11]));
+            }
+            return $result;
+        }
+    }
+
+    // Get name user by id
+    function getName($post_id)
+    {
+        $query = "SELECT title FROM posts WHERE post_id = '$post_id' ";
+        $data = $this->db->select($query);
+        $result = $data->fetch_assoc();
+        // $cat = new user($result[0],$result[1],$result[2],$result[3],$result[4],$result[5]);
+        return $result;
+    }
+
+    // Count status
+    function countStt()
+    {
+        $query = "SELECT COUNT(*) FROM posts WHERE status = '1'";
         $result = $this->db->select($query);
 
         return $result;

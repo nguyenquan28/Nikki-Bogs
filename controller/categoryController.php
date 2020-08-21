@@ -16,7 +16,7 @@ class categoryController
 
         $category = new categoryModel();
         $data = $category->getAll($offset, $no_of_records_per_page);
-        // $total_pages = $category->pagination($no_of_records_per_page);
+        $total_pages = $category->paginasion($no_of_records_per_page);
 
         require_once __DIR__ . '../../views/admin/category.php';
     }

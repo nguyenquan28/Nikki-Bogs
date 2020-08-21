@@ -52,7 +52,7 @@ class contactMoldel{
     function getAll($offset, $no_of_records_per_page)
     {   
 
-        $query = "SELECT * FROM contacts ORDER BY active ASC LIMIT $offset, $no_of_records_per_page";
+        $query = "SELECT * FROM contacts ORDER BY status DESC LIMIT $offset, $no_of_records_per_page";
         $data = $this->db->select($query);
         
         $result = [];
@@ -95,9 +95,35 @@ class contactMoldel{
          return $result;
      }
 
+    //  Search all
+    function search($tags){
+        $query = "SELECT * FROM contacts 
+                    WHERE contacts_id REGEXP '". $tags ."'
+                    OR email REGEXP '" . $tags . "' 
+                    OR phone_number REGEXP '" . $tags . "' 
+                    OR title REGEXP '" . $tags . "' 
+                    OR content REGEXP '" . $tags . "' 
+                    OR status REGEXP '" . $tags . "'
+                ";
+        $data = $this->db->select($query);
+        $result = [];
+        foreach($data->fetch_all() as $value){
+            array_push($result, new contact($value[0], $value[1], $value[2], $value[3], $value[4], $value[5], $value[6], $value[7]));
+        }
+        return $result;
+    }
+
     //  Change status
      function changeStt($id, $status){
         $query = "UPDATE contacts SET status = $status WHERE contacts_id = $id";
         $result = $this->db->update($query);
+    }
+
+    // Count status
+    function countStt(){
+        $query = "SELECT COUNT(*) FROM contacts WHERE status = '1'";
+        $result = $this->db->select($query);
+
+        return $result;
     }
 }

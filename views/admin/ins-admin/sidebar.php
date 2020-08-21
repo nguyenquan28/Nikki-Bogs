@@ -3,26 +3,42 @@
     <ul class="list-group">
 
         <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
-            <small><strong>Manage</strong></small>
+            <small><i class="fas fa-tachometer-alt"></i><strong> Dashboards</strong></small>
         </li>
-
-        <a href="?c=post" class="list-group-item list-group-item-action bg-dark text-white">
-            <span class="fa fa-info-circle ml-2 mr-2" aria-hidden="true"></span>
-            <span class="menu-collapsed">Blogs</span>
+        <a href="?c=post" class="list-group-item list-group-item-action bg-dark text-white d-flex justify-content-between">
+            <div class="group-name">
+                <span class="fas fa-clipboard ml-2 mr-2" aria-hidden="true"></span>
+                <span class="menu-collapsed">Posts</span>
+            </div>
+            <span class="item text-warning pd-0 mg-0"><?php if(Session::get('postNew') == 0 ) echo '' ; else echo Session::get('postNew'); ?></span>
         </a>
 
-        <a href="?c=contact" class="list-group-item list-group-item-action bg-dark text-white">
-            <span class="fas fa-envelope-open-text ml-2 mr-2" aria-hidden="true"></span>
-            <span class="menu-collapsed">Contacts</span>
+        <a href="?c=contact" class="list-group-item list-group-item-action bg-dark text-white d-flex justify-content-between">
+            <div class="group-name">
+                <span class="fas fa-envelope-open-text ml-2 mr-2" aria-hidden="true"></span>
+                <span class="menu-collapsed">Contacts</span>
+            </div>
+            <span class="item text-warning pd-0 mg-0"><?php if(Session::get('conNew') == 0 ) echo '' ; else echo Session::get('conNew'); ?></span>
         </a>
 
-        <a href="?c=user" class="list-group-item list-group-item-action bg-dark text-white">
-            <span class="fa fa-user-circle-o ml-2 mr-2" aria-hidden="true"></span>
-            <span class="menu-collapsed">Users</span>
+        <a href="?c=user" class="list-group-item list-group-item-action bg-dark text-white d-flex justify-content-between">
+            <div class="group-name">
+                <span class="fa fa-user-circle-o ml-2 mr-2" aria-hidden="true"></span>
+                <span class="menu-collapsed">Users</span>
+            </div>
+            <span class="item text-warning pd-0 mg-0"><?php if(Session::get('userNew') == 0 ) echo '' ; else echo Session::get('userNew'); ?></span>
+        </a>
+
+        <a href="?c=comment" class="list-group-item list-group-item-action bg-dark text-white d-flex justify-content-between">
+            <div class="group-name">
+                <span class="fas fa-comments fa-fw ml-2 mr-2" aria-hidden="true"></span>
+                <span class="menu-collapsed">Report</span>
+            </div>
+            <span class="item text-warning pd-0 mg-0">1</span>
         </a>
 
         <a href="?c=category" class="list-group-item list-group-item-action bg-dark text-white">
-            <span class="fa fa-tasks fa-fw ml-2 mr-2" aria-hidden="true"></span>
+            <span class="fas fa-tasks fa-fw ml-2 mr-2" aria-hidden="true"></span>
             <span class="menu-collapsed">Categories</span>
         </a>
 

@@ -2,13 +2,15 @@
 <html lang="en">
 
 <?php
-    require_once __DIR__ . '/ins/head.php';
+include __DIR__ . '/../config/session.php';
+Session::init();
+require_once __DIR__ . '/ins/head.php';
 ?>
 
 <body>
     <!-- ##### Header Area Start ##### -->
     <?php
-        require_once __DIR__ .'/ins/menu.php';
+    require_once __DIR__ . '/ins/menu.php';
     ?>
     <!-- ##### Header Area End ##### -->
 
@@ -164,7 +166,7 @@
 
                                 <!-- Comment Area Start -->
                                 <div class="comment_area clearfix">
-                                    <h4 class="headline">12 Comments</h4>                                   
+                                    <h4 class="headline">12 Comments</h4>
                                     <ol>
                                         <!-- Single Comment Area -->
                                         <li class="single_comment_area">
@@ -261,13 +263,13 @@
     <!-- ##### Blog Content Area End ##### -->
 
     <?php
-        # Instagram Area
-        require_once __DIR__ . '/ins/instargam.php';
+    # Instagram Area
+    require_once __DIR__ . '/ins/instargam.php';
 
-        # Footer Area
-        require_once __DIR__ . '/ins/footer.php';
+    # Footer Area
+    require_once __DIR__ . '/ins/footer.php';
     ?>
-    
+
 </body>
 
 </html>

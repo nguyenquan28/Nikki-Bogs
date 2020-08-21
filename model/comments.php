@@ -50,7 +50,7 @@ class commentMoldel{
     function getAll($offset, $no_of_records_per_page)
     {   
 
-        $query = "SELECT * FROM comments ORDER BY time DESC, active ASC LIMIT $offset, $no_of_records_per_page";
+        $query = "SELECT * FROM comments ORDER BY time DESC, status DESC LIMIT $offset, $no_of_records_per_page";
         $result = $this->db->select($query);
         
         return $result;
@@ -88,4 +88,16 @@ class commentMoldel{
  
          return $result;
      }
+
+    //  Change status
+     function changeStt($comment_id, $status){
+        $query = "UPDATE comments SET status = $status WHERE comment_id = $comment_id";
+        $result = $this->db->select($query);
+    }
+
+    // Count status
+    function countStt(){
+        $query = "SELECT COUNT(*) FROM comments WHERE status = '1'";
+        $result = $this->db->select($query);
+    }
 }

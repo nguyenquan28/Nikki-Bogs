@@ -7,8 +7,10 @@ require __DIR__ . '/../model/user.php';
 class userController
 {
 
+    // Get all record
     function getAll()
     {
+        // panigation
         if (isset($_GET['pageno'])) {
             $pageno = $_GET['pageno'];
         } else {
@@ -20,6 +22,9 @@ class userController
         $user = new userModel();
         $data = $user->getAll($offset, $no_of_records_per_page);
         $total_pages = $user->paginasion($no_of_records_per_page);
+
+        $new = $user->countStt()->fetch_assoc();
+        Session::set('userNew', $new['COUNT(*)']);
 
         require_once __DIR__ . '../../views/admin/user.php';
     }
@@ -48,17 +53,6 @@ class userController
         $user->delete($id);
 
         header('location: index.php?c=user');
-    }
-
-    function detailUser()
-    {
-        $id = $_GET['id'];
-
-        $post = new userModel();
-        $data = $post->searchByID($id);
-        $result = $data->fetch_assoc();
-
-        require_once __DIR__ . '../../views/admin/detailUser.php';
     }
 
     function login()
@@ -127,6 +121,23 @@ class userController
         } else {
             Session::set('registerError', 'Please enter your personal information');
             header('location: register.php');
+        }
+    }
+
+    function logout(){
+        Session::destroy();
+        header('location: home.php');
+    }
+
+    function search(){
+        $user = new userModel();
+        if (isset($_POST["input"])) {
+            $search = str_replace(", ", "|", $_POST["input"]);
+            $data = $user->search($search);
+
+            require_once __DIR__ . '../../views/admin/user.php'; 
+        } else {
+            header('location: index.php?c=user');
         }
     }
 }

@@ -2,6 +2,8 @@
 <html lang="en">
 
 <?php
+include __DIR__ . '/../config/session.php';
+Session::init();
 require_once __DIR__ . '/ins/head.php';
 ?>
 
@@ -177,23 +179,23 @@ require_once __DIR__ . '/ins/head.php';
 
                 <!-- Blog Sidebar Area -->
                 <?php
-                    require_once __DIR__ . '/ins/sidebar.php';
+                require_once __DIR__ . '/ins/sidebar.php';
                 ?>
             </div>
         </div>
     </section>
 
     <?php
-        # Instagram Area Start
-        require_once __DIR__ . '/ins/instargam.php';
-        
-        # Footer Area Start
-        require_once __DIR__ . '/ins/footer.php';
+    # Instagram Area Start
+    require_once __DIR__ . '/ins/instargam.php';
 
-        # All Javascript Script
-        require_once __DIR__ . '/ins/script.php';
+    # Footer Area Start
+    require_once __DIR__ . '/ins/footer.php';
+
+    # All Javascript Script
+    require_once __DIR__ . '/ins/script.php';
     ?>
-    
+
 </body>
 
 </html>

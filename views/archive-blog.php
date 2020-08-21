@@ -2,13 +2,15 @@
 <html lang="en">
 
 <?php
-    require_once __DIR__ . '/ins/head.php';
+include __DIR__ . '/../config/session.php';
+Session::init();
+require_once __DIR__ . '/ins/head.php';
 ?>
 
 <body>
     <!-- ##### Header Area Start ##### -->
-    <?php 
-        require_once __DIR__ . '/ins/menu.php';
+    <?php
+    require_once __DIR__ . '/ins/menu.php';
     ?>
 
     <!-- ##### Breadcrumb Area Start ##### -->
@@ -36,7 +38,7 @@
                 <div class="col-12 col-lg-8">
                     <div class="blog-posts-area">
                         <div class="row">
-                           
+
                             <!-- Section Heading -->
                             <div class="col-12">
                                 <div class="section-heading">
@@ -293,14 +295,14 @@
     <!-- ##### Blog Content Area End ##### -->
 
     <?php
-        # Instagram Area
-        require_once __DIR__ . '/ins/instargam.php';
-        
-        # Footer Area
-        require_once __DIR__ . '/ins/footer.php';
+    # Instagram Area
+    require_once __DIR__ . '/ins/instargam.php';
 
-        ## All Javascript Script
-        require_once __DIR__ . '/ins/script.php';
+    # Footer Area
+    require_once __DIR__ . '/ins/footer.php';
+
+    ## All Javascript Script
+    require_once __DIR__ . '/ins/script.php';
     ?>
 
 </body>
