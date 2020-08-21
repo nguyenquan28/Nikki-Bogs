@@ -2,8 +2,8 @@
 <html lang="en">
 
 <?php
-include __DIR__ . '/../config/session.php';
-Session::init();
+// include __DIR__ . '/../config/session.php';
+// Session::init();
 require_once __DIR__ . '/ins/head.php';
 ?>
 
