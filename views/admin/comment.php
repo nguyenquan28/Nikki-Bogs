@@ -22,7 +22,7 @@ require __DIR__.'/ins-admin/headerAdmin.php';
         ?>
 
         <!-- container -->
-        <div class="row mt-5 pt-1" id="body-row">
+        <div class="row mt-5" id="body-row">
 
             <!-- Side bar -->
             <?php

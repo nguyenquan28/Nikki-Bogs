@@ -1,8 +1,8 @@
 <nav class="navbar navbar-expand-lg bg-light navbar-light fixed-top d-flex p-2">
 
             <!-- Logo -->
-            <a class="logo pb-2 pt-2" href="#">
-                <img src="../img/logo.png" alt="" class="offset-3">
+            <a class="logo pb-2 pt-2" href="../">
+                <img src="../img/core-img/logo.png" alt="" class="offset-3">
             </a>
 
 

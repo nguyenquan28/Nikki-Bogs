@@ -44,11 +44,11 @@
                             <!-- Search Form -->
 
                             <div class="search-form">
-                                    <form action="index.php?c=comment&a=addcomment" method="post">
-                                        <input type="search" name="search" class="form-control" placeholder="Search and hit enter...">
-                                        <button type="submit"><i class="fa fa-search"></i></button>
-                                    </form>
-                                </div>
+                                <form action="index.php?c=comment&a=addcomment" method="post">
+                                    <input type="search" name="search" class="form-control" placeholder="Search and hit enter...">
+                                    <button type="submit"><i class="fa fa-search"></i></button>
+                                </form>
+                            </div>
 
                             <!-- Social Button -->
                             <div class="top-social-info">
@@ -57,10 +57,20 @@
                                 if (empty(Session::get('name'))) {
                                     echo '<a href="login.php">Login</a>';
                                 } else {
-                                    echo '<a href="profile.php">' . Session::get('name') . '</a>' 
-                                    . '<a href="index.php?c=user&a=logout" class="nav-link noti-icon" title="LogOut">
+                                    if (Session::get('permission')) {
+                                        // header('location: admin/index.php');
+                                        echo '<a href="admin/index.php">'
+                                            . Session::get('name') . '</a>'
+                                            . '<a href="index.php?c=user&a=logout" class="nav-link noti-icon" title="LogOut">
+                                                <i class="fa fa-sign-out"></i>
+                                            </a>';
+                                    } else {
+                                        echo '<a href="profile.php">'
+                                            . Session::get('name') . '</a>'
+                                            . '<a href="index.php?c=user&a=logout" class="nav-link noti-icon" title="LogOut">
                                             <i class="fa fa-sign-out"></i>
                                         </a>';
+                                    }
                                 }
                                 ?>
 

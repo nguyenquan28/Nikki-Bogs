@@ -54,6 +54,24 @@ class contactController
     }
     // function create contact to Admin
     function insert(){
-        
+        if(!empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['phone']) && !empty($_POST['title']) && !empty($_POST['message'])){
+            Session::unset('ConErr');
+            $contacts_id = '';
+            $fullname = $_POST['name'];
+            $email = $_POST['email'];
+            $phone_number = $_POST['phone'];
+            $title = $_POST['title'];
+            $content = $_POST['message'];
+            $static = 1;
+            $active = 1;
+            $con = new contact($contacts_id, $fullname, $email, $phone_number, $title, $content, $static, $active);
+            
+            $contact = new contactMoldel();
+            $contact->insert($con);
+            header('location: contact.php');
+        }else{
+            Session::set('ConErr', 'Input not empty!');
+            header('location: location: index.php?c=contact');
+        }
     }
 }
