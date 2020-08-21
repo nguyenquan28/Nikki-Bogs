@@ -56,8 +56,7 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                             <th class="text-center" scope="col">Name</th>
                             <th class="text-center" scope="col">Tags</th>
                             <th class="text-center" scope="col">Desciption</th>
-                            <th class="text-center" colspan="2">Control</th>
-
+                            <th class="text-center" style="width: 15%;"  colspan="3">Control</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -70,6 +69,7 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                                 <td class="text-center"><?= $value['1'] ?></td>
                                 <td class="text-center"><?= $value['2'] ?></td>
                                 <td><?= $value['4'] ?></td>
+                                <td class="text-center" title="Update"><a href="./index.php?c=category&a=editStatus&id=<?= $value['0'] ?>&status=<?= $value['5'] ?>"><?= ($value['5'] == 0 ) ? '<i class="fas fa-unlock"></i>' : '<i class="fas fa-lock"></i>' ; ?></a></td>
                                 <td class="text-center" title="Update"><a href="./index.php?c=category&a=editStatus&id=<?= $value['0'] ?>&status=<?= $value['5'] ?>"><i class="fas fa-tools"></i></a></td>
                                 <td class="text-center" title="Delete"><a href="./index.php?c=category&a=delCat&id=<?= $value['0'] ?>"><i class="far fa-trash-alt text-danger"></i></a></td>
                             </tr>

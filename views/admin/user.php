@@ -67,8 +67,8 @@ require __DIR__.'/ins-admin/headerAdmin.php';
                                 <td class="text-center" ><?= $value['2'] ?></td>
                                 <td class="text-center" ><?php if($value['4']) echo 'Man'; else echo 'Woman'; ?></td>
                                 <td class="text-center" ><?= date('d-M-Y', strtotime($value['5'])) ?></td>
-                                <td class="text-center" title="Cập nhật"><a href="./index.php?c=user&a=editStatus&id=<?= $value['0'] ?>&status=<?= $value['6']?>"> <?= ($value['6'] == 0 ) ? '<i class="fas fa-lock"></i>' : '<i class="fas fa-unlock"></i>' ; ?> </a></td>
-                                <td class="text-center" title="Xóa"><a href="./index.php?c=user&a=delUser&id=<?= $value['0'] ?>"><i class="far fa-trash-alt text-danger"></i></a></td>
+                                <td class="text-center" title="Change"><a href="./index.php?c=user&a=editStatus&id=<?= $value['0'] ?>&status=<?= $value['6']?>"> <?= ($value['6'] == 0 ) ? '<i class="fas fa-unlock"></i>' : '<i class="fas fa-lock"></i>' ; ?> </a></td>
+                                <td class="text-center" title="Delete"><a href="./index.php?c=user&a=delUser&id=<?= $value['0'] ?>"><i class="far fa-trash-alt text-danger"></i></a></td>
                             </tr>
                         <?php
                             }
