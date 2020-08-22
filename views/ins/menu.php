@@ -22,85 +22,6 @@
                             <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
                         </div>
 
-<<<<<<< HEAD
-                            <!-- Nav Start -->
-                            <div class="classynav">
-                                <ul>
-                                    <li><a href="home.php">Home</a></li>
-                                    <li><a href="archive-blog.php">Archive Blog</a></li>
-<!--                                    <li><a href="#">Pages</a>-->
-<!--                                        <ul class="dropdown">-->
-<!--                                            <li><a href="home.php">Home</a></li>-->
-<!--                                            <li><a href="archive-blog.php">Archive Blog</a></li>-->
-<!--                                            <li><a href="single-post.php">Single Post</a></li>-->
-<!--                                            <li><a href="about-us.php">About</a></li>-->
-<!--                                            <li><a href="contact.php">Contact</a></li>-->
-<!--                                            <li><a href="typography.php">Typography</a></li>-->
-<!---->
-<!--                                        </ul>-->
-<!--                                    </li>-->
-<!--                                    <li><a href="#">Catagories</a>-->
-<!--                                        <div class="megamenu">-->
-<!--                                            <ul class="single-mega cn-col-4">-->
-<!--                                                <li><a href="#">- Features</a></li>-->
-<!--                                                <li><a href="#">- Food</a></li>-->
-<!--                                                <li><a href="#">- Travel</a></li>-->
-<!--                                                <li><a href="#">- Recipe</a></li>-->
-<!--                                                <li><a href="#">- Bread</a></li>-->
-<!--                                                <li><a href="#">- Breakfast</a></li>-->
-<!--                                                <li><a href="#">- Meat</a></li>-->
-<!--                                            </ul>-->
-<!--                                            <ul class="single-mega cn-col-4">-->
-<!--                                                <li><a href="#">- Features</a></li>-->
-<!--                                                <li><a href="#">- Food</a></li>-->
-<!--                                                <li><a href="#">- Travel</a></li>-->
-<!--                                                <li><a href="#">- Recipe</a></li>-->
-<!--                                                <li><a href="#">- Bread</a></li>-->
-<!--                                                <li><a href="#">- Breakfast</a></li>-->
-<!--                                                <li><a href="#">- Meat</a></li>-->
-<!--                                            </ul>-->
-<!--                                            <ul class="single-mega cn-col-4">-->
-<!--                                                <li><a href="#">- Features</a></li>-->
-<!--                                                <li><a href="#">- Food</a></li>-->
-<!--                                                <li><a href="#">- Travel</a></li>-->
-<!--                                                <li><a href="#">- Recipe</a></li>-->
-<!--                                                <li><a href="#">- Bread</a></li>-->
-<!--                                                <li><a href="#">- Breakfast</a></li>-->
-<!--                                                <li><a href="#">- Meat</a></li>-->
-<!--                                            </ul>-->
-<!--                                            <ul class="single-mega cn-col-4">-->
-<!--                                                <li><a href="#">- Features</a></li>-->
-<!--                                                <li><a href="#">- Food</a></li>-->
-<!--                                                <li><a href="#">- Travel</a></li>-->
-<!--                                                <li><a href="#">- Recipe</a></li>-->
-<!--                                                <li><a href="#">- Bread</a></li>-->
-<!--                                                <li><a href="#">- Breakfast</a></li>-->
-<!--                                                <li><a href="#">- Meat</a></li>-->
-<!--                                            </ul>-->
-<!--                                        </div>-->
-<!--                                    </li>-->
-                                    <li><a href="about-us.php">About</a></li>
-                                    <li><a href="contact.php">Contact</a></li>
-                                </ul>
-
-                                <!-- Search Form -->
-
-                                <div class="search-form">
-                                    <form action="index.php?c=comment&a=addcomment" method="post">
-                                        <input type="search" name="search" class="form-control" placeholder="Search and hit enter...">
-                                        <button type="submit"><i class="fa fa-search"></i></button>
-                                    </form>
-                                </div>
-<!--                                -->
-                                <!-- Social Button -->
-                                <div class="top-social-info">
-                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="Instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="Pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="RSS Feed"><i class="fa fa-rss" aria-hidden="true"></i></a>
-                                </div>
-=======
                         <!-- Nav Start -->
                         <div class="classynav">
                             <ul>
@@ -136,7 +57,7 @@
 
                             <!-- Search Form -->
                             <div class="search-form">
-                                <form action="#" method="get">
+                                <form action="index.php?c=comment&a=addcomment" method="post">
                                     <input type="search" name="search" class="form-control" placeholder="Search and hit enter...">
                                     <button type="submit"><i class="fa fa-search"></i></button>
                                 </form>
@@ -155,7 +76,6 @@
                                         </a>';
                                 }
                                 ?>
->>>>>>> origin/quandt
 
                             </div>
 
