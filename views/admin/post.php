@@ -81,9 +81,10 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                                 <td class="text-center"><?= $userName['name'] ?></td>
                                 <td class="text-center"><?= $catName['name'] ?></td>
                                 <td><?= $value->title ?></td>
-                                <td><?= $value->intro ?></td>
+                                <td><?= $value->intro ?></td> 
                                 <td class="text-center" style="width:  8%"><?= date('d-M-Y', strtotime($value->time)) ?></th>
                                 <td class="text-center" title="Detail"><a href="./index.php?c=post&a=detailPost&id=<?= $value->post_id ?>&status=<?= $value->status ?>"><i class="fas fa-info-circle"></i></a></td>
+                                <td class="text-center" title="Detail"><a href="./index.php?c=post&a=changeStt&id=<?= $value->post_id ?>&active=<?= $value->active ?>"><?= ($value->active) ? '<i class="far fa-check-circle"></i>' : '<i class="far fa-window-close"></i>' ;?></a></td>
                                 <td class="text-center" title="Delete"><a href="./index.php?c=post&a=delPost&id=<?= $value->post_id ?>"><i class="far fa-trash-alt text-danger"></i></a></td>
                             </tr>
                         <?php

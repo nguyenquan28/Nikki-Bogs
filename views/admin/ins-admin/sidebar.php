@@ -15,7 +15,7 @@
 
         <a href="?c=contact" class="list-group-item list-group-item-action bg-dark text-white d-flex justify-content-between">
             <div class="group-name">
-                <span class="fas fa-envelope-open-text ml-2 mr-2" aria-hidden="true"></span>
+                <span class="fa fa-envelope-o ml-2 mr-2" aria-hidden="true"></span>
                 <span class="menu-collapsed">Contacts</span>
             </div>
             <span class="item text-warning pd-0 mg-0"><?php if(Session::get('conNew') == 0 ) echo '' ; else echo Session::get('conNew'); ?></span>
@@ -31,7 +31,7 @@
 
         <a href="?c=comment" class="list-group-item list-group-item-action bg-dark text-white d-flex justify-content-between">
             <div class="group-name">
-                <span class="fas fa-comments fa-fw ml-2 mr-2" aria-hidden="true"></span>
+                <span class="fa fa-calendar fa-fw ml-2 mr-2" aria-hidden="true"></span>
                 <span class="menu-collapsed">Report</span>
             </div>
             <span class="item text-warning pd-0 mg-0">1</span>
@@ -42,11 +42,16 @@
             <span class="menu-collapsed">Categories</span>
         </a>
 
+        <a href="?c=chat" class="list-group-item list-group-item-action bg-dark text-white">
+            <span class="fab fa-facebook-messenger fa-fw ml-2 mr-2" aria-hidden="true"></span>
+            <span class="menu-collapsed">Chat</span>
+        </a>
+
         <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
-            <small><strong>Tùy chọn</strong></small>
+            <small><i class="fas fa-filter"></i> <strong>Option</strong></small>
         </li>
 
-        <a href="#submenu4" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+        <!-- <a href="#submenu4" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
             <div class="d-flex w-100 justify-content-start align-items-center">
                 <span class="fa fa-shopping-cart fa-fw mr-3"></span>
                 <span class="menu-collapsed">Bán hàng</span>
@@ -69,30 +74,7 @@
                 <span class="fa fa-user-circle-o ml-2 mr-2" aria-hidden="true"></span>
                 <span class="menu-collapsed">Tạo tài khoản</span>
             </a>
-        </div>
-
-        <a href="#" class="bg-dark list-group-item list-group-item-action">
-            <div class="d-flex w-100 justify-content-start align-items-center">
-                <span class="fa fa-calendar fa-fw mr-3"></span>
-                <span class="menu-collapsed">Kho hàng</span>
-            </div>
-        </a>
-
-        <a href="#" class="bg-dark list-group-item list-group-item-action">
-            <div class="d-flex w-100 justify-content-start align-items-center">
-                <span class="fa fa-search fa-fw mr-3"></span>
-                <span class="menu-collapsed">Tìm kiếm</span>
-            </div>
-        </a>
-
-        <a href="#" class="bg-dark list-group-item list-group-item-action">
-            <div class="d-flex w-100 justify-content-start align-items-center">
-                <span class="fa fa-envelope-o fa-fw mr-3"></span>
-                <span class="menu-collapsed">Messages
-                    <!-- <span class="badge badge-pill badge-primary ml-2">5</span> -->
-                </span>
-            </div>
-        </a>
+        </div> -->
 
         <li class="list-group-item sidebar-separator menu-collapsed"></li>
 

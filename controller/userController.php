@@ -34,11 +34,7 @@ class userController
     {
         $id = $_GET['id'];
 
-        if ($_GET['status']) {
-            $status = 0;
-        } else {
-            $status = 1;
-        }
+        $status = ($_GET['status']) ? 0 : 0;
 
         $user = new userModel();
         $user->changeStt($id, $status);

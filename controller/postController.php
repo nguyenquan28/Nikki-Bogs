@@ -48,13 +48,24 @@ class postController
         header('location: index.php');
     }
 
+    function changeActive(){
+        $id = $_GET['id'];
+
+        $post = new postModel();
+        $active =  ($_GET['status']) ? 0 : 0;
+        
+        $post->changeStt($id, $active);
+        
+        header('location: index.php');
+    }
+
     function detailPost()
     {
         $id = $_GET['id'];
 
         $post = new postModel();
+        
         $status =  ($_GET['status']) ? 0 : 0;
-
         $post->changeStt($id, $status);
 
         $data = $post->searchByID($id);

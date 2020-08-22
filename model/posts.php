@@ -109,6 +109,12 @@ class postModel
         $result = $this->db->update($query);
     }
 
+    function changeActive($id, $active)
+    {
+        $query = "UPDATE posts SET active = $active WHERE post_id = $id";
+        $result = $this->db->update($query);
+    }
+
     // get delete record in table post
     function delete($post_id)
     {
