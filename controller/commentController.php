@@ -1,6 +1,6 @@
 <?php
 
-require_once '../model/posts.php'; 
+require_once __DIR__ . '/../model/posts.php'; 
 
 require __DIR__ . '/../model/comments.php';
 

@@ -28,7 +28,7 @@ try {
     //Recipients
     $mail->CharSet = 'UTF-8';
     $mail->setFrom('quan42001@donga.edu.vn', 'Nikki Blogs');
-    $mail->addAddress('nguyenquan.cntt.k17da@gmail.com');     // Add a recipient
+    $mail->addAddress($_POST['email']);     // Add a recipient
     // $mail->addAddress('ellen@example.com');               // Name is optional
     // $mail->addReplyTo('info@example.com', 'Information');
     // $mail->addCC('cc@example.com');

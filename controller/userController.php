@@ -29,6 +29,7 @@ class userController
         require_once __DIR__ . '../../views/admin/user.php';
     }
 
+    // Edit status
     function editStatus()
     {
         $id = $_GET['id'];
@@ -45,6 +46,7 @@ class userController
         header('location: index.php?c=user');
     }
 
+    // Delete User
     function delUser()
     {
         $id = $_GET['id'];
@@ -55,6 +57,7 @@ class userController
         header('location: index.php?c=user');
     }
 
+    // Login
     function login()
     {
 
@@ -91,6 +94,7 @@ class userController
         }
     }
 
+    // Register
     function register()
     {
         $userModel = new userModel();
@@ -124,19 +128,29 @@ class userController
         }
     }
 
-    function logout(){
+    // LogOut
+    function logout()
+    {
         Session::destroy();
         header('location: home.php');
     }
 
-    function search(){
+    // Search All
+    function search()
+    {
         $user = new userModel();
         if (isset($_POST["input"])) {
             $search = str_replace(", ", "|", $_POST["input"]);
             $data = $user->search($search);
-
-            require_once __DIR__ . '../../views/admin/user.php'; 
+            if (!empty($data)) {
+                Session::unset('UserSearchErr');
+                require_once __DIR__ . '../../views/admin/user.php';
+            } else {
+                Session::set('UserSearchErr', 'Input not match!');
+                header('location: index.php?c=user');
+            }
         } else {
+            Session::set('UserSearchErr', 'Input not empty!');
             header('location: index.php?c=user');
         }
     }

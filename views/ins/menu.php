@@ -37,25 +37,12 @@
                                         <li><a href="typography.php">Typography</a></li>
                                     </ul>
                                 </li>
-                                <!-- <li><a href="#">Catagories</a>
-                                    <div class="megamenu">
-                                        <ul class="single-mega cn-col-4">
-                                            <li><a href="#">- Features</a></li>
-                                            <li><a href="#">- Food</a></li>
-                                            <li><a href="#">- Travel</a></li>
-                                            <li><a href="#">- Recipe</a></li>
-                                            <li><a href="#">- Bread</a></li>
-                                            <li><a href="#">- Breakfast</a></li>
-                                            <li><a href="#">- Meat</a></li>
-                                        </ul>
-                                        
-                                    </div>
-                                </li> -->
                                 <li><a href="about-us.php">About</a></li>
                                 <li><a href="contact.php">Contact</a></li>
                             </ul>
 
                             <!-- Search Form -->
+
                             <div class="search-form">
                                 <form action="index.php?c=comment&a=addcomment" method="post">
                                     <input type="search" name="search" class="form-control" placeholder="Search and hit enter...">
@@ -70,10 +57,20 @@
                                 if (empty(Session::get('name'))) {
                                     echo '<a href="login.php">Login</a>';
                                 } else {
-                                    echo '<a href="profile.php">' . Session::get('name') . '</a>' 
-                                    . '<a href="index.php?c=user&a=logout" class="nav-link noti-icon" title="LogOut">
+                                    if (Session::get('permission')) {
+                                        // header('location: admin/index.php');
+                                        echo '<a href="admin/index.php">'
+                                            . Session::get('name') . '</a>'
+                                            . '<a href="index.php?c=user&a=logout" class="nav-link noti-icon" title="LogOut">
+                                                <i class="fa fa-sign-out"></i>
+                                            </a>';
+                                    } else {
+                                        echo '<a href="profile.php">'
+                                            . Session::get('name') . '</a>'
+                                            . '<a href="index.php?c=user&a=logout" class="nav-link noti-icon" title="LogOut">
                                             <i class="fa fa-sign-out"></i>
                                         </a>';
+                                    }
                                 }
                                 ?>
 

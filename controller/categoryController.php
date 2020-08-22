@@ -21,7 +21,8 @@ class categoryController
         require_once __DIR__ . '../../views/admin/category.php';
     }
 
-    function editStatus(){
+    function editStatus()
+    {
         $id = $_GET['id'];
 
         if ($_GET['status']) {
@@ -36,7 +37,8 @@ class categoryController
         header('location: index.php?c=category');
     }
 
-    function delCat(){
+    function delCat()
+    {
         $id = $_GET['id'];
 
         $category = new categoryModel();
@@ -45,32 +47,62 @@ class categoryController
         header('location: index.php?c=category');
     }
 
-    function detailcategory(){
+    function detailcategory()
+    {
         $id = $_GET['id'];
 
         $category = new categoryModel();
         $data = $category->searchByID($id);
         $result = $data->fetch_assoc();
-        
+
         require_once __DIR__ . '../../views/admin/detailcategory.php';
     }
 
-    function newCat(){
+    function newCat()
+    {
         require_once __DIR__ . '../../views/admin/newCat.php';
     }
 
-    function saveCat(){  
-        $name = $_POST['name'];
-        $tags = $_POST['tags'];
-        $des = $_POST['des'];
-        $slug = '';
-        $active = '1';
-        $cat = new category($name, $tags, $des, $slug, $active);
+    function saveCat()
+    {
 
-        // print_r($cat);
+        if (!empty($_POST['name']) && !empty($_POST['tags']) && !empty($_POST['des'])) {
+            Session::unset('CatErr');
+            $category_id = '';
+            $name = $_POST['name'];
+            $tags = $_POST['tags'];
+            $des = $_POST['des'];
+            $slug = $_POST['name'];
+            $active = 1;
+            $cat = new category($category_id, $name, $tags, $des, $slug, $active);
+
+            // var_dump($cat);
+            $catModel = new categoryModel();
+            $catModel->insert($cat);
+            header('location: index.php?c=category');
+        } else {
+            Session::set('CatErr', 'Input not empty!');
+            header('location: index.php?c=category&a=newCat');
+        }
+
+    }
+
+// Search all
+    function search(){
         $catModel = new categoryModel();
-        $catModel->insert($cat);
-
-        header('location: index.php?c=category');
+        if (isset($_POST["input"])) {
+            $search = str_replace(", ", "|", $_POST["input"]);
+            $data = $catModel->search($search);
+            if(!empty($data)){
+                Session::unset('CarSearchErr');
+                require_once __DIR__ . '../../views/admin/category.php'; 
+            }else{
+                Session::set('CarSearchErr', 'Input not match!');
+                header('location: index.php?c=category');
+            }
+        } else {
+            Session::set('CarSearchErr', 'Input not match!');
+            header('location: index.php?c=category');
+        }
     }
 }

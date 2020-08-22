@@ -230,7 +230,6 @@ require_once __DIR__ . '/ins/head.php';
     # Footer Area
     require_once __DIR__ . '/ins/footer.php';
 
-
     ## All Javascript Script
     require_once __DIR__ . '/ins/script.php';
     ?>
