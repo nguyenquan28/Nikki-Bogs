@@ -21,29 +21,12 @@
   <component name="ChangeListManager">
     <list default="true" id="e23419f6-d42f-4e0b-b032-ebc4aeb785cc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/categoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/categoryController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller/commentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/commentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/contactController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/contactController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/userController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/userController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/categories.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/categories.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/contacts.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/contacts.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/comments.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/comments.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/posts.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/posts.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin/category.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/category.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin/comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/comment.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin/contact.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/contact.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin/dashboards.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/dashboards.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin/ins-admin/menu.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/ins-admin/menu.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin/mail.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/mail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin/mailer/phpmailer.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/mailer/phpmailer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin/newCat.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/newCat.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin/post.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/post.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin/user.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/user.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/archive-blog.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/archive-blog.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/contact.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/contact.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/img/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/ins/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/ins/footer.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/ins/menu.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/ins/menu.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/single-post.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/single-post.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +80,8 @@
       <workItem from="1598009530513" duration="2538000" />
       <workItem from="1598080878414" duration="585000" />
       <workItem from="1598081648309" duration="238000" />
-      <workItem from="1598081914482" duration="144000" />
+      <workItem from="1598081914482" duration="9474000" />
+      <workItem from="1598123320985" duration="3007000" />
     </task>
     <servers />
   </component>
@@ -121,6 +105,10 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="510" y="155" key="NewPhpClassDialog/0.0.1536.864@0.0.1536.864" timestamp="1595665116007" />
+    <state x="425" y="197" key="run.anything.popup" timestamp="1598086007665">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="425" y="197" key="run.anything.popup/0.0.1536.864@0.0.1536.864" timestamp="1598086007665" />
     <state x="431" y="181" width="672" height="678" key="search.everywhere.popup" timestamp="1595668058844">
       <screen x="0" y="0" width="1536" height="864" />
     </state>

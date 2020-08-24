@@ -2,8 +2,8 @@
 <html lang="en">
 
 <?php
-include __DIR__ . '/../config/session.php';
-Session::init();
+//include __DIR__ . '/../config/session.php';
+//Session::init();
 require_once __DIR__ . '/ins/head.php';
 ?>
 
@@ -63,10 +63,24 @@ require_once __DIR__ . '/ins/head.php';
                                     ?>
 
                                 </div>
+                                <small class="text-danger font-italic d-flex justify-content-start mb-3">
+                                    <?php if (isset($_SESSION['ErrSearchHome'])) echo Session::get('ErrSearchHome');
+                                    else echo ''; ?>
+                                </small>
                             </div>
 
                             <?php
-                            $data = $PostsModel->getAllByIdCateAndPage();
+                            if(isset($_GET['st'])){
+                                $data = $PostsModel->searchLikeTitle();
+                                if (empty($data)){
+                                    Session::set('ErrSearchHome', 'Input not match!');
+                                    $data = $PostsModel->GetAllPostsPage();
+                                }
+                            }else{
+                                Session::unset('ErrSearchHome');
+                                $data = $PostsModel->getAllByIdCateAndPage();
+                            }
+
                             $dataGetAllPost = $PostsModel->pushDataPost($data);
                             foreach ($dataGetAllPost as $getallpost){
                                 $nameCategory = $CategoryModel->getName($getallpost->categories_id);

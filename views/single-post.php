@@ -24,6 +24,7 @@ require_once __DIR__ . '/ins/head.php';
 //    $_SESSION['a']='a';
 ?>
 <body>
+
     <!-- ##### Header Area Start ##### -->
     <?php
     require_once __DIR__ . '/ins/menu.php';
@@ -191,6 +192,7 @@ require_once __DIR__ . '/ins/head.php';
                                                 <ol>
                                                     <?php
                                                         $datacmts = $CommentsModel->searchByIdPost($datasingle->post_id);
+//                                                        echo $datacmts;
                                                         $datacmt = $CommentsModel->pushDataComment($datacmts);
                                                         foreach ($datacmt as $datacmt){
                                                             $nameUser = $UserModel->getName($datacmt->user_id);
@@ -220,65 +222,43 @@ require_once __DIR__ . '/ins/head.php';
                                                 </ol>
 
                                 <!-- Comment Area Start -->
-                                <div class="comment_area clearfix">
-                                    <h4 class="headline">12 Comments</h4>
-                                    <ol>
-                                        <!-- Single Comment Area -->
-                                        <li class="single_comment_area">
-<!--                                            <div class="comment-wrapper d-flex">-->
-<!--                                                -->
-<!--                                                <div class="comment-author">-->
-<!--                                                    <img src="img/blog-img/9.jpg" alt="">-->
-<!--                                                </div>-->
-<!--                                                -->
-<!--                                                <div class="comment-content">-->
-<!--                                                    <span class="comment-date">MAY 10, 2018</span>-->
-<!--                                                    <h5>Calantha Flower</h5>-->
-<!--                                                    <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi</p>-->
-<!--                                                    <a href="#">Like</a>-->
-<!--                                                    <a class="active" href="#">Reply</a>-->
-<!--                                                </div>-->
-<!---->
-<!--                                            </div>-->
 
-                                            <!-- Leave A Comment -->
-                                            <div class="leave-comment-area clearfix">
-                                                <div class="comment-form">
-                                                    <h4 class="headline">Leave A Comment</h4>
-                                                    <form method="post">
-                                                        <div class="row">
-                                                            <div class="col-12">
-                                                                <div class="form-group">
-                                                                    <textarea class="form-control" name="message" id="message" cols="30" rows="10" placeholder="Comment"></textarea>
+                                                <div class="leave-comment-area clearfix">
+                                                    <div class="comment-form">
+                                                        <h4 class="headline">Leave A Comment</h4>
+                                                        <form method="post">
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <div class="form-group">
+                                                                        <textarea class="form-control" name="message" id="message" cols="30" rows="10" placeholder="Comment"></textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <button type="submit" class="btn nikki-btn">Send Message</button>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-12">
-                                                                <button type="submit" class="btn nikki-btn">Send Message</button>
-                                                            </div>
-                                                        </div>
-                                                    </form>
+                                                        </form>
 
-                                                    <?php
-                                                    if (isset($_SESSION['idUser'])) {
-                                                        if (isset($_POST['message'])) {
-                                                                $user = Session::get('idUser');
-                                                                print_r($user);
-                                                                die();
+                                                        <?php
+                                                        if (isset($_SESSION['user_id'])) {
+                                                            if (isset($_POST['message'])) {
+                                                                $user = Session::get('user_id');
+//                                                                print_r($user);
+//                                                                die();
                                                                 $postid = $datasingle->post_id;
                                                                 $comment= $_POST['message'];
                                                                 $today = date("Y-m-d");
-                                                                    $comment = new comment('',$user,$postid,$comment,0,1,$today);
-                                                                    $result =$CommentsModel->saveComment($comment);
-//                                                            print_r($result);
-                                                                //$comment = new comment();
+                                                                $comment = new comment('',$user,$postid,$comment,1,1,$today);
+                                                                $result =$CommentsModel->saveComment($comment);
+//
+                                                            }
                                                         }
-                                                    }
-                                                    ?>
+                                                        ?>
 
-                                                    <!-- Comment Form -->
+                                                        <!-- Comment Form -->
 
+                                                    </div>
                                                 </div>
-                                            </div>
                                         </div>
                                     </div>
                         <?php

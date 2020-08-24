@@ -97,13 +97,13 @@ class commentMoldel{
     }
     //dem xem bai post co bao nhieu binh luan hien ra
     function countCommentByIdPost($idpost){
-        $query = "SELECT COUNT(comment_id) FROM comments WHERE post_id = $idpost and status = 1";
+        $query = "SELECT COUNT(comment_id) FROM comments WHERE post_id = $idpost and active = 1";
         $data = $this->db->select($query);
         $result = $data->fetch_assoc();
         return $result;
     }
     function searchByIdPost($idpost){
-        $query = "SELECT * FROM comments WHERE post_id = $idpost and status = 1";
+        $query = "SELECT * FROM comments WHERE post_id = $idpost and active = 1";
         $resule = $this->db->select($query);
         return $resule;
     }
