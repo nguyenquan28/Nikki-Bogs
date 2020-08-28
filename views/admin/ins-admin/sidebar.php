@@ -29,12 +29,12 @@
             <span class="item text-warning pd-0 mg-0"><?php if(Session::get('userNew') == 0 ) echo '' ; else echo Session::get('userNew'); ?></span>
         </a>
 
-        <a href="?c=comment" class="list-group-item list-group-item-action bg-dark text-white d-flex justify-content-between">
+        <a href="?c=report" class="list-group-item list-group-item-action bg-dark text-white d-flex justify-content-between">
             <div class="group-name">
                 <span class="fa fa-calendar fa-fw ml-2 mr-2" aria-hidden="true"></span>
                 <span class="menu-collapsed">Report</span>
             </div>
-            <span class="item text-warning pd-0 mg-0">1</span>
+            <span class="item text-warning pd-0 mg-0"><?php if(Session::get('reportNew') == 0 ) echo '' ; else echo Session::get('reportNew'); ?></span>
         </a>
 
         <a href="?c=category" class="list-group-item list-group-item-action bg-dark text-white">

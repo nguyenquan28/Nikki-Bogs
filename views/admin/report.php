@@ -3,8 +3,6 @@
     Session::init();
     require_once __DIR__ . '../../../model/user.php';
     $user = new userModel();
-    require_once __DIR__ . '../../../model/posts.php';
-    $post = new postModel();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,25 +46,26 @@ require __DIR__.'/ins-admin/headerAdmin.php';
                 <table class="table table-bordered">
                     <thead>
                         <tr>
+                            <th class="text-center" scope="col">ID</th>
                             <th class="text-center" scope="col">User</th>
-                            <th class="text-center" scope="col">Post</th>
-                            <th class="text-center" scope="col">Time</th>
+                            <th class="text-center" scope="col">Content</th>
+                            <th class="text-center" >Time</th>
                             <th class="text-center" colspan="2">Control</th>
-
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                        foreach ($data->fetch_all() as $key => $value) {
-                            $userName = $user->getName($value['1']);
-                            $postName = $post->getName($value['2']);
+                        foreach ($data as $key => $value) {
+                            $userName = $user->getName($value['user_id']);
+                            
                         ?>
-                            <tr class = <?php if($value['4'] == true) echo ' "tr-color" '; else echo '""';?>>
+                            <tr class = <?php if($value['status'] == true) echo ' "tr-color" '; else echo '""';?>>
+                                <td class="text-center" ><?= $value['report_id'] ?></td>
                                 <td class="text-center"><?= $userName['name'] ?></td>
-                                <td><?= $postName['title'] ?></td>
-                                <td class="text-center" ><?= date('d-M-Y', strtotime($value['6'])) ?></td>
-                                <td class="text-center" title="Update"><a href="./index.php?c=comment&a=editStatus&id=<?= $value['0'] ?>&status=<?= $value['4']?>"><i class="fas fa-info-circle"></i></a></td>
-                                <td class="text-center" title="Delete"><a href="./index.php?c=comment&a=delCat&id=<?= $value['0'] ?>"><i class="far fa-trash-alt text-danger"></i></a></td>
+                                <td class="text-center" ><?= $value['content'] ?></td>
+                                <td class="text-center" ><?= date('d-M-Y', strtotime($value['report_id'])) ?></td>
+                                <td class="text-center" title="Update"><a href="./index.php?c=report&a=detailReport&id=<?= $value['report_id'] ?>&status=<?= $value['status']?>&post=<?= $value['post_id'] ?>"><i class="fas fa-info-circle"></i></a></td>
+                                <td class="text-center" title="Delete"><a href="./index.php?c=report&a=delCat&id=<?= $value['report_id'] ?>"><i class="far fa-trash-alt text-danger"></i></a></td>
                             </tr>
                         <?php
                         }
