@@ -20,11 +20,17 @@ class userController
         $offset = ($pageno - 1) * $no_of_records_per_page;
 
         $user = new userModel();
+
+        // get all accounts status = 1
+        $user->updateSTT();
+
+        // get all
         $data = $user->getAll($offset, $no_of_records_per_page);
         $total_pages = $user->paginasion($no_of_records_per_page);
 
         $new = $user->countStt()->fetch_assoc();
         Session::set('userNew', $new['COUNT(*)']);
+
 
         require_once __DIR__ . '../../views/admin/user.php';
     }

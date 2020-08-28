@@ -4,6 +4,7 @@ require __DIR__ . '/../model/categories.php';
 class categoryController
 {
 
+    // Get all categories
     function getAll()
     {
         if (isset($_GET['pageno'])) {
@@ -21,6 +22,7 @@ class categoryController
         require_once __DIR__ . '../../views/admin/category.php';
     }
 
+    // Edit status categories
     function editStatus()
     {
         $id = $_GET['id'];
@@ -37,6 +39,7 @@ class categoryController
         header('location: index.php?c=category');
     }
 
+    // Delete categories
     function delCat()
     {
         $id = $_GET['id'];
@@ -47,6 +50,7 @@ class categoryController
         header('location: index.php?c=category');
     }
 
+    // Detail categories
     function detailcategory()
     {
         $id = $_GET['id'];
@@ -58,11 +62,13 @@ class categoryController
         require_once __DIR__ . '../../views/admin/detailcategory.php';
     }
 
+    // navigation to page new category
     function newCat()
     {
         require_once __DIR__ . '../../views/admin/newCat.php';
     }
 
+    // Save category
     function saveCat()
     {
 
@@ -78,7 +84,11 @@ class categoryController
 
             // var_dump($cat);
             $catModel = new categoryModel();
-            $catModel->insert($cat);
+            if(($_GET['p']) == 'edit'){
+                $catModel->edit($cat);
+            }else{
+                $catModel->insert($cat);
+            }
             header('location: index.php?c=category');
         } else {
             Session::set('CatErr', 'Input not empty!');
@@ -87,7 +97,7 @@ class categoryController
 
     }
 
-// Search all
+    // Search all
     function search(){
         $catModel = new categoryModel();
         if (isset($_POST["input"])) {
@@ -105,4 +115,15 @@ class categoryController
             header('location: index.php?c=category');
         }
     }
+
+    // Edit category
+        function edit(){
+            $id = $_GET['id'];
+            // $catEdit = new Category();
+            $catModel = new categoryModel();
+            $cat = $catModel->searchByID($id)->fetch_assoc();
+            
+            require_once __DIR__ . '../../views/admin/newCat.php';
+
+        }
 }

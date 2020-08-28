@@ -56,6 +56,13 @@ class categoryModel
         return $result;
     }
 
+    // Edit category $category_id, $name, $tag, $description, $slug, $active
+    function edit(category $category){
+        $query = "UPDATE categories SET categories_id = $category->category_id, name = '$category->name', 
+        tag = '$category->tag', description = '$category->description',  slug = '$category->slug', active = '$category->active'";
+        $result = $this->db->update($query);
+    }
+
 
     // Get name category by id
     function getName($category_id)
@@ -77,7 +84,7 @@ class categoryModel
     // Search by ID
     function searchByID($category_id)
     {
-        $query = "SELECT * FROM categories WHERE category_id = '$category_id'";
+        $query = "SELECT * FROM categories WHERE categories_id = '$category_id'";
         $result = $this->db->select($query);
         return $result;
     }
@@ -105,7 +112,9 @@ class categoryModel
         $data = $this->db->select($query);
         return $data;
     }
+    
 
+    
     // Change status
     function changeStt($id, $status)
     {
@@ -130,4 +139,5 @@ class categoryModel
         //        print_r($data);
         return $data;
     }
+
 }

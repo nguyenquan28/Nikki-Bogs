@@ -111,7 +111,12 @@ class userModel
     function changeStt($id, $status)
     {
         $query = "UPDATE user SET status = $status WHERE user_id = $id";
-        $result = $this->db->select($query);
+        $result = $this->db->update($query);
+    }
+
+    function updateSTT(){
+        $query = "UPDATE user SET status = 0 WHERE status = 1";
+        $query = $this->db->update($query);
     }
 
     function insert(user $user){
