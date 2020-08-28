@@ -51,7 +51,7 @@ require_once __DIR__ . '/ins/content.php';
                                 <div class="featured-post-area mb-50">
                                     <!-- Thumbnail -->
                                     <div class="post-thumbnail mb-30">
-                                        <a href="#"><img src="img/blog-img/12.jpg" alt=""></a>
+                                        <a href="index.php?c=home&a=viewSinglePost&idpost=<?=$post1->post_id?>"><img src="img/blog-img/12.jpg" alt=""></a>
                                     </div>
                                     <!-- Featured Post Content -->
                                     <div class="featured-post-content">

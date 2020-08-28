@@ -115,13 +115,20 @@ require_once __DIR__ . '/ins/head.php';
                         <li><a href="index.php?a=viewArchive&page=1"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Newer</a></li>
                         <?php
                         $total_pages = $PostsModel->PostsSumPage();
-                        for ($i = 1; $i <= $total_pages; $i++) {
-                            ?>
+                        for ($i = 1; $i <= $total_pages; $i++) {?>
                             <li class="page-item"><a class="page-link" style=" width: 46px;line-height: 28px;" href="index.php?a=viewArchive&page=<?= $i; ?>&idcate=<?=$_GET['idcate']?>"><?= $i; ?></a></li>
-
                         <?php } ?>
-                        <li><a href="index.php?a=viewArchive&page=<?= $total_pages; ?>&idcate=<?=$_GET['idcate']?>">Older <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></li>
+
+                        <?php
+                            if(isset($_GET['idcate'])){
+                        ?>
+                                <li><a href="index.php?a=viewArchive&page=<?= $total_pages; ?>&idcate=<?=$_GET['idcate']?>">Older <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></li>
+                        <?php }else{?>
+                                <li><a href="index.php?a=viewArchive&page=<?= $total_pages; ?>">Older <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></li>
+                        <?php } ?>
+
                     </ol>
+
                 </div>
 
                 <!-- Blog Sidebar Area -->
@@ -129,12 +136,12 @@ require_once __DIR__ . '/ins/head.php';
                     <div class="post-sidebar-area">
 
                         <!-- ##### Single Widget Area ##### -->
-                        <div class="single-widget-area mb-50">
-                            <form class="search-form" action="#" method="post">
-                                <input type="search" name="search" class="form-control" placeholder="Search...">
-                                <button><i class="fa fa-send"></i></button>
-                            </form>
-                        </div>
+<!--                        <div class="single-widget-area mb-50">-->
+<!--                            <form class="search-form" action="#" method="post">-->
+<!--                                <input type="search" name="search" class="form-control" placeholder="Search...">-->
+<!--                                <button><i class="fa fa-send"></i></button>-->
+<!--                            </form>-->
+<!--                        </div>-->
 
                         <!-- ##### Single Widget Area ##### -->
                         <div class="single-widget-area mb-30">
@@ -181,7 +188,7 @@ require_once __DIR__ . '/ins/head.php';
                                         <img src="img/blog-img/lp1.jpg" alt="">
                                     </div>
                                     <div class="post-content">
-                                        <a href="#" class="post-title">
+                                        <a href="index.php?c=home&a=viewSinglePost&idpost=<?=$Posts5->post_id?>" class="post-title">
                                             <h6><?=$Posts5->title ?></h6>
                                         </a>
                                         <a href="#" class="post-author" style="text-transform: capitalize;"><span>by</span> <?=$byName['name']?></a>

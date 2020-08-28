@@ -64,7 +64,7 @@ $CategoryModel = new categoryModel();
                     </div>
                     <div class="post-content">
                         <a href="index.php?c=home&a=viewSinglePost&idpost=<?=$Posts5->post_id?>" class="post-title">
-                            <h6><?=$Posts5->title ?></h6>
+                            <h6><?=$Posts5->title?></h6>
                         </a>
                         <a href="#" class="post-author" style="text-transform: capitalize;"><span>by</span> <?=$byName['name']?></a>
                     </div>

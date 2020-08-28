@@ -209,17 +209,26 @@ require_once __DIR__ . '/ins/head.php';
                                                                     <span class="comment-date"><?=$datacmt->time?></span>
                                                                     <h5><?=$nameUser['name']?></h5>
                                                                     <p><?=$datacmt->content?></p>
-                                                                    <a href="#">Like</a>
+                                                                    <div class="reply">
+                                                                        <a href="#" onclick="replycmt(1)">Reply</a>
+                                                                    </div>
                                                                 </div>
                                                             </div>
+
+
                                                         </li>
                                                     <?php
                                                         }
                                                     ?>
                                                     <!-- Single Comment Area -->
-
-
                                                 </ol>
+<!--                                        <div class="row repdyrow" style="display: none">-->
+<!--                                            <div class="col-12">-->
+<!--                                                <div class="form-group">-->
+<!--                                                    <textarea class="form-control" name="message" id="replyComment" cols="30" rows="2" placeholder="Comment"></textarea>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
 
                                 <!-- Comment Area Start -->
 
@@ -273,7 +282,13 @@ require_once __DIR__ . '/ins/head.php';
         </div>
     </section>
     <!-- ##### Blog Content Area End ##### -->
-
+<!--    <script>-->
+<!--        function replycmt(caller) {-->
+<!--            debugger;-->
+<!--            $(".repdyrow").insertAfter($(caller));-->
+<!--            $(".repdyrow").show();-->
+<!--        }-->
+<!--    </script>-->
     <?php
     # Instagram Area
     require_once __DIR__ . '/ins/instargam.php';
