@@ -44,23 +44,36 @@ class reportController
         require_once __DIR__ . '../../views/admin/detailPost.php';
     }
 
-    function delCat(){
+    function delReport(){
         $id = $_GET['id'];
 
-        $comment = new commentMoldel();
-        $comment->delete($id);
+        $report = new reportModel();
+        $report->delete($id);
 
-        header('location: index.php?c=comment');
+        header('location: index.php?c=report');
     }
 
-    function detailcomment(){
-        $id = $_GET['id'];
+    function search()
+    {
+        $report = new reportModel();
+        if (isset($_POST["input"])) {
+            $search = str_replace(", ", "|", $_POST["input"]);
+            $data = $report->search($search);
 
-        $comment = new commentMoldel();
-        $data = $comment->searchByID($id);
-        $result = $data->fetch_assoc();
-        
-        require_once __DIR__ . '../../views/admin/detailcomment.php';
+            if(empty($data)){
+                Session::set('erRPSearch', 'Input not Exist');
+                header('location: index.php?c=report');
+            }else{
+                Session::unset('erRPSearch');
+                // echo '<pre>';
+                // print_r($data);
+                // echo '</pre>';
+                require_once __DIR__ . '../../views/admin/report.php';
+            }
+        } else {
+            Session::set('erRPSearch', 'Please enter Keyword');
+            header('location: index.php?c=report');
+        }
     }
 
 }

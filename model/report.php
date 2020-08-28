@@ -90,13 +90,12 @@ class reportModel
     {
         
         $result = [];
-        $query = "SELECT * FROM report, user, posts 
+        $query = "SELECT * FROM report, user
                     WHERE report.report_id REGEXP '" . $tags . "' 
                     OR user.name REGEXP '" . $tags . "'
                     OR report.content REGEXP '" . $tags . "' 
                     OR report.time REGEXP '" . $tags . "' 
-                    OR report.status REGEXP '" . $tags . "' 
-                    OR posts.title REGEXP '" . $tags . "'
+                    OR report.status REGEXP '" . $tags . "'
                     GROUP BY report.report_id
                 ";
         $data = $this->db->select($query);
@@ -106,9 +105,7 @@ class reportModel
         if (empty($data)) {
             return '';
         } else {
-            foreach ($data->fetch_all() as $value) {
-                array_push($result, new post($value[0], $value[1], $value[2], $value[3], $value[4], $value[5], $value[6], $value[7], $value[8], $value[9], $value[10], $value[11]));
-            }
+            $result = $data->fetch_all(1);
             return $result;
         }
     }
