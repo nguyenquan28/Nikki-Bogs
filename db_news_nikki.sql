@@ -1,5 +1,5 @@
-CREATE DATABASE `db_news_nikki` CHARACTER SET utf8 COLLATE utf8_general_ci;
-use db_news_nikki;
+-- CREATE DATABASE `db_news_nikki` CHARACTER SET utf8 COLLATE utf8_general_ci;
+-- use db_news_nikki;
 
 CREATE TABLE user(
 	user_id int PRIMARY KEY,

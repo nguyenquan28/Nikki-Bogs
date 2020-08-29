@@ -209,11 +209,12 @@ require_once __DIR__ . '/ins/head.php';
                                                                     <span class="comment-date"><?=$datacmt->time?></span>
                                                                     <h5><?=$nameUser['name']?></h5>
                                                                     <p><?=$datacmt->content?></p>
-                                                                    <div class="reply">
-                                                                        <a href="#" onclick="replycmt(1)">Reply</a>
-                                                                    </div>
+
                                                                 </div>
                                                             </div>
+<!--                                                            <div class="reply">-->
+<!--                                                                <a href="javascript:void(0)" onclick="reply(this)">Reply</a>-->
+<!--                                                            </div>-->
 
 
                                                         </li>
@@ -221,17 +222,18 @@ require_once __DIR__ . '/ins/head.php';
                                                         }
                                                     ?>
                                                     <!-- Single Comment Area -->
+
+
                                                 </ol>
-<!--                                        <div class="row repdyrow" style="display: none">-->
-<!--                                            <div class="col-12">-->
-<!--                                                <div class="form-group">-->
-<!--                                                    <textarea class="form-control" name="message" id="replyComment" cols="30" rows="2" placeholder="Comment"></textarea>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
 
                                 <!-- Comment Area Start -->
-
+<!--                                                <div class="row repdyrow" style="display: none">-->
+<!--                                                    <div class="col-12">-->
+<!--                                                        <div class="form-group">-->
+<!--                                                            <textarea class="form-control" name="message" id="replyComment" cols="30" rows="2" placeholder="Comment"></textarea>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
                                                 <div class="leave-comment-area clearfix">
                                                     <div class="comment-form">
                                                         <h4 class="headline">Leave A Comment</h4>
@@ -283,8 +285,10 @@ require_once __DIR__ . '/ins/head.php';
     </section>
     <!-- ##### Blog Content Area End ##### -->
 <!--    <script>-->
-<!--        function replycmt(caller) {-->
+<!--        function reply(caller) {-->
 <!--            debugger;-->
+<!--            console.log(caller);-->
+<!--            document.write(caller);-->
 <!--            $(".repdyrow").insertAfter($(caller));-->
 <!--            $(".repdyrow").show();-->
 <!--        }-->

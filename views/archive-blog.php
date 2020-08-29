@@ -84,6 +84,7 @@ require_once __DIR__ . '/ins/head.php';
                             $dataGetAllPost = $PostsModel->pushDataPost($data);
                             foreach ($dataGetAllPost as $getallpost){
                                 $nameCategory = $CategoryModel->getName($getallpost->categories_id);
+                                $slug = str_replace(' ','+',$getallpost->title);
 
                             ?>
 
@@ -96,7 +97,7 @@ require_once __DIR__ . '/ins/head.php';
                                         <!-- Content -->
                                         <div class="post-content">
                                             <p class="post-date"><?=$getallpost->time?> / <?=$nameCategory['name']?></p>
-                                            <a href="index.php?c=home&a=viewSinglePost&idpost=<?=$getallpost->post_id?>" class="post-title">
+                                            <a href="index.php?<?=$slug?>&c=home&a=viewSinglePost&idpost=<?=$getallpost->post_id?>" class="post-title">
                                                 <h4><?=$getallpost->title?></h4>
                                             </a>
                                             <p class="post-excerpt"><?=$getallpost->intro?></p>
@@ -181,6 +182,7 @@ require_once __DIR__ . '/ins/head.php';
                             $dataLimitPost5 = $PostsModel->pushDataPost($data);
                             foreach ($dataLimitPost5 as $Posts5){
                                 $byName = $UserModel->getName($Posts5->user_id);
+                                $slug5 = str_replace(' ','+',$Posts5->title);
                                 ?>
                                 <!-- Single Latest Posts -->
                                 <div class="single-latest-post d-flex">
@@ -188,7 +190,7 @@ require_once __DIR__ . '/ins/head.php';
                                         <img src="img/blog-img/lp1.jpg" alt="">
                                     </div>
                                     <div class="post-content">
-                                        <a href="index.php?c=home&a=viewSinglePost&idpost=<?=$Posts5->post_id?>" class="post-title">
+                                        <a href="index.php?<?=$slug5?>&c=home&a=viewSinglePost&idpost=<?=$Posts5->post_id?>" class="post-title">
                                             <h6><?=$Posts5->title ?></h6>
                                         </a>
                                         <a href="#" class="post-author" style="text-transform: capitalize;"><span>by</span> <?=$byName['name']?></a>

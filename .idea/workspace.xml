@@ -82,7 +82,7 @@
       <workItem from="1598081914482" duration="9474000" />
       <workItem from="1598123320985" duration="3007000" />
       <workItem from="1598626223715" duration="406000" />
-      <workItem from="1598626633659" duration="4498000" />
+      <workItem from="1598626633659" duration="11117000" />
     </task>
     <servers />
   </component>
@@ -118,5 +118,16 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="431" y="181" width="672" height="678" key="search.everywhere.popup/0.0.1536.864@0.0.1536.864" timestamp="1595668058844" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/views/archive-blog.php</url>
+          <line>67</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
