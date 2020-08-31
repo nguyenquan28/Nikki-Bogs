@@ -3,7 +3,7 @@
 
 <?php
 require_once __DIR__ . '/ins/head.php';
-require_once __DIR__ . '/../controller/userController.php';
+// require_once __DIR__ . '/../controller/userController.php';
 ?>
 
 <body>
