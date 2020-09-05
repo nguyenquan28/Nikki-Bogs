@@ -63,47 +63,94 @@ require_once __DIR__ . '/ins/head.php';
                                     ?>
 
                                 </div>
-                                <small class="text-danger font-italic d-flex justify-content-start mb-3">
-                                    <?php if (isset($_SESSION['ErrSearchHome'])) echo Session::get('ErrSearchHome');
-                                    else echo ''; ?>
-                                </small>
+<!--                                <small class="text-danger font-italic d-flex justify-content-start mb-3">-->
+<!--                                   -->
+<!--                                    if (isset($_SESSION['ErrSearchHome'])) {-->
+<!--                                        echo Session::get('ErrSearchHome');-->
+<!--                                    }-->
+<!--                                   -->
+<!--                                </small>-->
                             </div>
 
                             <?php
                             if(isset($_GET['st'])){
                                 $data = $PostsModel->searchLikeTitle();
-                                if (empty($data)){
-                                    Session::set('ErrSearchHome', 'Input not match!');
-                                    $data = $PostsModel->GetAllPostsPage();
-                                }
+//                               if (empty($data)){
+//                                    Session::set('ErrSearchHome', 'Input not match!');
+
+//                                }
                             }else{
-                                Session::unset('ErrSearchHome');
+//                                Session::unset('ErrSearchHome');
                                 $data = $PostsModel->getAllByIdCateAndPage();
                             }
 
-                            $dataGetAllPost = $PostsModel->pushDataPost($data);
-                            foreach ($dataGetAllPost as $getallpost){
-                                $nameCategory = $CategoryModel->getName($getallpost->categories_id);
-                                $slug = str_replace(' ','+',$getallpost->title);
 
-                            ?>
+//
+//                            if (isset($_GET['sc'])) {
+//                                $data = $PostsModel->getAllByIdCateAndPage();
+//                                if (empty($data)) {
+//                                    Session::set('ErrSearchCate', 'Input not match!');
+//                                    $data = $PostsModel->GetAllPostsPage();
+//                                }
+//                            } else {
+//                                Session::unset('ErrSearchCate');
+//                                $data = $PostsModel->getAllByIdCateAndPage();
+//                            }
 
-                                <div class="col-12 col-sm-6">
-                                    <div class="single-blog-post mb-50">
-                                        <!-- Thumbnail -->
-                                        <div class="post-thumbnail">
-                                            <a href="#"><img src="img/blog-img/1.jpg" alt=""></a>
-                                        </div>
-                                        <!-- Content -->
-                                        <div class="post-content">
-                                            <p class="post-date"><?=$getallpost->time?> / <?=$nameCategory['name']?></p>
-                                            <a href="index.php?<?=$slug?>&c=home&a=viewSinglePost&idpost=<?=$getallpost->post_id?>" class="post-title">
-                                                <h4><?=$getallpost->title?></h4>
-                                            </a>
-                                            <p class="post-excerpt"><?=$getallpost->intro?></p>
+
+//                            if(isset($_GET['st'])){
+//                                $data = $PostsModel->searchLikeTitle();
+//                                if (empty($data)){
+//                                    Session::set('ErrSearchHome', 'Input not match!');
+//                                    $data = $PostsModel->GetAllPostsPage();
+//                                }
+//                            }else if(isset($_GET['sc'])){
+//                                $data = $PostsModel->getAllByIdCateAndPage();
+//                                if (empty($data)) {
+//                                    Session::set('ErrSearchCate', 'Input not match!');
+//                                    $data = $PostsModel->GetAllPostsPage();
+//                                }
+//                            }else{
+//                                Session::unset('ErrSearchHome');
+//                                Session::unset('ErrSearchCate');
+//                                $data = $PostsModel->getAllByIdCateAndPage();
+//                            }
+
+
+
+                            if (!empty($data)){
+                                $dataGetAllPost = $PostsModel->pushDataPost($data);
+                                foreach ($dataGetAllPost as $getallpost){
+                                    $nameCategory = $CategoryModel->getName($getallpost->categories_id);
+                                    $slug = str_replace(' ','+',$getallpost->title);
+
+                                ?>
+
+                                    <div class="col-12 col-sm-6">
+                                        <div class="single-blog-post mb-50">
+                                            <!-- Thumbnail -->
+                                            <div class="post-thumbnail">
+                                                <a href="#"><img src="img/blog-img/1.jpg" alt=""></a>
+                                            </div>
+                                            <!-- Content -->
+                                            <div class="post-content">
+                                                <p class="post-date"><?=$getallpost->time?> / <?=$nameCategory['name']?></p>
+                                                <a href="index.php?<?=$slug?>&c=home&a=viewSinglePost&idpost=<?=$getallpost->post_id?>" class="post-title">
+                                                    <h4><?=$getallpost->title?></h4>
+                                                </a>
+                                                <p class="post-excerpt"><?=$getallpost->intro?></p>
+                                            </div>
                                         </div>
                                     </div>
+                            <?php
+                            }
+                            }else{
+
+                             ?>
+                                <div class="col-12 mb-3" style="background: #d0d0d0">
+                                    <h5 class="mt-3 mb-3 d-flex justify-content-center">No results were found</h5>
                                 </div>
+
                             <?php
                             }
                             ?>
@@ -131,6 +178,7 @@ require_once __DIR__ . '/ins/head.php';
                     </ol>
 
                 </div>
+
 
                 <!-- Blog Sidebar Area -->
                 <div class="col-12 col-sm-9 col-md-6 col-lg-4">
@@ -161,14 +209,19 @@ require_once __DIR__ . '/ins/head.php';
                                     //dem so luong bai post theo tag
                                     $countpost=$PostsModel->countPostByIdCate($value->category_id);
 //                                    print_r($countpost);
+                                    if($countpost['COUNT(post_id)']<= 0){
                                 ?>
+                                    <li><a href="?c=home&a=viewArchive&idcate=<?=$value->category_id?>&sc=1 "><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> <?= $value->name?></span> <span>(<?=$countpost['COUNT(post_id)']?>)</span></a></li>
+                                <?php }else{ ?>
                                     <li><a href="?c=home&a=viewArchive&idcate=<?=$value->category_id?>"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> <?= $value->name?></span> <span>(<?=$countpost['COUNT(post_id)']?>)</span></a></li>
                                 <?php
+                                    }
                                 }
                                 ?>
 
                             </ol>
                         </div>
+
 
                         <!-- ##### Single Widget Area ##### -->
                         <div class="single-widget-area mb-30">

@@ -237,6 +237,13 @@ require_once __DIR__ . '/ins/head.php';
                                                 <div class="leave-comment-area clearfix">
                                                     <div class="comment-form">
                                                         <h4 class="headline">Leave A Comment</h4>
+                                                        <small class="text-danger font-italic d-flex justify-content-start mb-3">
+                                                            <?php
+                                                            if (isset($_SESSION['ErrComment'])) {
+                                                                echo Session::get('ErrComment');
+                                                            }
+                                                            ?>
+                                                        </small>
                                                         <form method="post">
                                                             <div class="row">
                                                                 <div class="col-12">
@@ -251,7 +258,9 @@ require_once __DIR__ . '/ins/head.php';
                                                         </form>
 
                                                         <?php
+
                                                         if (isset($_SESSION['user_id'])) {
+                                                            Session::unset('ErrComment');
                                                             if (isset($_POST['message'])) {
                                                                 $user = Session::get('user_id');
 //                                                                print_r($user);
@@ -263,6 +272,8 @@ require_once __DIR__ . '/ins/head.php';
                                                                 $result =$CommentsModel->saveComment($comment);
 //
                                                             }
+                                                        }else{
+                                                            Session::set('ErrComment', 'You need to log in to comment!');
                                                         }
                                                         ?>
 
