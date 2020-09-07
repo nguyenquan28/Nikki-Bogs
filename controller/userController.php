@@ -3,13 +3,14 @@ require_once __DIR__ . '/../config/session.php';
 Session::init();
 require_once __DIR__ . '/../config/format.php';
 require __DIR__ . '/../model/user.php';
-
+date_default_timezone_set('Asia/Ho_Chi_Minh');
 class userController
 {
 
     // Get all record
     function getAll()
-    {
+    {   
+        Session::unset('UserResults');
         // panigation
         if (isset($_GET['pageno'])) {
             $pageno = $_GET['pageno'];
@@ -61,7 +62,7 @@ class userController
 
     // Login
     function login()
-    {
+    {   
 
         if (!empty($_POST['email']) && !empty($_POST['pass'])) {
             $email = $_POST['email'];
@@ -71,7 +72,11 @@ class userController
                 $user = $result->fetch_assoc();
                 print_r($user);
                 if (MD5($_POST['pass']) == $user['password']) {
-                    if ($user['status'] == true) {
+                    // print_r(strtotime($user['lock_time']));
+                    // echo '<br>';
+                    // print_r(time());
+                    // echo ' / ' . $user['lock_time'];
+                    if (strtotime($user['lock_time']) < time()) {
                         Session::set('user_id', $user['user_id']);
                         Session::set('name', $user['name']);
                         Session::set('email', $user['email']);
@@ -146,6 +151,7 @@ class userController
             $data = $user->search($search);
             if (!empty($data)) {
                 Session::unset('UserSearchErr');
+                Session::set('UserResults', 'Results for ' . $_POST["input"]);
                 require_once __DIR__ . '../../views/admin/user.php';
             } else {
                 Session::set('UserSearchErr', 'Input not match!');
@@ -155,5 +161,14 @@ class userController
             Session::set('UserSearchErr', 'Input not empty!');
             header('location: index.php?c=user');
         }
+    }
+
+    // lock Account
+    function lockAcc(){
+        $id = $_GET['id'];
+        $time = date('Y-m-d H:i:s', strtotime('+3 day'));
+        $user = new userModel();
+        $data = $user->lock($id, $time);
+        header('location: index.php?c=user');
     }
 }

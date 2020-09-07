@@ -59,8 +59,7 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                             <th class="text-center" scope="col">Email</th>
                             <th class="text-center" scope="col">Phone</th>
                             <th class="text-center" scope="col">Title</th>
-                            <th class="text-center" scope="col">Content</th>
-                            <th class="text-center" colspan="1"></th>
+                            <th class="text-center" colspan="2">Control</th>
 
                         </tr>
                     </thead>
@@ -73,9 +72,9 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                                 <td class="text-center"><?= $value->fullname ?></td>
                                 <td class="text-center"><?= $value->email ?></td>
                                 <td class="text-center"><?= $value->phone_number ?></td>
-                                <td class="text-center"><?= $value->content ?></td>
                                 <td class="text-center"><?= $value->title ?></td>
                                 <td class="text-center" title="Send Email"><a href="./index.php?c=contact&a=sendMail&id=<?= $value->contacts_id ?>&status=<?= $value->status ?>"> <?= ($value->status == 0) ? '<i class="fas fa-envelope-open-text"></i>' : '<i class="far fa-envelope"></i>'; ?></a></td>
+                                <td class="text-center" title="Send Email"><a href="./index.php?c=contact&a=delCon&id=<?= $value->contacts_id ?>"><i class="far fa-trash-alt text-danger"></i></a></td>
                             </tr>
                         <?php
                         }
@@ -86,16 +85,16 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                 <!-- Paging -->
                 <nav aria-label="Page navigation" class="d-flex justify-content-end">
                     <ul class="pagination">
-                        <li class="page-item"><a class="page-link" href="index.php?c=admin&a=post&pageno=1">First</a></li>
+                        <li class="page-item"><a class="page-link" href="index.php?c=contact&a=getAll&pageno=1">First</a></li>
                         <?php
                         if (isset($_GET['a']) && $_GET['a'] === 'search') {
                             echo '<li class="page-item"><a class="page-link" href="#">1</a></li> ';
                         } else {
                             for ($i = 1; $i <= $total_pages; $i++) { ?>
-                                <li class="page-item"><a class="page-link" href="index.php?c=admin&a=post&pageno=<?= $i; ?>"><?= $i; ?></a></li>
+                                <li class="page-item"><a class="page-link" href="index.php?c=contact&a=getAll&pageno=<?= $i; ?>"><?= $i; ?></a></li>
                         <?php }
                         } ?>
-                        <li class="page-item"><a class="page-link" href="index.php?c=admin&a=post&pageno=<?= $total_pages; ?>">Last</a></li>
+                        <li class="page-item"><a class="page-link" href="index.php?c=contact&a=getAll&pageno=<?= $total_pages; ?>">Last</a></li>
                     </ul>
                 </nav>
             </div>

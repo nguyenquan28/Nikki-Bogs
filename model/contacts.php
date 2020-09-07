@@ -136,6 +136,12 @@ class contactMoldel
         return $result;
     }
 
+    // delete contact
+    function del($id){
+        $query = "DELETE FROM contacts WHERE contacts_id = $id";
+        $result = $this->db->delete($query);
+    }
+
     // Insert record $contacts_id, $fullname, $email, $phone_number, $title, $content, $status, $active
     function insert(contact $contact)
     {
@@ -144,4 +150,6 @@ class contactMoldel
                 '$contact->title', '$contact->content', $contact->status, $contact->active)";
         $result = $this->db->insert($query);
     }
+
+
 }

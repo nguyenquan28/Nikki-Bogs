@@ -11,6 +11,13 @@ require_once __DIR__ . '/ins/head.php';
     <?php
     # Header Area Start
     require_once __DIR__ . '/ins/menu.php';
+    if (isset($_COOKIE['alertContact'])) {
+        echo '<script language="javascript">';
+        echo 'alert("Success")';
+        echo '</script>';
+    } else {
+        echo '';
+    }
     ?>
 
     <!-- ##### Breadcrumb Area Start ##### -->
