@@ -90,6 +90,7 @@ class commentMoldel{
      }
 
     function saveComment(comment $comment){
+
         $query = "INSERT INTO comments values ('$comment->comment_id','$comment->user_id','$comment->post_id','$comment->content',$comment->status,$comment->active,'$comment->time')";
         $result = $this->db->insert($query);
         return $result;
