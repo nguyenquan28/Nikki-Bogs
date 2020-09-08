@@ -119,7 +119,7 @@ class postModel
     // Search by ID
     function searchByID($post_id)
     {
-        $query = "SELECT * FROM posts WHERE post_id = '$post_id'";
+        $query = "SELECT * FROM posts WHERE post_id = '$post_id'and active = '1'";
         $result = $this->db->select($query);
         return $result;
     }
@@ -127,7 +127,7 @@ class postModel
     // Seaerch by Name
     function searchByTitle($title)
     {
-        $query = "SELECT * FROM posts WHERE title = '$title' ";
+        $query = "SELECT * FROM posts WHERE title = '$title' and active = '1' ";
         $result = $this->db->select($query);
 
         return $result;
@@ -170,7 +170,7 @@ class postModel
     function PostsSumPage(){
         $page=1;
         $limit=6;
-        $qrid= "select post_id from posts";
+        $qrid= "select post_id from posts where active = '1'";
         $arrs_list = $this->db->select($qrid);
         $total_record = $arrs_list->num_rows;
         $total_page=ceil($total_record/$limit);
@@ -238,7 +238,7 @@ class postModel
         if($page>$total_page) $page=$total_page;
         $start=($page-1)*$limit;
 
-        $query = "SELECT p.* from  posts as p , user as u,categories as c WHERE p.user_id = u.user_id and p.categories_id = c.categories_id and (p.title like '%$search%'or c.`name` like '%$search%'or u.`name` like '%$search%') limit $start,$limit";
+        $query = "SELECT p.* from  posts as p , user as u,categories as c WHERE p.active = 1 and p.user_id = u.user_id and p.categories_id = c.categories_id and (p.title like '%$search%'or c.`name` like '%$search%'or u.`name` like '%$search%') limit $start,$limit";
         $result = $this->db->select($query);
         return $result;
     }
