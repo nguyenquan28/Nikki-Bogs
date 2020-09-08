@@ -52,9 +52,9 @@ class postController
         $id = $_GET['id'];
 
         $post = new postModel();
-        $active =  ($_GET['status']) ? 0 : 0;
+        $active =  ($_GET['active']) ? 0 : 1;
         
-        $post->changeStt($id, $active);
+        $post->changeActive($id, $active);
         
         header('location: index.php');
     }

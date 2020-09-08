@@ -2,7 +2,8 @@
 <html lang="en">
 
 <?php
-require __DIR__.'/ins-admin/headerAdmin.php';
+date_default_timezone_set('Asia/Ho_Chi_Minh');
+require __DIR__ . '/ins-admin/headerAdmin.php';
 ?>
 
 <body translate="no">
@@ -10,7 +11,7 @@ require __DIR__.'/ins-admin/headerAdmin.php';
 
         <!-- Header -->
         <?php
-        require __DIR__.'/ins-admin/menu.php';
+        require __DIR__ . '/ins-admin/menu.php';
         ?>
 
         <!-- container -->
@@ -18,7 +19,7 @@ require __DIR__.'/ins-admin/headerAdmin.php';
 
             <!-- Side bar -->
             <?php
-            require __DIR__.'/ins-admin/sidebar.php';
+            require __DIR__ . '/ins-admin/sidebar.php';
             ?>
 
             <div class="col">
@@ -31,17 +32,19 @@ require __DIR__.'/ins-admin/headerAdmin.php';
                             <div>
                                 <input class="form-control mr-sm-2 d-flex flex-row font-italic pr-5" name="input" type="text" id="tags" placeholder="Search for Name" aria-label="Search">
                             </div>
-                            
+
                             <div class="search_btn d-flex flex-row">
-                                <a class="search_icon" ><i class="fas fa-search"></i></a>
+                                <a class="search_icon"><i class="fas fa-search"></i></a>
                             </div>
                         </div>
                     </form>
                 </header>
 
                 <!-- Alert Error -->
-                <small class="text-danger font-italic d-flex justify-content-start mb-3">
+                <small class="text-danger font-italic d-flex justify-content-start mb-3"> 
                     <?php if (isset($_SESSION['UserSearchErr'])) echo Session::get('UserSearchErr');
+                    else 
+                        if(isset($_SESSION['UserResults'])) echo Session::get('UserResults');
                     else echo ''; ?>
                 </small>
 
@@ -59,19 +62,21 @@ require __DIR__.'/ins-admin/headerAdmin.php';
                     </thead>
                     <tbody>
                         <?php
-                            foreach ($data->fetch_all() as $key => $value) {
+                        foreach ($data->fetch_all() as $key => $value) {
                         ?>
-                            <tr class = <?php if($value['6'] == true) echo ' "tr-color" '; else echo '""';?>>
-                                <td class="text-center" ><?= $value['0'] ?></td>
+                            <tr class=<?php if ($value['6'] == true) echo ' "tr-color" ';
+                                        else echo '""'; ?>>
+                                <td class="text-center"><?= $value['0'] ?></td>
                                 <td class="text-center"><?= $value['1'] ?></td>
-                                <td class="text-center" ><?= $value['2'] ?></td>
-                                <td class="text-center" ><?php if($value['4']) echo 'Man'; else echo 'Woman'; ?></td>
-                                <td class="text-center" ><?= date('d-M-Y', strtotime($value['5'])) ?></td>
-                                <td class="text-center" title="Change"><a href="./index.php?c=user&a=editStatus&id=<?= $value['0'] ?>&status=<?= $value['6']?>"> <?= ($value['6'] == 0 ) ? '<i class="fas fa-unlock"></i>' : '<i class="fas fa-lock"></i>' ; ?> </a></td>
+                                <td class="text-center"><?= $value['2'] ?></td>
+                                <td class="text-center"><?php if ($value['4']) echo 'Man';
+                                                        else echo 'Woman'; ?></td>
+                                <td class="text-center"><?= date('d-M-Y', strtotime($value['5'])) ?></td>
+                                <td class="text-center" title="Change"><a href="./index.php?c=user&a=lockAcc&id=<?= $value['0'] ?>"> <?= (strtotime($value['8']) < time()) ? '<i class="fas fa-unlock"></i>' : '<i class="fas fa-lock text-danger"></i>'; ?> </a></td>
                                 <td class="text-center" title="Delete"><a href="./index.php?c=user&a=delUser&id=<?= $value['0'] ?>"><i class="far fa-trash-alt text-danger"></i></a></td>
                             </tr>
                         <?php
-                            }
+                        }
                         ?>
                     </tbody>
                 </table>
@@ -79,13 +84,14 @@ require __DIR__.'/ins-admin/headerAdmin.php';
                 <nav aria-label="Page navigation" class="d-flex justify-content-end">
                     <ul class="pagination">
                         <li class="page-item"><a class="page-link" href="index.php?c=user&a=getAll&pageno=1">First</a></li>
-                        <?php 
-                            if(isset($_GET['a']) && $_GET['a'] === 'search'){
-                                echo '<li class="page-item"><a class="page-link" href="#">1</a></li> ';
-                            }else{
-                                for ($i = 1; $i <= $total_pages; $i++) { ?>
-                                    <li class="page-item"><a class="page-link" href="index.php?c=user&a=getAll&pageno=<?= $i; ?>"><?= $i; ?></a></li>
-                        <?php }} ?>
+                        <?php
+                        if (isset($_GET['a']) && $_GET['a'] === 'search') {
+                            echo '<li class="page-item"><a class="page-link" href="#">1</a></li> ';
+                        } else {
+                            for ($i = 1; $i <= $total_pages; $i++) { ?>
+                                <li class="page-item"><a class="page-link" href="index.php?c=user&a=getAll&pageno=<?= $i; ?>"><?= $i; ?></a></li>
+                        <?php }
+                        } ?>
                         <li class="page-item"><a class="page-link" href="index.php?c=user&a=getAll&pageno=<?= $total_pages; ?>">Last</a></li>
                     </ul>
                 </nav>
@@ -94,7 +100,7 @@ require __DIR__.'/ins-admin/headerAdmin.php';
     </div>
 
     <?php
-    require __DIR__.'/ins-admin/scriptAdmin.php';
+    require __DIR__ . '/ins-admin/scriptAdmin.php';
     ?>
 </body>
 

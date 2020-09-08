@@ -35,6 +35,8 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                     <div class="inbox_msg">
                         <div class="inbox_people">
                             <div class="headind_srch">
+
+                                <!-- header -->
                                 <div class="recent_heading d-flex justify-content-start">
                                     <h4>New</h4>
                                     <a href="index.php?c=chat&&a=newChat"><i class="far fa-plus-square pt-1 pl-3"></i></a>
@@ -48,79 +50,29 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- List chat -->
                             <div class="inbox_chat">
-                                <div class="chat_list active_chat">
-                                    <div class="chat_people">
-                                        <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                                        <div class="chat_ib">
-                                            <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                                            <p>Test, which is a new approach to have all solutions
-                                                astrology under one roof.</p>
+                                <?php 
+                                    foreach($data as $value){
+                                ?>
+                                    <div class="chat_list active_chat">
+                                        <div class="chat_people">
+                                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                            <div class="chat_ib">
+                                                <h5><?= $value['name'] ?> <span class="chat_date">Dec 25</span></h5>
+                                                <p>Test, which is a new approach to have all solutions
+                                                    astrology under one roof.</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="chat_list">
-                                    <div class="chat_people">
-                                        <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                                        <div class="chat_ib">
-                                            <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                                            <p>Test, which is a new approach to have all solutions
-                                                astrology under one roof.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="chat_list">
-                                    <div class="chat_people">
-                                        <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                                        <div class="chat_ib">
-                                            <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                                            <p>Test, which is a new approach to have all solutions
-                                                astrology under one roof.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="chat_list">
-                                    <div class="chat_people">
-                                        <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                                        <div class="chat_ib">
-                                            <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                                            <p>Test, which is a new approach to have all solutions
-                                                astrology under one roof.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="chat_list">
-                                    <div class="chat_people">
-                                        <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                                        <div class="chat_ib">
-                                            <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                                            <p>Test, which is a new approach to have all solutions
-                                                astrology under one roof.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="chat_list">
-                                    <div class="chat_people">
-                                        <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                                        <div class="chat_ib">
-                                            <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                                            <p>Test, which is a new approach to have all solutions
-                                                astrology under one roof.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="chat_list">
-                                    <div class="chat_people">
-                                        <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                                        <div class="chat_ib">
-                                            <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                                            <p>Test, which is a new approach to have all solutions
-                                                astrology under one roof.</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                <?php        
+                                    }
+                                ?>
                             </div>
                         </div>
+
+                        <!-- List message -->
                         <div class="mesgs">
                             <div class="msg_history">
                                 <div class="incoming_msg">

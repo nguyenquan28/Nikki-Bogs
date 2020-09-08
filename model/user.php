@@ -131,11 +131,18 @@ class userModel
         $result = $this->db->select($query);
 
     }
+
     // Count status
     function countStt(){
         $query = "SELECT COUNT(*) FROM user WHERE status = '1'";
         $result = $this->db->select($query);
         
         return $result;
+    }
+
+    // Lock account
+    function lock($id, $time){
+        $query = "UPDATE user SET lock_time = '$time' WHERE user_id = $id";
+        $result = $this->db->update($query);
     }
 }
