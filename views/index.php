@@ -4,10 +4,9 @@
 
 // Check value $_GET
 $get_controller = empty($_GET['c']) ? 'home' : $_GET['c'];
-$get_action = empty($_GET['a']) ? '' : $_GET['a'];
+$get_action = empty($_GET['a']) ? 'ViewHome' : $_GET['a'];
 $controller = $get_controller . "Controller";
 $path_controller = '../controller/' . $controller . '.php';
-
 // Check file exist
 if (!file_exists($path_controller)) {
     die('File not found');

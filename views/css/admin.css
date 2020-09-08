@@ -22,7 +22,6 @@ a:hover {
 }
 
 .avatar {
-  border-left: 2px solid #a8c5de;
   padding-top: 3px;
   padding-left: 10px;
   margin-left: 5px;
@@ -64,7 +63,7 @@ a:hover {
 .search_btn {
   position: absolute;
   top: 7px;
-  right: 22px;
+  right: 10px;
 }
 
 .mr-sm-2:hover {
@@ -72,6 +71,14 @@ a:hover {
   box-shadow: 0 1px 0 0 #4285f4 !important;
 }
 
+.item {
+  /* display: block;
+  width: 23px;
+  border-radius: 100% 100%; */
+  /* border: 1px solid orange; */
+  text-align: center;
+  
+}
 /* Notification */
 
 .noti-icon {
@@ -102,7 +109,7 @@ a:hover {
 
 /* Sidebar */
 #sidebar-container {
-  min-height: 100vh;
+  min-height: 94vh;
   background-color: #132644;
   padding: 0;
   /* flex: unset; */
@@ -161,22 +168,21 @@ a.bg-dark {
 }
 
 /* table border */
-/* table.table-bordered {
-  border: 1px solid blue !important;
+.table {
+  border-collapse: collapse;
+}
+.table .tr-color {
+  border: 2px solid red !important;
+  background-color: #fff5f5;
+}
+
+table.table-bordered {
+  border: 1px solid #305d9c;
   margin-top: 20px;
 }
-
 table.table-bordered > thead > tr > th {
-  border: 1px solid blue !important;
+  border: 1px solid #305d9c;
 }
-
 table.table-bordered > tbody > tr > td {
-  border: 1px solid blue !important;
-} */
-.table{
-    border-collapse: collapse;
-}
-.table .tr-color{
-    border-bottom: 1px solid red !important;
-    background-color: #fff5f5;
+  border: 1px solid #305d9c;
 }

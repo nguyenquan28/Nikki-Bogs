@@ -49,11 +49,11 @@ class userModel
         return $total_pages;
     }
 
-    // get all data in table post
+    // get all data in table user
     function getAll($offset, $no_of_records_per_page)
     {
 
-        $query = "SELECT * FROM user ORDER BY status ASC LIMIT $offset, $no_of_records_per_page";
+        $query = "SELECT * FROM user ORDER BY status DESC LIMIT $offset, $no_of_records_per_page";
         $result = $this->db->select($query);
 
         return $result;
@@ -69,6 +69,7 @@ class userModel
         // $cat = new user($result[0],$result[1],$result[2],$result[3],$result[4],$result[5]);
         return $result;
     }
+
 
     // get delete record in table post
     function delete($user_id)
@@ -93,15 +94,48 @@ class userModel
         return $result;
     }
 
+    // Search all
+    function search($tags){
+        $query = "SELECT * FROM user 
+                    WHERE user_id REGEXP '". $tags ."'
+                    OR name REGEXP '" . $tags . "' 
+                    OR email REGEXP '" . $tags . "' 
+                    OR gender REGEXP '" . $tags . "' 
+                    OR birthday REGEXP '" . $tags . "' 
+                    OR status REGEXP '" . $tags . "'
+                ";
+        $result = $this->db->select($query);
+        return $result;
+    }
+
     function changeStt($id, $status)
     {
         $query = "UPDATE user SET status = $status WHERE user_id = $id";
-        $result = $this->db->select($query);
+        $result = $this->db->update($query);
+    }
+
+    function updateSTT(){
+        $query = "UPDATE user SET status = 0 WHERE status = 1";
+        $query = $this->db->update($query);
     }
 
     function insert(user $user){
         $query = "INSERT INTO user(name, email, password, gender, birthday, status, permission) 
         VALUE ('$user->name', '$user->email', '$user->password', $user->gender, '$user->birthday', $user->status, $user->permission) ";
         $result = $this->db->insert($query);
+    }
+
+    // Seaerch by Name
+    function searchByName($name){
+        $query = "SELECT * FROM user WHERE name = '$name' ";
+        $result = $this->db->select($query);
+
+    }
+    // Count status
+    function countStt(){
+        $query = "SELECT COUNT(*) FROM user WHERE status = '1'";
+        $result = $this->db->select($query);
+        
+        return $result;
     }
 }

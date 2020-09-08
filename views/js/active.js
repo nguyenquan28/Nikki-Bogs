@@ -127,3 +127,50 @@ function roll() {
     header.classList.remove("sticky");
   }
 }
+// cường edit
+function myFunction() {
+    var btn = document.getElementById("mybtn");
+    var x = document.getElementById("myInput").value;
+    var format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+    if (x == null || x == "") {
+        document.getElementById("demo").innerHTML = "The name cannot be empty!";
+        btn.disabled = true;
+    } else {
+        if (format.test(x) == true) {
+            document.getElementById("demo").innerHTML = "The name accepts only letters and spaces";
+            btn.disabled = true;
+        }
+        else {
+        document.getElementById("demo").innerHTML = "valid name";
+        btn.disabled = false;
+    }
+    }
+
+}
+$(document).ready(function(){
+    // edit avatar
+    var btn_edit = document.getElementById("btn-edit");
+    var edit = document.getElementById("edit");
+    // edit introduce
+    var btn_introduce = document.getElementById("btn-introduce");
+    var introduce = document.getElementById("introduce");
+    // edit name
+    var btn_name = document.getElementById("btn-name");
+    var name = document.getElementById("name");
+    // edit background
+    var btn_background = document.getElementById("btn-background");
+    var background = document.getElementById("background");
+
+    $(btn_name).click(function(){
+        $(name).toggle("linear");
+      });
+      $(btn_introduce).click(function(){
+        $(introduce).toggle("linear");
+      });
+    $(btn_edit).click(function(){
+      $(edit).toggle("linear");
+    });
+    $(btn_background).click(function(){
+        $(background).toggle("linear");
+      });
+  });

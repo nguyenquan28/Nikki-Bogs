@@ -60,12 +60,15 @@ require_once __DIR__ . '/ins-admin/head.php';
 
                         <!-- Contact Form Area -->
                         <div class="contact-form-area">
-                            <form action="#" method="post">
+                            <form action="mailer/phpmailer.php" method="post">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="contact-name" placeholder="Name" value="I'm Admin">
+                                    <input type="hidden" class="form-control" name="email" id="contact-name" placeholder="Name" value="<?= $result['email'] ?>">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="contact-phone" placeholder="Title" value="Nikki Blogs">
+                                    <input type="text" class="form-control" name="name" id="contact-name" placeholder="Name" value="I'm Admin">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="title" id="contact-phone" placeholder="Title" value="Nikki Blogs">
                                 </div>
                                 <div class="form-group">
                                     <textarea class="form-control" style="height: 220px;" name="message" id="message" rows="50" cols="50" placeholder="Message"></textarea>

@@ -49,13 +49,18 @@ Session::init();
                                     <input type="password" class="form-control" name="pass" placeholder="Password">
                                 </div>
                                 <small class="text-danger font-italic d-flex justify-content-end mb-3">
-                                    <?php if(isset($_SESSION['loginError'])) echo Session::get('loginError'); else echo ''; ?>
+                                    <?php if (isset($_SESSION['loginError'])) echo Session::get('loginError');
+                                    else echo ''; ?>
                                 </small>
                                 <div class="d-flex justify-content-center">
                                     <button type="submit" class="btn nikki-btn">Login</button>
                                 </div>
                             </form>
                         </div>
+                        <div class="text-warning mt-4 d-flex">
+                            <label for="">You haven't an Nikki's account. Click here <a href="register.php">Register</a>.</label>
+                        </div>
+                        
                     </div>
                 </div>
 

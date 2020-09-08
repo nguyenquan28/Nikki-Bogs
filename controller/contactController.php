@@ -19,6 +19,9 @@ class contactController
         $data = $contact->getAll($offset, $no_of_records_per_page);
         $total_pages = $contact->paginasion($no_of_records_per_page);
 
+        $new = $contact->countStt()->fetch_assoc();
+        Session::set('conNew', $new['COUNT(*)']);
+
         require_once __DIR__ . '../../views/admin/contact.php';
     }
 
@@ -36,5 +39,45 @@ class contactController
         $data = $contact->searchByID($id);
         $result = $data->fetch_assoc();
         require_once __DIR__ . '../../views/admin/mail.php';
+    }
+
+    function search(){
+        $contact = new contactMoldel();
+        if (isset($_POST["input"])) {
+            $search = str_replace(", ", "|", $_POST["input"]);
+            $data = $contact->search($search);
+            if(!empty($data)){
+                Session::unset('ConSearchErr');
+                require_once __DIR__ . '../../views/admin/contact.php'; 
+            }else{
+                Session::set('ConSearchErr', 'Input not match!');
+                header('location: index.php?c=contact');
+            }
+        } else {
+            Session::set('ConSearchErr', 'Input not empty!');
+            header('location: index.php?c=contact');
+        }
+    }
+    // function create contact to Admin
+    function insert(){
+        if(!empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['phone']) && !empty($_POST['title']) && !empty($_POST['message'])){
+            Session::unset('ConErr');
+            $contacts_id = '';
+            $fullname = $_POST['name'];
+            $email = $_POST['email'];
+            $phone_number = $_POST['phone'];
+            $title = $_POST['title'];
+            $content = $_POST['message'];
+            $static = 1;
+            $active = 1;
+            $con = new contact($contacts_id, $fullname, $email, $phone_number, $title, $content, $static, $active);
+            
+            $contact = new contactMoldel();
+            $contact->insert($con);
+            header('location: contact.php');
+        }else{
+            Session::set('ConErr', 'Input not empty!');
+            header('location: location: index.php?c=contact');
+        }
     }
 }

@@ -1,29 +1,4 @@
 <?php
-require __DIR__ . '/../model/user.php';
-require __DIR__ . '/../model/posts.php';
-require __DIR__ . '/../model/profile-user.php';
-// require __DIR__ . '/../views/profile-user.php';
-
-
-class userController{
-
-    function profile(){
-
-        $profile = new profile();
-        $result =  $profile->getUser(0);
-        return $result;
-    }
-
-
-
-}
-
-    $profile = new userController();
-    $result =  $profile->profile() ;
-
-
-
-
 require_once __DIR__ . '/../config/session.php';
 Session::init();
 require_once __DIR__ . '/../config/format.php';
@@ -32,8 +7,10 @@ require __DIR__ . '/../model/user.php';
 class userController
 {
 
+    // Get all record
     function getAll()
     {
+        // panigation
         if (isset($_GET['pageno'])) {
             $pageno = $_GET['pageno'];
         } else {
@@ -43,21 +20,27 @@ class userController
         $offset = ($pageno - 1) * $no_of_records_per_page;
 
         $user = new userModel();
+
+        // get all accounts status = 1
+        $user->updateSTT();
+
+        // get all
         $data = $user->getAll($offset, $no_of_records_per_page);
         $total_pages = $user->paginasion($no_of_records_per_page);
+
+        $new = $user->countStt()->fetch_assoc();
+        Session::set('userNew', $new['COUNT(*)']);
+
 
         require_once __DIR__ . '../../views/admin/user.php';
     }
 
+    // Edit status
     function editStatus()
     {
         $id = $_GET['id'];
 
-        if ($_GET['status']) {
-            $status = 0;
-        } else {
-            $status = 1;
-        }
+        $status = ($_GET['status']) ? 0 : 0;
 
         $user = new userModel();
         $user->changeStt($id, $status);
@@ -65,6 +48,7 @@ class userController
         header('location: index.php?c=user');
     }
 
+    // Delete User
     function delUser()
     {
         $id = $_GET['id'];
@@ -75,17 +59,7 @@ class userController
         header('location: index.php?c=user');
     }
 
-    function detailUser()
-    {
-        $id = $_GET['id'];
-
-        $post = new userModel();
-        $data = $post->searchByID($id);
-        $result = $data->fetch_assoc();
-
-        require_once __DIR__ . '../../views/admin/detailUser.php';
-    }
-
+    // Login
     function login()
     {
 
@@ -102,6 +76,7 @@ class userController
                         Session::set('name', $user['name']);
                         Session::set('email', $user['email']);
                         Session::set('permission', $user['permission']);
+                        Session::set('avatar', $user['avatar']);
                         Session::unset('loginError');
                         header('location: home.php');
                     } else {
@@ -122,6 +97,7 @@ class userController
         }
     }
 
+    // Register
     function register()
     {
         $userModel = new userModel();
@@ -140,7 +116,6 @@ class userController
                     $gender = $_POST['gender'];
                     $status = 1;
                     $permission = 0;
-
                     $user = new user($name, $email, $pass, $gender, $birthday, $status, $permission);
                     $userModel->insert($user);
                     header('location: login.php');
@@ -154,5 +129,31 @@ class userController
             header('location: register.php');
         }
     }
-}
 
+    // LogOut
+    function logout()
+    {
+        Session::destroy();
+        header('location: home.php');
+    }
+
+    // Search All
+    function search()
+    {
+        $user = new userModel();
+        if (isset($_POST["input"])) {
+            $search = str_replace(", ", "|", $_POST["input"]);
+            $data = $user->search($search);
+            if (!empty($data)) {
+                Session::unset('UserSearchErr');
+                require_once __DIR__ . '../../views/admin/user.php';
+            } else {
+                Session::set('UserSearchErr', 'Input not match!');
+                header('location: index.php?c=user');
+            }
+        } else {
+            Session::set('UserSearchErr', 'Input not empty!');
+            header('location: index.php?c=user');
+        }
+    }
+}

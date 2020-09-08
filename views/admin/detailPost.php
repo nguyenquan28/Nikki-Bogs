@@ -22,12 +22,23 @@ require_once __DIR__ . '/ins-admin/head.php';
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <nav aria-label="breadcrumb">
+                    <nav aria-label="breadcrumb" class="d-flex justify-content-between">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="?"><i class="fa fa-home"></i> Admin</a></li>
                             <li class="breadcrumb-item"><a href="?index.php">Blog</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Single Post</li>
                         </ol>
+                        <?php
+                            if (isset($_GET['a']) == 'detailReport') {
+                                $id = $_GET['id'];
+                                echo '<ol class="breadcrumb">
+                                        <button type="button" class="btn btn-warning mr-2"><a title="Delete Post" href="index.php?c=post&a=delPost&id=' .$id. ' ">Delete</a></button>
+                                        <button type="button" class="btn btn-danger"><a title="Close" href="index.php?c=report">Cancel</a></button>
+                                    </ol>';
+                            }else{
+                                echo '';
+                            }
+                        ?>
                     </nav>
                 </div>
             </div>
@@ -96,13 +107,13 @@ require_once __DIR__ . '/ins-admin/head.php';
                                     <!-- Tags -->
                                     <ol class="popular-tags d-flex flex-wrap">
                                         <?php
-                                            $tags = explode(', ', $result['tag']);
-                                            foreach($tags as $tag){
+                                        $tags = explode(', ', $result['tag']);
+                                        foreach ($tags as $tag) {
                                         ?>
                                             <li><a href="#"><?= $tag ?></a></li>
                                         <?php
-                                            }
-                                        ?>  
+                                        }
+                                        ?>
                                     </ol>
                                 </div>
 
