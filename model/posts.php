@@ -125,7 +125,7 @@ class postModel
     // Search by ID
     function searchByID($post_id)
     {
-        $query = "SELECT * FROM posts WHERE post_id = '$post_id'";
+        $query = "SELECT * FROM posts WHERE post_id = '$post_id'and active = '1'";
         $result = $this->db->select($query);
         return $result;
     }
@@ -133,7 +133,7 @@ class postModel
     // Seaerch by Name
     function searchByTitle($title)
     {
-        $query = "SELECT * FROM posts WHERE title = '$title' ";
+        $query = "SELECT * FROM posts WHERE title = '$title' and active = '1' ";
         $result = $this->db->select($query);
 
         return $result;
@@ -167,7 +167,7 @@ class postModel
         if($page<1) $page=1;
         if($page>$total_page) $page=$total_page;
         $start=($page-1)*$limit;
-        $query = "SELECT * FROM posts WHERE `status` = 1 and categories_id = $id_cate LIMIT $start, $limit";
+        $query = "SELECT * FROM posts WHERE `active` = 1 and categories_id = $id_cate LIMIT $start, $limit";
         $result = $this->db->select($query);
         return $result;
     }
@@ -176,7 +176,7 @@ class postModel
     function PostsSumPage(){
         $page=1;
         $limit=6;
-        $qrid= "select post_id from posts";
+        $qrid= "select post_id from posts where active = '1'";
         $arrs_list = $this->db->select($qrid);
         $total_record = $arrs_list->num_rows;
         $total_page=ceil($total_record/$limit);
@@ -202,7 +202,7 @@ class postModel
     }
     //RELATED POSTS by id category
     function RelatedByIdCateTop2($id_cate){
-        $query = "select * from posts where status = 1 and categories_id = $id_cate limit 2";
+        $query = "select * from posts where active = 1 and categories_id = $id_cate limit 2";
         $result = $this->db->select($query);
         return $result;
     }
@@ -224,10 +224,29 @@ class postModel
         return $result;
     }
     //tim kiem search
-    function searchLikeTitle($title){
-        $query = "SELECT categories_id FROM posts WHERE title like '%$title%';";
-        $data = $this->db->select($query);
-        $result = $data->fetch_assoc();
+    function searchLikeTitle(){
+        $limit=6;
+        $page=1;
+        $postModel = new postModel();
+        $total_page = $postModel->PostsSumPage();
+
+        if(isset($_GET["page"])){
+            $page=$_GET["page"];
+        }
+        if (isset($_POST['search'])){
+            $title = $_POST['search'];
+            $search = str_replace(' ','%',$title);
+        }else{
+            return $data = $postModel->GetAllPostsPage();
+        }
+
+        if($page<1) $page=1;
+        if($page>$total_page) $page=$total_page;
+        $start=($page-1)*$limit;
+
+        $query = "SELECT p.* from  posts as p , user as u,categories as c WHERE p.active = 1 and p.user_id = u.user_id and p.categories_id = c.categories_id and (p.title like '%$search%'or c.`name` like '%$search%'or u.`name` like '%$search%') limit $start,$limit";
+        $result = $this->db->select($query);
+        return $result;
     }
     //  Search all
     function search($tags)
@@ -271,7 +290,7 @@ class postModel
     // Count status
     function countStt()
     {
-        $query = "SELECT COUNT(*) FROM posts WHERE status = '1'";
+        $query = "SELECT COUNT(*) FROM posts WHERE active = '1'";
         $result = $this->db->select($query);
 
         return $result;

@@ -44,7 +44,7 @@
                             <!-- Search Form -->
 
                             <div class="search-form">
-                                <form action="index.php?c=comment&a=addcomment" method="post">
+                                <form action="index.php?c=home&a=viewArchive&st=1" method="post">
                                     <input type="search" name="search" class="form-control" placeholder="Search and hit enter...">
                                     <button type="submit"><i class="fa fa-search"></i></button>
                                 </form>

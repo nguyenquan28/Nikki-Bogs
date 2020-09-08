@@ -21,10 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e23419f6-d42f-4e0b-b032-ebc4aeb785cc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/categories.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/categories.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/user.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/user.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/archive-blog.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/archive-blog.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/ins/menu.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/ins/menu.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/posts.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/posts.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +47,12 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\learnPHP\KetThucPHP\Nikki-Bogs\views" />
+    </key>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -70,6 +73,15 @@
       <workItem from="1595655722391" duration="755000" />
       <workItem from="1595659165454" duration="11610000" />
       <workItem from="1595672556756" duration="1173000" />
+      <workItem from="1598009530513" duration="2538000" />
+      <workItem from="1598080878414" duration="585000" />
+      <workItem from="1598081648309" duration="238000" />
+      <workItem from="1598081914482" duration="9474000" />
+      <workItem from="1598123320985" duration="3007000" />
+      <workItem from="1598626223715" duration="406000" />
+      <workItem from="1598626633659" duration="11117000" />
+      <workItem from="1599187903855" duration="5357000" />
+      <workItem from="1599266259629" duration="6863000" />
     </task>
     <servers />
   </component>
@@ -89,10 +101,18 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="549" y="187" key="FileChooserDialogImpl" timestamp="1598626629919">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="549" y="187" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1598626629919" />
     <state x="510" y="155" key="NewPhpClassDialog" timestamp="1595665116007">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="510" y="155" key="NewPhpClassDialog/0.0.1536.864@0.0.1536.864" timestamp="1595665116007" />
+    <state x="425" y="197" key="run.anything.popup" timestamp="1599188852300">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="425" y="197" key="run.anything.popup/0.0.1536.864@0.0.1536.864" timestamp="1599188852300" />
     <state x="431" y="181" width="672" height="678" key="search.everywhere.popup" timestamp="1595668058844">
       <screen x="0" y="0" width="1536" height="864" />
     </state>

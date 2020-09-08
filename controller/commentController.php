@@ -56,15 +56,10 @@ class commentController{
     //     require_once __DIR__ . '../../views/admin/detailcomment.php';
     // }
 
-    function addcomment(){
-        $PostsModel = new postModel();
-        if (isset($_POST['search'])){
-            $data = $_POST['search'];
-            $search = str_replace(' ','%',$data);
-        $data = $PostsModel->searchLikeTitle($search);
-        print_r($data['categories_id']);
-
-        }
-        header('location: index.php?c=home&a=viewArchive&idcate='.$data['categories_id']);
-    }
+//    function searchMenu(){
+//        $PostsModel = new postModel();
+//
+//        header('location: index.php?c=home&a=viewArchive&search=1');
+//        return $data;
+//    }
 }

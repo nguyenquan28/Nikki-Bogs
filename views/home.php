@@ -2,8 +2,10 @@
 <html lang="en">
 
 <?php
+
 // include __DIR__ . '/../config/session.php';
 // Session::init();
+
 require_once __DIR__ . '/ins/head.php';
 ?>
 
@@ -44,17 +46,18 @@ require_once __DIR__ . '/ins/content.php';
                             //lay name user theo id cate cua post
                             $nameUser = $UserModel->getName($post1->user_id);
                             $countComment = $CommentModel->countCommentByIdPost($post1->post_id);
+                                $slug1 = str_replace(' ','+',$post1->title);
                             ?>
                             <div class="col-12">
                                 <div class="featured-post-area mb-50">
                                     <!-- Thumbnail -->
                                     <div class="post-thumbnail mb-30">
-                                        <a href="#"><img src="img/blog-img/12.jpg" alt=""></a>
+                                        <a href="index.php?<?=$slug1?>&c=home&a=viewSinglePost&idpost=<?=$post1->post_id?>"><img src="img/blog-img/12.jpg" alt=""></a>
                                     </div>
                                     <!-- Featured Post Content -->
                                     <div class="featured-post-content">
                                         <p class="post-date"><?=$post1->time?> / <?=$nameCategory['name']?></p>
-                                        <a href="index.php?c=home&a=viewSinglePost&idpost=<?=$post1->post_id?>" class="post-title">
+                                        <a href="index.php?<?=$slug1?>&c=home&a=viewSinglePost&idpost=<?=$post1->post_id?>" class="post-title">
                                             <h2><?=$post1->title?></h2>
                                         </a>
                                         <p class="post-excerpt"><?=$post1->intro?></p>
@@ -89,6 +92,7 @@ require_once __DIR__ . '/ins/content.php';
                         $dataGetAllPost = $PostsModel->pushDataPost($data);
                         foreach ($dataGetAllPost as $getallpost){
                             $nameCategory = $CategoryModel->getName($getallpost->categories_id);
+                                $slug = str_replace(' ','+',$getallpost->title);
                             ?>
                             <div class="col-12 col-sm-6">
                                 <div class="single-blog-post mb-50">
@@ -99,7 +103,7 @@ require_once __DIR__ . '/ins/content.php';
                                     <!-- Content -->
                                     <div class="post-content">
                                         <p class="post-date"><?=$getallpost->time?> / <?=$nameCategory['name']?></p>
-                                        <a href="index.php?c=home&a=viewSinglePost&idpost=<?=$getallpost->post_id?>" class="post-title">
+                                        <a href="index.php?<?=$slug?>&c=home&a=viewSinglePost&idpost=<?=$getallpost->post_id?>" class="post-title">
                                             <h4><?=$getallpost->title?></h4>
                                         </a>
                                         <p class="post-excerpt"><?=$getallpost->intro?></p>
@@ -116,6 +120,7 @@ require_once __DIR__ . '/ins/content.php';
 
                     </div>
                 </div>
+
                 <!-- Pager -->
 
                 <ol class="nikki-pager">
@@ -130,6 +135,7 @@ require_once __DIR__ . '/ins/content.php';
                     <?php } ?>
                     <li><a href="index.php?page=<?= $total_pages; ?>">Older <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></li>
                 </ol>
+
             </div>
 
             <!-- Blog Sidebar Area -->
@@ -137,6 +143,7 @@ require_once __DIR__ . '/ins/content.php';
             require_once __DIR__ . '/ins/sidebar.php';
             ?>
         </div>
+
     </section>
 
     <?php
@@ -149,6 +156,7 @@ require_once __DIR__ . '/ins/content.php';
     # All Javascript Script
     require_once __DIR__ . '/ins/script.php';
     ?>
+
 
 </body>
 
