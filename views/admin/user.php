@@ -72,7 +72,7 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                                 <td class="text-center"><?php if ($value['4']) echo 'Man';
                                                         else echo 'Woman'; ?></td>
                                 <td class="text-center"><?= date('d-M-Y', strtotime($value['5'])) ?></td>
-                                <td class="text-center" title="Change"><a href="./index.php?c=user&a=lockAcc&id=<?= $value['0'] ?>"> <?= (strtotime($value['8']) < time()) ? '<i class="fas fa-unlock"></i>' : '<i class="fas fa-lock text-warning"></i>'; ?> </a></td>
+                                <td class="text-center" title="Change"><a href="./index.php?c=user&a=lockAcc&id=<?= $value['0'] ?>"> <?= (strtotime($value['8']) < time()) ? '<i class="fas fa-unlock"></i>' : '<i class="fas fa-lock text-danger"></i>'; ?> </a></td>
                                 <td class="text-center" title="Delete"><a href="./index.php?c=user&a=delUser&id=<?= $value['0'] ?>"><i class="far fa-trash-alt text-danger"></i></a></td>
                             </tr>
                         <?php

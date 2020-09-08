@@ -154,11 +154,11 @@ class userController
                 Session::set('UserResults', 'Results for ' . $_POST["input"]);
                 require_once __DIR__ . '../../views/admin/user.php';
             } else {
-                Session::set('UserSearchErr', 'Input not match!');
+                Session::set('UserSearchErr', 'No results for ' . $_POST["input"]);
                 header('location: index.php?c=user');
             }
         } else {
-            Session::set('UserSearchErr', 'Input not empty!');
+            Session::set('UserSearchErr', 'No results for ' . $_POST["input"]);
             header('location: index.php?c=user');
         }
     }

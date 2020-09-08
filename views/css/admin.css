@@ -1,5 +1,7 @@
-/* @import url('https://fonts.googleapis.com/css?family=Montserrat'); */
-
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+body {
+  font-family: "Barlow", sans-serif;
+  font-size: 14px; }
 #body-row {
   margin-left: 0;
   margin-right: 0;
@@ -39,6 +41,24 @@ a:hover {
   border-radius: 100%;
 }
 
+.avatar-contact img {
+  border: 2px solid #255b7d;
+  width: 60px;
+  /* height: 35px; */
+  overflow-x: hidden;
+  border-radius: 100%;
+  max-width: 100%;
+}
+
+.message-contact {
+  background: #ebebeb none repeat scroll 0 0;
+  border-radius: 3px;
+  color: #646464;
+  font-size: 25px;
+  margin: 0;
+  padding: 5px 10px 5px 12px;
+  width: 100%;
+}
 /* navbar */
 
 .navbar {
@@ -77,7 +97,6 @@ a:hover {
   border-radius: 100% 100%; */
   /* border: 1px solid orange; */
   text-align: center;
-  
 }
 /* Notification */
 
