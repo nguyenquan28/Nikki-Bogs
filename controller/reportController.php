@@ -29,14 +29,14 @@ class reportController
     function detailReport()
     {
         $id = $_GET['id'];
-
+        $postID = $_GET['post'];
         $report = new reportModel();
         
         $status =  ($_GET['status']) ? 0 : 0;
         $report->changeStt($id, $status);
 
         $post = new postModel();
-        $data = $post->searchByID($id);
+        $data = $post->searchByID($postID);
         $result = $data->fetch_assoc();
 
 

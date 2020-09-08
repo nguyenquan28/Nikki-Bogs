@@ -56,7 +56,7 @@ class reportModel
         return $data;
     }
 
-    // Insert record in table report 
+    // Insert record in table report
     function insert(report $report)
     {
         $query = "INSERT INTO report (report_id, content, user_id, time, post_id, status) 

@@ -49,7 +49,7 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                     <?php if (isset($_SESSION['CarSearchErr'])) echo Session::get('CarSearchErr');
                     else echo ''; ?>
                 </small>
-                <table class="table table-bordered">
+                <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th class="text-center" scope="col">ID</th>

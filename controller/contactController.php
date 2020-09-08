@@ -74,10 +74,21 @@ class contactController
             
             $contact = new contactMoldel();
             $contact->insert($con);
+            setcookie("alertContact", "Succcss", time()+3);
             header('location: contact.php');
         }else{
             Session::set('ConErr', 'Input not empty!');
-            header('location: location: index.php?c=contact');
+            header('location: contact.php');
         }
+    }
+
+    // delete contact
+    function delCon(){
+        $id = $_GET['id'];
+
+        $contact = new contactMoldel();
+        $contact->del($id);
+        $con = new contactController();
+        $con->getAll();
     }
 }

@@ -50,7 +50,7 @@ require __DIR__.'/ins-admin/headerAdmin.php';
                     else echo ''; ?>
                 </small>
 
-                <table class="table table-bordered">
+                <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th class="text-center" scope="col">ID</th>
