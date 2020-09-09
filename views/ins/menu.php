@@ -45,6 +45,7 @@
 
                             <div class="search-form">
                                 <form action="index.php?c=home&a=viewArchive&st=1" method="post">
+
                                     <input type="search" name="search" class="form-control" placeholder="Search and hit enter...">
                                     <button type="submit"><i class="fa fa-search"></i></button>
                                 </form>
@@ -66,6 +67,7 @@
                                             </a>';
                                     } else {
                                         echo '<a href="profile.php">'
+
                                             . Session::get('name') . '</a>'
                                             . '<a href="index.php?c=user&a=logout" class="nav-link noti-icon" title="LogOut">
                                             <i class="fa fa-sign-out"></i>

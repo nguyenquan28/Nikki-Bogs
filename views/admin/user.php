@@ -32,9 +32,9 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                             <div>
                                 <input class="form-control mr-sm-2 d-flex flex-row font-italic pr-5" name="input" type="text" id="tags" placeholder="Search for Name" aria-label="Search">
                             </div>
-
                             <div class="search_btn d-flex flex-row">
                                 <a class="search_icon"><i class="fas fa-search"></i></a>
+
                             </div>
                         </div>
                     </form>
@@ -45,6 +45,7 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                     <?php if (isset($_SESSION['UserSearchErr'])) echo Session::get('UserSearchErr');
                     else 
                         if(isset($_SESSION['UserResults'])) echo Session::get('UserResults');
+
                     else echo ''; ?>
                 </small>
 
@@ -62,7 +63,7 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                     </thead>
                     <tbody>
                         <?php
-                        foreach ($data->fetch_all() as $key => $value) {
+                            foreach ($data->fetch_all() as $key => $value) {
                         ?>
                             <tr class=<?php if ($value['6'] == true) echo ' "tr-color" ';
                                         else echo '""'; ?>>
@@ -73,10 +74,11 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                                                         else echo 'Woman'; ?></td>
                                 <td class="text-center"><?= date('d-M-Y', strtotime($value['5'])) ?></td>
                                 <td class="text-center" title="Change"><a href="./index.php?c=user&a=lockAcc&id=<?= $value['0'] ?>"> <?= (strtotime($value['8']) < time()) ? '<i class="fas fa-unlock"></i>' : '<i class="fas fa-lock text-danger"></i>'; ?> </a></td>
+
                                 <td class="text-center" title="Delete"><a href="./index.php?c=user&a=delUser&id=<?= $value['0'] ?>"><i class="far fa-trash-alt text-danger"></i></a></td>
                             </tr>
                         <?php
-                        }
+                            }
                         ?>
                     </tbody>
                 </table>
@@ -92,6 +94,7 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                                 <li class="page-item"><a class="page-link" href="index.php?c=user&a=getAll&pageno=<?= $i; ?>"><?= $i; ?></a></li>
                         <?php }
                         } ?>
+
                         <li class="page-item"><a class="page-link" href="index.php?c=user&a=getAll&pageno=<?= $total_pages; ?>">Last</a></li>
                     </ul>
                 </nav>

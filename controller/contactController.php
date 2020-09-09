@@ -74,6 +74,7 @@ class contactController
             
             $contact = new contactMoldel();
             $contact->insert($con);
+
             setcookie("alertContact", "Succcss", time()+3);
             header('location: contact.php');
         }else{
@@ -91,4 +92,5 @@ class contactController
         $con = new contactController();
         $con->getAll();
     }
+
 }

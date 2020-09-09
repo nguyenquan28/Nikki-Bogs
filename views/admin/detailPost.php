@@ -30,6 +30,7 @@ require_once __DIR__ . '/ins-admin/head.php';
                         </ol>
                         <?php
                             if ($_GET['a'] == 'detailReport') {
+
                                 $id = $_GET['id'];
                                 echo '<ol class="breadcrumb">
                                         <button type="button" class="btn btn-warning mr-2"><a title="Delete Post" href="index.php?c=post&a=delPost&id=' .$id. ' ">Delete</a></button>

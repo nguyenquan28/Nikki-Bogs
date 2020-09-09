@@ -2,6 +2,7 @@
 
             <!-- Logo -->
             <a class="logo pb-2 pt-2" href="../index.php">
+
                 <img src="../img/core-img/logo.png" alt="" class="offset-3">
             </a>
 

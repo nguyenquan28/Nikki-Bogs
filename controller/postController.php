@@ -55,6 +55,7 @@ class postController
         $active =  ($_GET['active']) ? 0 : 1;
         
         $post->changeActive($id, $active);
+
         
         header('location: index.php');
     }

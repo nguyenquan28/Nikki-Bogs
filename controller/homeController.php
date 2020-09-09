@@ -6,6 +6,7 @@ class homeController
     function ViewHome(){
         require_once '../views/home.php';
     }
+
 //    function a(){
 //        $a = new postModel();
 //        print_r($a->getAllByIdCateAndPage());

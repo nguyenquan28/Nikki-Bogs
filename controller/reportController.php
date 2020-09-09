@@ -30,13 +30,16 @@ class reportController
     {
         $id = $_GET['id'];
         $postID = $_GET['post'];
+
         $report = new reportModel();
         
         $status =  ($_GET['status']) ? 0 : 0;
         $report->changeStt($id, $status);
 
         $post = new postModel();
+
         $data = $post->searchByID($postID);
+
         $result = $data->fetch_assoc();
 
 
@@ -74,6 +77,7 @@ class reportController
             Session::set('erRPSearch', 'Please enter Keyword');
             header('location: index.php?c=report');
         }
+
     }
 
 }

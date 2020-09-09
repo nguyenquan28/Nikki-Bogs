@@ -56,10 +56,13 @@ class commentController{
     //     require_once __DIR__ . '../../views/admin/detailcomment.php';
     // }
 
+
 //    function searchMenu(){
 //        $PostsModel = new postModel();
 //
 //        header('location: index.php?c=home&a=viewArchive&search=1');
 //        return $data;
 //    }
+
+
 }

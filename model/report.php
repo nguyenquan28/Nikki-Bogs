@@ -91,6 +91,7 @@ class reportModel
         
         $result = [];
         $query = "SELECT * FROM report, user
+
                     WHERE report.report_id REGEXP '" . $tags . "' 
                     OR user.name REGEXP '" . $tags . "'
                     OR report.content REGEXP '" . $tags . "' 

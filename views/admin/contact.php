@@ -75,6 +75,7 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                                 <td class="text-center"><?= $value->title ?></td>
                                 <td class="text-center" title="Send Email"><a href="./index.php?c=contact&a=sendMail&id=<?= $value->contacts_id ?>&status=<?= $value->status ?>"> <?= ($value->status == 0) ? '<i class="fas fa-envelope-open-text"></i>' : '<i class="far fa-envelope"></i>'; ?></a></td>
                                 <td class="text-center" title="Send Email"><a href="./index.php?c=contact&a=delCon&id=<?= $value->contacts_id ?>"><i class="far fa-trash-alt text-danger"></i></a></td>
+
                             </tr>
                         <?php
                         }
@@ -86,6 +87,7 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                 <nav aria-label="Page navigation" class="d-flex justify-content-end">
                     <ul class="pagination">
                         <li class="page-item"><a class="page-link" href="index.php?c=contact&a=getAll&pageno=1">First</a></li>
+
                         <?php
                         if (isset($_GET['a']) && $_GET['a'] === 'search') {
                             echo '<li class="page-item"><a class="page-link" href="#">1</a></li> ';

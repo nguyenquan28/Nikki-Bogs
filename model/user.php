@@ -139,7 +139,6 @@ class userModel
         
         return $result;
     }
-
     // Lock account
     function lock($id, $time){
         $query = "UPDATE user SET lock_time = '$time' WHERE user_id = $id";

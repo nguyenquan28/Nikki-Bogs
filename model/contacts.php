@@ -151,5 +151,4 @@ class contactMoldel
         $result = $this->db->insert($query);
     }
 
-
 }

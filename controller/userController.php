@@ -11,6 +11,7 @@ class userController
     function getAll()
     {   
         Session::unset('UserResults');
+
         // panigation
         if (isset($_GET['pageno'])) {
             $pageno = $_GET['pageno'];
@@ -81,6 +82,7 @@ class userController
                         Session::set('name', $user['name']);
                         Session::set('email', $user['email']);
                         Session::set('permission', $user['permission']);
+                        Session::set('avatar', $user['avatar']);
                         Session::unset('loginError');
                         header('location: home.php');
                     } else {
@@ -120,7 +122,6 @@ class userController
                     $gender = $_POST['gender'];
                     $status = 1;
                     $permission = 0;
-
                     $user = new user($name, $email, $pass, $gender, $birthday, $status, $permission);
                     $userModel->insert($user);
                     header('location: login.php');
@@ -171,4 +172,5 @@ class userController
         $data = $user->lock($id, $time);
         header('location: index.php?c=user');
     }
+
 }

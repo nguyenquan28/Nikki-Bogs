@@ -4,6 +4,7 @@
 <?php
 //include __DIR__ . '/../config/session.php';
 //Session::init();
+
 require_once __DIR__ . '/ins/head.php';
 ?>
 
@@ -20,7 +21,9 @@ require_once __DIR__ . '/ins/head.php';
     <!-- ##### Header Area Start ##### -->
     <?php
 
+
     require_once __DIR__ . '/ins/menu.php';
+
 
     ?>
 
@@ -151,6 +154,7 @@ require_once __DIR__ . '/ins/head.php';
                                     <h5 class="mt-3 mb-3 d-flex justify-content-center">No results were found</h5>
                                 </div>
 
+
                             <?php
                             }
                             ?>
@@ -174,6 +178,7 @@ require_once __DIR__ . '/ins/head.php';
                         <?php }else{?>
                                 <li><a href="index.php?a=viewArchive&page=<?= $total_pages; ?>">Older <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></li>
                         <?php } ?>
+
 
                     </ol>
 
@@ -216,6 +221,7 @@ require_once __DIR__ . '/ins/head.php';
                                     <li><a href="?c=home&a=viewArchive&idcate=<?=$value->category_id?>"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> <?= $value->name?></span> <span>(<?=$countpost['COUNT(post_id)']?>)</span></a></li>
                                 <?php
                                     }
+
                                 }
                                 ?>
 
@@ -236,6 +242,7 @@ require_once __DIR__ . '/ins/head.php';
                             foreach ($dataLimitPost5 as $Posts5){
                                 $byName = $UserModel->getName($Posts5->user_id);
                                 $slug5 = str_replace(' ','+',$Posts5->title);
+
                                 ?>
                                 <!-- Single Latest Posts -->
                                 <div class="single-latest-post d-flex">
@@ -244,6 +251,7 @@ require_once __DIR__ . '/ins/head.php';
                                     </div>
                                     <div class="post-content">
                                         <a href="index.php?<?=$slug5?>&c=home&a=viewSinglePost&idpost=<?=$Posts5->post_id?>" class="post-title">
+
                                             <h6><?=$Posts5->title ?></h6>
                                         </a>
                                         <a href="#" class="post-author" style="text-transform: capitalize;"><span>by</span> <?=$byName['name']?></a>

@@ -32,6 +32,7 @@ require __DIR__.'/ins-admin/headerAdmin.php';
                     <h4>List Reports</h4>
                     
                     <form class="form-outline col-md-3 p-0" action="index.php?c=report&a=search" method="POST">
+
                         <div class="md-form my-0">
                             <div>
                                 <input class="form-control mr-sm-2 d-flex flex-row font-italic pr-5" name="input" type="text" placeholder="Search for Name" aria-label="Search">
@@ -39,11 +40,11 @@ require __DIR__.'/ins-admin/headerAdmin.php';
 
                             <div class="search_btn d-flex flex-row">
                                 <a href="?c=report&a=search" class="search_icon"><i class="fas fa-search"></i></a>
+
                             </div>
                         </div>
                     </form>
                 </header>
-
                 <!-- Alert Error -->
                 <small class="text-danger font-italic d-flex justify-content-start mb-3">
                     <?php if (isset($_SESSION['erRPSearch'])) echo Session::get('erRPSearch');
@@ -51,6 +52,7 @@ require __DIR__.'/ins-admin/headerAdmin.php';
                 </small>
 
                 <table class="table table-bordered table-striped">
+
                     <thead>
                         <tr>
                             <th class="text-center" scope="col">ID</th>
@@ -73,6 +75,7 @@ require __DIR__.'/ins-admin/headerAdmin.php';
                                 <td class="text-center" ><?= date('d-M-Y', strtotime($value['report_id'])) ?></td>
                                 <td class="text-center" title="Update"><a href="./index.php?c=report&a=detailReport&id=<?= $value['report_id'] ?>&status=<?= $value['status']?>&post=<?= $value['post_id'] ?>"><i class="fas fa-info-circle"></i></a></td>
                                 <td class="text-center" title="Delete"><a href="./index.php?c=report&a=delReport&id=<?= $value['report_id'] ?>"><i class="far fa-trash-alt text-danger"></i></a></td>
+
                             </tr>
                         <?php
                         }
@@ -93,6 +96,7 @@ require __DIR__.'/ins-admin/headerAdmin.php';
                         <?php }
                         } ?>
                         <li class="page-item"><a class="page-link" href="index.php?c=report&a=getAll&pageno=<?= $total_pages; ?>">Last</a></li>
+
                     </ul>
                 </nav>
             </div>

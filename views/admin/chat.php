@@ -35,8 +35,8 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                     <div class="inbox_msg">
                         <div class="inbox_people">
                             <div class="headind_srch">
-
                                 <!-- header -->
+
                                 <div class="recent_heading d-flex justify-content-start">
                                     <h4>New</h4>
                                     <a href="index.php?c=chat&&a=newChat"><i class="far fa-plus-square pt-1 pl-3"></i></a>
@@ -50,6 +50,7 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                                     </div>
                                 </div>
                             </div>
+
 
                             <!-- List chat -->
                             <div class="inbox_chat">
@@ -73,6 +74,8 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                         </div>
 
                         <!-- List message -->
+
+
                         <div class="mesgs">
                             <div class="msg_history">
                                 <div class="incoming_msg">

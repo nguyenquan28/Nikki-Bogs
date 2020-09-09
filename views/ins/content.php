@@ -30,6 +30,7 @@ $CategoryModel = new categoryModel();
             $nameCategory = $CategoryModel->getName($post3->categories_id);
             $slug3 = str_replace(' ','+',$post3->title);
 
+
             ?>
             <!-- Single Hero Post -->
             <div class="single-hero-post d-flex flex-wrap">
@@ -51,6 +52,7 @@ $CategoryModel = new categoryModel();
                     <div class="page-count"></div>
                 </div>
             </div>
+
 
 
 

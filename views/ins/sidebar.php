@@ -57,6 +57,7 @@ $CategoryModel = new categoryModel();
             foreach ($dataLimitPost5 as $Posts5){
                 $byName = $UserModel->getName($Posts5->user_id);
                 $slug5 = str_replace(' ','+',$Posts5->title);
+
                 ?>
                 <!-- Single Latest Posts -->
                 <div class="single-latest-post d-flex">
@@ -66,6 +67,7 @@ $CategoryModel = new categoryModel();
                     <div class="post-content">
                         <a href="index.php?<?=$slug5?>&c=home&a=viewSinglePost&idpost=<?=$Posts5->post_id?>" class="post-title">
                             <h6><?=$Posts5->title?></h6>
+
                         </a>
                         <a href="#" class="post-author" style="text-transform: capitalize;"><span>by</span> <?=$byName['name']?></a>
                     </div>
