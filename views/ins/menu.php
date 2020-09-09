@@ -66,7 +66,7 @@
                                                 <i class="fa fa-sign-out"></i>
                                             </a>';
                                     } else {
-                                        echo '<a href="profile.php">'
+                                        echo '<a href="index.php?c=profile&a=profileController">'
 
                                             . Session::get('name') . '</a>'
                                             . '<a href="index.php?c=user&a=logout" class="nav-link noti-icon" title="LogOut">
