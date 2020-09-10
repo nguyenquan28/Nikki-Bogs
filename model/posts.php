@@ -290,7 +290,7 @@ class postModel
     // Count status
     function countStt()
     {
-        $query = "SELECT COUNT(*) FROM posts WHERE active = '1'";
+        $query = "SELECT COUNT(*) FROM posts WHERE status = '1'";
         $result = $this->db->select($query);
 
         return $result;

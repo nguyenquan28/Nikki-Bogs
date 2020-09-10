@@ -46,12 +46,11 @@ class chatModel
     function getAll($offset, $no_of_records_per_page)
     {
 
-        $query = "SELECT * FROM chat ORDER BY status DESC LIMIT $offset, $no_of_records_per_page";
+        $query = "SELECT * FROM chat ORDER BY time DESC LIMIT $offset, $no_of_records_per_page";
         $result = $this->db->select($query);
 
         return $result;
     }
-
 
     // Get name user by id
     function getName($chat_id)
@@ -60,6 +59,20 @@ class chatModel
         $data = $this->db->select($query);
         $result = $data->fetch_assoc();
         // $cat = new user($result[0],$result[1],$result[2],$result[3],$result[4],$result[5]);
+        return $result;
+    }
+
+    // Get one 
+    function getOne($receiver_id){
+        $query = "SELECT * FROM chat WHERE receiver_id = $receiver_id ORDER BY time DESC LIMIT 1";
+        $data = $this->db->select($query)->fetch_assoc();
+        return $data;
+    }
+
+    // Search by ID
+    function searchById($id){
+        $query = "SELECT * FROM chat WHERE sender_id = $id or receiver_id = $id";
+        $result = $this->db->select($query)->fetch_all(1);
         return $result;
     }
 }

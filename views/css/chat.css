@@ -15,7 +15,7 @@ img {
   border-right: 1px solid #c4c4c4;
 }
 .inbox_msg {
-  border: 1px solid #c4c4c4;
+  /* border: 1px solid #c4c4c4; */
   clear: both;
   overflow: hidden;
 }
@@ -100,7 +100,15 @@ img {
   overflow-y: scroll;
 }
 
+.new_chat{
+  background: #05728f ;
+}
+
 .active_chat {
+  background: white;
+}
+
+.action_chat{
   background: #ebebeb;
 }
 
@@ -149,7 +157,7 @@ img {
 }
 .outgoing_msg {
   overflow: hidden;
-  margin: 26px 0 26px;
+  margin: 15px 0 15px;
 }
 .sent_msg {
   float: right;
@@ -178,7 +186,7 @@ img {
   height: 33px;
   position: absolute;
   right: 0;
-  top: 11px;
+  top: 7px;
   width: 33px;
 }
 .messaging {

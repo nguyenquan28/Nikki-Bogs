@@ -1,5 +1,6 @@
 <?php
-
+require_once __DIR__ . '../../../config/session.php';
+Session::init();
 // Check value $_GET
 $get_controller = empty($_GET['c']) ? 'post' : $_GET['c'];
 $get_action = empty($_GET['a']) ? 'getAll' : $_GET['a'];
@@ -10,10 +11,14 @@ $path_controller = '../../Controller/' . $controller . '.php';
 if (!file_exists($path_controller)) {
     die('File not found');
 }
-require_once $path_controller;
+if (Session::get('permission')) {
+    require_once $path_controller;
+}else{
+    require_once __DIR__ . '/404.php';
+}
 // Check class
 if (!class_exists($controller)) {
-    die('Class not exits');
+    die();
 }
 
 $controller0home = new $controller;
