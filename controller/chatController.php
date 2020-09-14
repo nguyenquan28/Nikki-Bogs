@@ -84,9 +84,9 @@ class chatController
             $record = $chat->getOne($value, Session::get('user_id'));
             array_push($result, $record);
         }
-
-        $chat->change($result[0]['receiver_id'], $status = 0);
-
+        $sender = ($receiver_id == Session::get('user_id')) ? $sender_id : $receiver_id;
+        $status = 0;
+        $chat->change($sender, 1, $status);
         $detail_chat = $chat->searchById($receiver_id, $sender_id);
         require_once __DIR__ . '../../views/admin/chat.php';
     }
@@ -108,5 +108,29 @@ class chatController
             $chat->insert($chatContent);
         }
         header('location: index.php?c=chat&a=detailChat&receiver_id=' . $receiver_id . '&sender_id=' . $sender_id);
+    }
+
+    function myChat(){
+        $chat = new chatModel();
+        $sender_id = $_GET['sender_id'];
+        $detail_chat = $chat->searchById(1, $sender_id);
+        require_once __DIR__ . '../../views/home.php';
+    }
+
+    function sendAd(){
+        $chat = new chatModel();
+        $chat_id = '';
+        $receiver_id = 1;
+        $sender_id = Session::get('user_id');
+        if (!empty($_POST['message'])) {
+            $mess = $_POST['message'];
+            $status = 1;
+            $time = date('Y-m-d H:i:s', time());
+            // print_r($time);
+            $chatContent = new chat($chat_id, $receiver_id, $sender_id, $mess, $time, $status);
+            // print_r($chatContent);
+            $chat->insert($chatContent);
+        }
+        require_once __DIR__ . '../../views/home.php';
     }
 }

@@ -59,7 +59,7 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                                     $name = $user->getName(($value['sender_id'] != Session::get('user_id')) ? $value['sender_id'] : $value['receiver_id']);
                                 ?>
                                     <a href="?c=chat&a=detailChat&receiver_id=<?= $value['receiver_id'] ?>&sender_id=<?= $value['sender_id'] ?>">
-                                        <div class="chat_list <?= ($value['status'] && $value['sender_id'] != Session::get('user_id')) ? 'new_chat' : 'active_chat' ?> <?= (isset($_GET['receiver_id']) && $_GET['receiver_id'] == $value['receiver_id']) ? 'action_chat' : '' ?>">
+                                        <div class="chat_list <?= ($value['status'] == 1 && $value['sender_id'] != Session::get('user_id')) ? 'new_chat' : 'active_chat' ?> <?= (isset($_GET['receiver_id']) && $_GET['receiver_id'] == $value['receiver_id']) ? 'action_chat' : '' ?>">
                                             <div class="chat_people">
                                                 <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
                                                 <div class="chat_ib">
@@ -76,9 +76,7 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                         </div>
 
                         <!-- List message -->
-
-
-
+                        
                         <div class="mesgs">
                             <div class="msg_history">
 

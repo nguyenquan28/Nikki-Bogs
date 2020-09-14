@@ -88,8 +88,8 @@ class chatModel
     } 
 
     // change status
-    function change($id, $status){
-        $query = "UPDATE chat SET status = $status WHERE chat_id = $id";
+    function change($sender_id, $receiver_id, $status){
+        $query = "UPDATE chat SET status = $status WHERE sender_id = $sender_id AND receiver_id = $receiver_id";
         $result = $this->db->update($query);
     }
 }
