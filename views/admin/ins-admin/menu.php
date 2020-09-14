@@ -16,7 +16,7 @@
                     <li class="nav-item avatar">
                         <img src="../img/avt.png">
                         <small style="color: #a8c5de">
-                            <a href="../home.php">Administrator</a>
+                            <a href="index.php?c=profile&a=profileController">Administrator</a>
                         </small>
                     </li>
                     <li class="nav-item">
@@ -25,7 +25,7 @@
                         </a>
                     </li>
                 </ul>
-
+                <div class></div>
             </div>
 
             <!-- Collapsible content -->
