@@ -59,7 +59,7 @@
                                     echo '<a href="login.php">Login</a>';
                                 } else {
                                     if (Session::get('permission')) {
-                                        // header('location: admin/index.php');
+                                        // header('location: admin/index.php'); 
                                         echo '<a href="admin/index.php">'
                                             . Session::get('name') . '</a>'
                                             . '<a href="index.php?c=user&a=logout" class="nav-link noti-icon" title="LogOut">
@@ -68,10 +68,13 @@
                                     } else {
                                         echo '<a href="index.php?c=profile&a=profileController">'
 
-                                            . Session::get('name') . '</a>'
-                                            . '<a href="index.php?c=user&a=logout" class="nav-link noti-icon" title="LogOut">
-                                            <i class="fa fa-sign-out"></i>
-                                        </a>';
+                                            .   Session::get('name') . '</a>'
+                                            .   '<a href="index.php?c=user&a=message" class="nav-link noti-icon" title="Message">
+                                                    <i class="fa fa-comment"></i>
+                                                </a>'
+                                            .   '<a href="index.php?c=user&a=logout" class="nav-link noti-icon" title="LogOut">
+                                                    <i class="fa fa-sign-out"></i>
+                                                </a>';
                                     }
                                 }
                                 ?>

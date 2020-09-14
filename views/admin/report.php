@@ -55,7 +55,6 @@ require __DIR__.'/ins-admin/headerAdmin.php';
 
                     <thead>
                         <tr>
-                            <th class="text-center" scope="col">ID</th>
                             <th class="text-center" scope="col">User</th>
                             <th class="text-center" scope="col">Content</th>
                             <th class="text-center" >Time</th>
@@ -69,7 +68,6 @@ require __DIR__.'/ins-admin/headerAdmin.php';
                             
                         ?>
                             <tr class = <?php if($value['status'] == true) echo ' "tr-color" '; else echo '""';?>>
-                                <td class="text-center" ><?= $value['report_id'] ?></td>
                                 <td class="text-center"><?= $userName['name'] ?></td>
                                 <td class="text-center" ><?= $value['content'] ?></td>
                                 <td class="text-center" ><?= date('d-M-Y', strtotime($value['report_id'])) ?></td>

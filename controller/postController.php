@@ -5,6 +5,7 @@ require __DIR__ . '/../model/user.php';
 require __DIR__ . '/../model/posts.php';
 require __DIR__ . '/../model/contacts.php';
 require __DIR__ . '/../model/chat.php';
+require __DIR__ . '/../model/report.php';
 
 
 class postController
@@ -35,6 +36,11 @@ class postController
         $contact = new contactMoldel();
         $new = $contact->countStt()->fetch_assoc();
         Session::set('conNew', $new['COUNT(*)']);
+
+        $report = new reportModel();
+        $new = $report->countStt()->fetch_assoc();
+        Session::set('reNew', $new['COUNT(*)']);
+
 
         require_once __DIR__ . '../../views/admin/post.php';
     }

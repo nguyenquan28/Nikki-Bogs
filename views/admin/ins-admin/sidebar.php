@@ -34,7 +34,7 @@
                 <span class="fa fa-calendar fa-fw ml-2 mr-2" aria-hidden="true"></span>
                 <span class="menu-collapsed">Report</span>
             </div>
-            <span class="item text-warning pd-0 mg-0"><?php if(Session::get('reportNew') == 0 ) echo '' ; else echo Session::get('reportNew'); ?></span>
+            <span class="item text-warning pd-0 mg-0"><?php if(Session::get('reNew') == 0 ) echo '' ; else echo Session::get('reNew'); ?></span>
         </a>
 
         <a href="?c=category" class="list-group-item list-group-item-action bg-dark text-white">
