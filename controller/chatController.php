@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '../../model/chat.php';
 require_once __DIR__ . '../../model/user.php';
+date_default_timezone_set('Asia/Ho_Chi_Minh');
 class chatController
 {
     function getAll()
@@ -17,25 +18,35 @@ class chatController
         $allData = $chat->getAll($offset, $no_of_records_per_page)->fetch_all(1);
         $total_pages = $chat->paginasion($no_of_records_per_page);
 
+
+        // echo '<pre>';
         // print_r($allData);
+        // echo '</pre>';
         $receivers = [];
         foreach ($allData as $value) {
-            if ($value['sender_id'] == Session::get('user_id')) {
+            if ($value['sender_id'] == Session::get('user_id') || $value['receiver_id'] == Session::get('user_id')) {
                 array_push($receivers, $value['receiver_id']);
             }
         }
         $result = [];
         $list_receiver_id = array_unique($receivers, 0);
-        foreach ($list_receiver_id as $value) {
-            $record = $chat->getOne($value);
-            array_push($result, $record);
-        }
-        $detail_chat = $chat->searchById($result[0]['receiver_id']);
+        // $key = array_search(Session::get('user_id'), $list_receiver_id) ;
+        // unset($list_receiver_id[$key]);
+        echo '<pre>';
+        print_r($list_receiver_id );
+        echo '</pre>';
+        // foreach ($list_receiver_id as $value) {
+        //     if(){
+        //         $record = $chat->getOne($value);
+        //         array_push($result, $record);
+        //     }
+        // }
+        // $detail_chat = $chat->searchById($result[0]['receiver_id']);
         // print_r($detail_chat);
         // echo '<pre>';
         // print_r($result);
         // echo '</pre>';
-        require_once __DIR__ . '../../views/admin/chat.php';
+        // require_once __DIR__ . '../../views/admin/chat.php';
     }
 
     // detail chat room
@@ -76,9 +87,19 @@ class chatController
     // Send message
     function sendMess()
     {
+        $chat = new chatModel();
+        $chat_id = '';
         $receiver_id = $_GET['receiver_id'];
         $sender_id = Session::get('user_id');
-        $mess = $_POST['message'];
-        $status = 1;
+        if (!empty($_POST['message'])) {
+            $mess = $_POST['message'];
+            $status = 1;
+            $time = date('Y-m-d H:i:s', time());
+            // print_r($time);
+            $chatContent = new chat($chat_id, $receiver_id, $sender_id, $mess, $time, $status);
+            // print_r($chatContent);
+            $chat->insert($chatContent);
+        }
+        header('location: index.php?c=chat&a=detailChat&receiver_id='. $receiver_id );
     }
 }

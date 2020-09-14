@@ -10,13 +10,17 @@ class chat
     public $receiver_id;
     public $sender_id;
     public $message;
+    public $time;
+    public $status;
 
-    function __construct($chat_id, $receiver_id, $sender_id, $message)
+    function __construct($chat_id, $receiver_id, $sender_id, $message, $time, $status)
     {
         $this->chat_id = $chat_id;
         $this->receiver_id = $receiver_id;
         $this->sender_id = $sender_id;
         $this->message = $message;
+        $this->time = $time;
+        $this->status = $status;
     }
 }
 
@@ -46,7 +50,7 @@ class chatModel
     function getAll($offset, $no_of_records_per_page)
     {
 
-        $query = "SELECT * FROM chat ORDER BY time DESC LIMIT $offset, $no_of_records_per_page";
+        $query = "SELECT * FROM chat ORDER BY time DESC, status DESC LIMIT $offset, $no_of_records_per_page";
         $result = $this->db->select($query);
 
         return $result;
@@ -75,4 +79,11 @@ class chatModel
         $result = $this->db->select($query)->fetch_all(1);
         return $result;
     }
+
+    //Insert chat $chat_id, $receiver_id, $sender_id, $message, $time
+    function insert(chat $chat){
+        $query = "INSERT INTO chat (chat_id, receiver_id, sender_id, message, time, status) 
+                VALUE ('$chat->chat_id', '$chat->receiver_id', '$chat->sender_id', '$chat->message', '$chat->time', '$chat->status')";
+        $result = $this->db->insert($query);
+    } 
 }

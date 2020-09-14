@@ -19,7 +19,7 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
 
         <!-- Header -->
         <?php
-        require __DIR__ . '/ins-admin/menu.php';
+        // require __DIR__ . '/ins-admin/menu.php';
         ?>
 
         <!-- container -->
@@ -43,7 +43,7 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                                 </div>
                                 <div class="srch_bar">
                                     <div class="stylish-input-group">
-                                        <input type="text" class="search-bar" placeholder="Search">
+                                        <input type="text" class="search-bar" autocomplete="off" autofocus placeholder="Search">
                                         <span class="input-group-addon">
                                             <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
                                         </span>
@@ -108,7 +108,7 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                                 ?>
                             </div>
                             <div class="type_msg">
-                                <form class="input_msg_write" action="?c=chat&a=sendMess&receiver_id=<?= $value['receiver_id'] ?>" method="POST">
+                                <form class="input_msg_write" action="?c=chat&a=sendMess&receiver_id=<?= $_GET['receiver_id'] ?>" method="POST">
                                     <input type="text" class="write_msg" name="message" placeholder="Type a message" />
                                     <button class="msg_send_btn ml-3" type="submit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
                                 </form>
