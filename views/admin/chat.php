@@ -56,9 +56,9 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                             <div class="inbox_chat">
                                 <?php
                                 foreach ($result as $value) {
-                                    $name = $user->getName($value['receiver_id']);
+                                    $name = $user->getName(($value['sender_id'] != Session::get('user_id')) ? $value['sender_id'] : $value['receiver_id']);
                                 ?>
-                                    <a href="?c=chat&a=detailChat&receiver_id=<?= $value['receiver_id'] ?>">
+                                    <a href="?c=chat&a=detailChat&receiver_id=<?= $value['receiver_id'] ?>&sender_id=<?= $value['sender_id'] ?>">
                                         <div class="chat_list <?= ($value['status'] && $value['sender_id'] != Session::get('user_id')) ? 'new_chat' : 'active_chat' ?> <?= (isset($_GET['receiver_id']) && $_GET['receiver_id'] == $value['receiver_id']) ? 'action_chat' : '' ?>">
                                             <div class="chat_people">
                                                 <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
@@ -108,7 +108,7 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                                 ?>
                             </div>
                             <div class="type_msg">
-                                <form class="input_msg_write" action="?c=chat&a=sendMess&receiver_id=<?= $_GET['receiver_id'] ?>" method="POST">
+                                <form class="input_msg_write" action="?c=chat&a=sendMess&receiver_id=<?= ($_GET['receiver_id'] != Session::get('user_id')) ? $_GET['receiver_id'] : $_GET['sender_id']?>" method="POST">
                                     <input type="text" class="write_msg" name="message" placeholder="Type a message" />
                                     <button class="msg_send_btn ml-3" type="submit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
                                 </form>

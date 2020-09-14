@@ -67,23 +67,29 @@ class chatModel
     }
 
     // Get one 
-    function getOne($receiver_id){
-        $query = "SELECT * FROM chat WHERE receiver_id = $receiver_id ORDER BY time DESC LIMIT 1";
+    function getOne($receiver_id, $sender_id){
+        $query = "SELECT * FROM chat WHERE ( receiver_id = $receiver_id AND sender_id = $sender_id ) or (receiver_id = $sender_id AND sender_id = $receiver_id) ORDER BY time DESC LIMIT 1";
         $data = $this->db->select($query)->fetch_assoc();
         return $data;
     }
 
     // Search by ID
-    function searchById($id){
-        $query = "SELECT * FROM chat WHERE sender_id = $id or receiver_id = $id";
+    function searchById($receiver_id, $sender_id){
+        $query = "SELECT * FROM chat WHERE ( receiver_id = $receiver_id AND sender_id = $sender_id ) or (receiver_id = $sender_id AND sender_id = $receiver_id)";
         $result = $this->db->select($query)->fetch_all(1);
         return $result;
     }
 
-    //Insert chat $chat_id, $receiver_id, $sender_id, $message, $time
+    //Insert chat 
     function insert(chat $chat){
         $query = "INSERT INTO chat (chat_id, receiver_id, sender_id, message, time, status) 
                 VALUE ('$chat->chat_id', '$chat->receiver_id', '$chat->sender_id', '$chat->message', '$chat->time', '$chat->status')";
         $result = $this->db->insert($query);
     } 
+
+    // change status
+    function change($id, $status){
+        $query = "UPDATE chat SET status = $status WHERE chat_id = $id";
+        $result = $this->db->update($query);
+    }
 }
