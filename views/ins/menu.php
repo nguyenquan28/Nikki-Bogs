@@ -69,23 +69,71 @@
                                         echo '<a href="index.php?c=profile&a=profileController">'
 
                                             .   Session::get('name') . '</a>'
-                                            .   '<a href="index.php?c=user&a=message" class="nav-link noti-icon" title="Message">
+                                            .   '<a href="#subChat" data-toggle="collapse" aria-expanded="false"  class="nav-link noti-icon" title="Message">
                                                     <i class="fa fa-comment"></i>
                                                 </a>'
                                             .   '<a href="index.php?c=user&a=logout" class="nav-link noti-icon" title="LogOut">
                                                     <i class="fa fa-sign-out"></i>
                                                 </a>';
+                                        // header("location: index.php?c=chat&a=myChat&receiver_id=" . Session::get('user_id'));
                                     }
                                 }
                                 ?>
-
                             </div>
-
+                            <!-- Nav End -->
                         </div>
-                        <!-- Nav End -->
-                    </div>
                 </nav>
             </div>
         </div>
+
     </div>
+    <!-- Chat -->
+    <div id='subChat' class="collapse">
+        <div class="d-flex justify-content-end">
+            <div class="d-flex flex-column chat-content pt-2" id="chat-content">
+                <!-- <div class="detail-chat">
+                    <div class="receive-mess m-1">
+                        <p>hello cậu</p>
+                        <span class="time-mess">10-Sep | 10:25 am</span>
+                    </div>
+                    <div class="send-mess m-1">
+                        <p>chào cậu luôn</p>
+                        <span class="time-mess">10-Sep | 10:26 am</span>
+                    </div>
+                </div> -->
+                <div>
+                    <a href="index.php?c=chat&a=myChat&sender_id=<?= Session::get('user_id') ?>">
+                        Admin
+                    </a>
+                    <hr>
+                </div>
+                <div class="detail-chat" id="detail-chat">
+                    <?php
+                    if (isset($detail_chat)) foreach ($detail_chat as $value) {
+                    ?>
+                        <?= ($value['sender_id'] == Session::get('user_id')) ?
+                            '<div class="send-mess m-1">
+                            <p>' . $value['message'] . '</p>
+                            <span class="time-mess">' . date('d-M | g:i a', strtotime($value['time'])) . '</span>
+                        </div>' :
+                            '<div class="receive-mess m-1">
+                            <p>' . $value['message'] . '</p>
+                            <span class="time-mess">' . date('d-M | g:i a', strtotime($value['time'])) . '</span>
+                        </div>'; ?>
+                    <?php
+                    }
+                    ?>
+                </div>
+                <form class="input_msg_write" action="index.php?c=chat&a=sendAd" method="POST">
+                    <input type="text" class="write_msg" name="message" placeholder="Type a message" />
+                    <button class="msg_send_btn ml-3" type="submit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#detail-chat').animate({scrollTop:1000000}, 800);
+        })
+    </script>
 </header>
