@@ -39,7 +39,7 @@ class chatController
             $record = $chat->getOne($value, Session::get('user_id'));
             array_push($result, $record);
         }
-        $detail_chat = $chat->searchById($result[0]['receiver_id']);
+        $detail_chat = $chat->searchById($result[0]['receiver_id'], Session::get('user_id'));
         // echo '<pre>';
         // print_r($result);
         // echo '</pre>';
