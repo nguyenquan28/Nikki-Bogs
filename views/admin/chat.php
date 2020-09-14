@@ -19,7 +19,7 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
 
         <!-- Header -->
         <?php
-        // require __DIR__ . '/ins-admin/menu.php';
+        require __DIR__ . '/ins-admin/menu.php';
         ?>
 
         <!-- container -->

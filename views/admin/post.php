@@ -84,7 +84,7 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                                 <td><?= $value->intro ?></td> 
                                 <td class="text-center" style="width:  8%"><?= date('d-M-Y', strtotime($value->time)) ?></th>
                                 <td class="text-center" title="Detail"><a href="./index.php?c=post&a=detailPost&id=<?= $value->post_id ?>&status=<?= $value->status ?>"><i class="fas fa-info-circle"></i></a></td>
-                                <td class="text-center" title="Change Active"><a href="./index.php?c=post&a=changeActive&id=<?= $value->post_id ?>&active=<?= $value->active ?>"><?= ($value->active) ? '<i class="fa fa-check-circle"></i>' : '<i class="fa fa-window-close text-danger"></i>' ;?></a></td>
+                                <td class="text-center" title="Change Active"><a href="./index.php?c=post&a=changeActive&id=<?= $value->post_id ?>&active=<?= $value->active ?>&sender_id=<?= Session::get('user_id') ?>&receiver_id=<?= $value->user_id ?>"><?= ($value->active) ? '<i class="fa fa-check-circle"></i>' : '<i class="fa fa-window-close text-danger"></i>' ;?></a></td>
                                 <td class="text-center" title="Delete"><a href="./index.php?c=post&a=delPost&id=<?= $value->post_id ?>"><i class="far fa-trash-alt text-danger"></i></a></td>
                             </tr>
                         <?php

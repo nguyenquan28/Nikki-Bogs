@@ -4,13 +4,14 @@ Session::init();
 require __DIR__ . '/../model/user.php';
 require __DIR__ . '/../model/posts.php';
 require __DIR__ . '/../model/contacts.php';
+require __DIR__ . '/../model/chat.php';
 
 
 class postController
 {
 
     function getAll()
-    {   
+    {
         // Session::unset('erSearch');
         if (isset($_GET['pageno'])) {
             $pageno = $_GET['pageno'];
@@ -48,15 +49,28 @@ class postController
         header('location: index.php');
     }
 
-    function changeActive(){
+    function changeActive()
+    {
         $id = $_GET['id'];
 
         $post = new postModel();
         $active =  ($_GET['active']) ? 0 : 1;
-        
+
         $post->changeActive($id, $active);
 
-        
+        $chat = new chatModel();
+
+        $chat_id = '';
+        $receiver_id = $_GET['receiver_id'];
+        $sender_id = Session::get('user_id');
+        $mess = ($active) ? 'Your Post will be accept' : 'Your Post will be block';
+        $status = 1;
+        $time = date('Y-m-d H:i:s', time());
+        // print_r($time);
+        $chatContent = new chat($chat_id, $receiver_id, $sender_id, $mess, $time, $status);
+        // print_r($chatContent);
+        $chat->insert($chatContent);
+
         header('location: index.php');
     }
 
@@ -65,7 +79,7 @@ class postController
         $id = $_GET['id'];
 
         $post = new postModel();
-        
+
         $status =  ($_GET['status']) ? 0 : 0;
         $post->changeStt($id, $status);
 
@@ -82,10 +96,10 @@ class postController
             $search = str_replace(", ", "|", $_POST["input"]);
             $data = $post->search($search);
 
-            if(empty($data)){
+            if (empty($data)) {
                 Session::set('erSearch', 'Input not Exist');
                 header('location: index.php');
-            }else{
+            } else {
                 Session::unset('erSearch');
                 // echo '<pre>';
                 // print_r($data);

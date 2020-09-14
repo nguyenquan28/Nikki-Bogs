@@ -167,8 +167,11 @@ class userController
     // lock Account
     function lockAcc(){
         $id = $_GET['id'];
-        $time = date('Y-m-d H:i:s', strtotime('+3 day'));
         $user = new userModel();
+        $data = $user->searchByID($id)->fetch_assoc();
+        // print_r($data['lock_time']);
+        
+        $time = (strtotime($data['lock_time']) < time()) ? date('Y-m-d H:i:s', strtotime('+3 day')) : date('Y-m-d H:i:s', strtotime('-3 day')) ;
         $data = $user->lock($id, $time);
         header('location: index.php?c=user');
     }
