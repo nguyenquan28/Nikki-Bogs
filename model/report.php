@@ -73,6 +73,7 @@ class reportModel
     // get delete record in table post
     function delete($report_id)
     {
+
         $query = "DELETE FROM report WHERE report_id = '$report_id'";
         $result = $this->db->delete($query);
     }
