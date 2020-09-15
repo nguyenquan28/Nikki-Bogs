@@ -41,13 +41,15 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                                     <h4>New</h4>
                                     <a href="index.php?c=chat&&a=newChat"><i class="far fa-plus-square pt-1 pl-3"></i></a>
                                 </div>
+
+                                <!-- Search -->
                                 <div class="srch_bar">
-                                    <div class="stylish-input-group">
-                                        <input type="text" class="search-bar" autocomplete="off" autofocus placeholder="Search">
+                                    <form class="stylish-input-group" action="index.php?c=chat&a=searchMess" method="POST">
+                                        <input type="text" name="input" class="search-bar" autocomplete="off" autofocus placeholder="Search">
                                         <span class="input-group-addon">
-                                            <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+                                            <button type="submit"> <i class="fa fa-search" aria-hidden="true"></i> </button>
                                         </span>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
 
