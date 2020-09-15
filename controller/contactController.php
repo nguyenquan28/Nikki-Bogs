@@ -28,13 +28,10 @@ class contactController
     function sendMail(){
         $id = $_GET['id'];
 
-        if ($_GET['status']) {
-            $status = 0;
-        }else{
-            $status = 0;
-        }
+        $status = ($_GET['status']) ? 0 : 0;
 
         $contact = new contactMoldel();
+        $user = new userModel();
         $contact->changeStt($id, $status);
         $data = $contact->searchByID($id);
         $result = $data->fetch_assoc();

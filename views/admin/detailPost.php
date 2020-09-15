@@ -23,7 +23,7 @@ require_once __DIR__ . '/ins-admin/head.php';
             <div class="row">
                 <div class="col-12">
                     <nav aria-label="breadcrumb" class="d-flex justify-content-between">
-                        <ol class="breadcrumb">
+                        <ol class="breadcrumb d-flex flex-row">
                             <li class="breadcrumb-item"><a href="?"><i class="fa fa-home"></i> Admin</a></li>
                             <li class="breadcrumb-item"><a href="?index.php">Blog</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Single Post</li>

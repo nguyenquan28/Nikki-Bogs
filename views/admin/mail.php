@@ -41,7 +41,7 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                                 <div class="contact-content mb-100">
                                     <div class="header-contact d-flex justify-content-start">
                                         <div class="avatar-contact">
-                                            <img src=<?= (empty($result['avatar'])) ? "https://ptetutorials.com/images/user-profile.png" : "../img/" . $result['avatar'] ?> alt="">
+                                            <img src="https://ptetutorials.com/images/user-profile.png" alt="">
                                         </div>
                                         <div class="info-contact pl-3">
                                             <div class="single-contact-info ">
