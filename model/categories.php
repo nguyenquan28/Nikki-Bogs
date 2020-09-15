@@ -67,7 +67,7 @@ class categoryModel
     // Get name category by id
     function getName($category_id)
     {
-        $query = "SELECT name FROM categories WHERE categories_id = '$category_id' ";
+        $query = "SELECT name FROM categories WHERE active = '1' and categories_id = '$category_id' ";
         $data = $this->db->select($query);
         $result = $data->fetch_assoc();
         // $cat = new category($result[0],$result[1],$result[2],$result[3],$result[4],$result[5]);
@@ -130,7 +130,7 @@ class categoryModel
     }
     function getFullData()
     {
-        $query = "select * from categories";
+        $query = "select * from categories where active = '1'";
         $result = $this->db->select($query);
         $data = [];
         foreach ($result->fetch_all() as $value) {

@@ -20,29 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e23419f6-d42f-4e0b-b032-ebc4aeb785cc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/controller/chatController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/chat.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/contactController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/contactController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/postController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/postController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/reportController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/reportController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/userController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/userController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/contacts.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/contacts.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/report.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/report.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/user.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/user.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin/category.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/category.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin/chat.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/chat.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin/contact.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/contact.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin/dashboards.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin/detailPost.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/detailPost.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin/ins-admin/menu.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/ins-admin/menu.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin/mail.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/mail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin/post.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/post.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin/report.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/report.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin/user.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/user.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/contact.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/contact.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/admin.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/chat.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/chat.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/categories.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/categories.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/posts.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/posts.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/single-post.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/single-post.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -131,6 +111,10 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="510" y="155" key="NewPhpClassDialog/0.0.1536.864@0.0.1536.864" timestamp="1595665116007" />
+    <state x="578" y="346" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1600173853502">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="578" y="346" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.864@0.0.1536.864" timestamp="1600173853502" />
     <state x="425" y="197" key="run.anything.popup" timestamp="1599188852300">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
