@@ -91,7 +91,8 @@ class postController
 
         $data = $post->searchByID($id);
         $result = $data->fetch_assoc();
-
+        $imgURL = $post->selectIMG($id)->fetch_assoc();
+        // print_r($imgURL['url']);
         require_once __DIR__ . '../../views/admin/detailPost.php';
     }
 
@@ -116,5 +117,9 @@ class postController
             Session::set('erSearch', 'Please enter Keyword');
             header('location: index.php');
         }
+    }
+
+    function newPost(){
+        echo 'hi';
     }
 }

@@ -92,6 +92,13 @@ class chatController
             $record = $chat->getOne($value, Session::get('user_id'));
             array_push($result, $record);
         }
+        // function date_compare($a, $b)
+        // {
+        //     $t1 = strtotime($a['time']);
+        //     $t2 = strtotime($b['time']);
+        //     return $t2 - $t1;
+        // }
+        // usort($result, 'date_compare');
         // print_r($result);    
         $sender = ($receiver_id == Session::get('user_id')) ? $sender_id : $receiver_id;
         $status = 0;

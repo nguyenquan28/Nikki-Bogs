@@ -856,6 +856,16 @@ img {
   padding: 0 10%;
 }
 
+.about-text span{
+  float: right;
+  margin-bottom: 10px;
+  padding: 0;
+}
+
+.about-text p{
+  margin-bottom: 0px;
+}
+
 /* :: 7.0 Featured Post Sildes CSS */
 .featured-post-area {
   position: relative;
