@@ -7,7 +7,7 @@
                 <nav class="classy-navbar justify-content-between" id="nikkiNav">
 
                     <!-- Nav brand -->
-                    <a href="home.php" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a>
+                    <a href="index.php" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a>
 
                     <!-- Navbar Toggler -->
                     <div class="classy-navbar-toggler">
@@ -25,7 +25,7 @@
                         <!-- Nav Start -->
                         <div class="classynav">
                             <ul>
-                                <li><a href="home.php">Home</a></li>
+                                <li><a href="index.php">Home</a></li>
                                 <li><a href="archive-blog.php">Archive Blog</a></li>
                                 <li><a href="#">Catagories</a>
                                     <ul class="dropdown">
@@ -70,12 +70,13 @@
 
                                             .   Session::get('name') . '</a>'
                                             .   '<a href="#subChat" data-toggle="collapse" aria-expanded="false"  class="nav-link noti-icon" title="Message">
-                                                    <i class="fa fa-comment"></i>
+                                                    <i class="fa fa-comment"></i>'
+                                                    . Session::get('newMess') . '
                                                 </a>'
                                             .   '<a href="index.php?c=user&a=logout" class="nav-link noti-icon" title="LogOut">
                                                     <i class="fa fa-sign-out"></i>
                                                 </a>';
-                                        // header("location: index.php?c=chat&a=myChat&receiver_id=" . Session::get('user_id'));
+                                        // header("location: index.php?c=chat&a=myChat&sender_id=" . Session::get('user_id'));
                                     }
                                 }
                                 ?>
@@ -107,7 +108,7 @@
                     </a>
                     <hr>
                 </div>
-                <div class="detail-chat" id="detail-chat">
+                <div class="detail-chat" id="detailChat" style="height: <?= (isset($detail_chat)) ? '40vh' : '-1vh'; ?>">
                     <?php
                     if (isset($detail_chat)) foreach ($detail_chat as $value) {
                     ?>
@@ -124,7 +125,7 @@
                     }
                     ?>
                 </div>
-                <form class="input_msg_write" action="index.php?c=chat&a=sendAd" method="POST">
+                <form class="input_msg_write" style="display: <?= (isset($detail_chat)) ? 'block' : 'none'; ?>" action="index.php?c=chat&a=sendAd" method="POST">
                     <input type="text" class="write_msg" name="message" placeholder="Type a message" />
                     <button class="msg_send_btn ml-3" type="submit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
                 </form>
@@ -132,8 +133,9 @@
         </div>
     </div>
     <script type="text/javascript">
-        $(document).ready(function(){
-            $('#detail-chat').animate({scrollTop:1000000}, 800);
-        })
+        function gotoBottom(detailChat) {
+            var element = document.getElementById(detailChat);
+            element.scrollTop = element.scrollHeight - element.clientHeight;
+        }
     </script>
 </header>

@@ -2125,7 +2125,7 @@ blockquote.shortcodes {
 }
 
 .detail-chat {
-  height: 40vh;
+  /* height: 40vh; */
   overflow-y: auto;
 }
 .time-mess {
