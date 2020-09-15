@@ -244,10 +244,7 @@ Session::init();
                                             <ol>
                                                 <?php
                                                 $datacmts = $CommentsModel->searchByIdPost($datasingle->post_id);
-<<<<<<< HEAD
-=======
                                                 if (!empty($datacmts)){
->>>>>>> master
                                                 $datacmt = $CommentsModel->pushDataComment($datacmts);
                                                 foreach ($datacmt as $datacmt) {
                                                     $nameUser = $UserModel->getName($datacmt->user_id);
