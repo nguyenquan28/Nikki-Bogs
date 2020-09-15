@@ -92,4 +92,13 @@ class chatModel
         $query = "UPDATE chat SET status = $status WHERE sender_id = $sender_id AND receiver_id = $receiver_id";
         $result = $this->db->update($query);
     }
+
+    // Search mess
+    function searchMess($tags){
+        $query = "SELECT * FROM chat, user 
+                    WHERE user.name REGEXP '" . $tags . "'
+                    GROUP BY chat.chat_id
+                ";
+        $data = $this->db->select($query);
+    }
 }

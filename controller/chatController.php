@@ -135,6 +135,7 @@ class chatController
         require_once __DIR__ . '../../views/home.php';
     }
 
+    // send admin
     function sendAd()
     {
         $chat = new chatModel();
@@ -151,6 +152,14 @@ class chatController
             $chat->insert($chatContent);
         }
         require_once __DIR__ . '../../views/home.php';
+    }
+
+    // Search mess
+    function searchMess(){
+        $tags = $_POST['input'];
+        $chat = new chatModel();
+        $data = $chat->searchMess($tags);
+        print_r($data);
     }
 
 }
