@@ -14,17 +14,19 @@ class homeController
             // print_r($detail_chat);
             // echo "</pre>";
             $max = 0;
-            foreach ($detail_chat as $key => $value) {
-                if ($value['receiver_id'] == $sender_id) {
-                    $max = $key;
+            if(!empty($detail_chat)){
+                foreach ($detail_chat as $key => $value) {
+                    if ($value['receiver_id'] == $sender_id) {
+                        $max = $key;
+                    }
                 }
-            }
-            // print_r($max);
-            if ($detail_chat[$max]['status']) {
-                Session::set('newMess', '<i class="fa fa-circle text-primary" style="position: absolute;
-            font-size: 9px;"></i>');
-            } else {
-                Session::set('newMess', '');
+                // print_r($max);
+                if ($detail_chat[$max]['status']) {
+                    Session::set('newMess', '<i class="fa fa-circle text-primary" style="position: absolute;
+                font-size: 9px;"></i>');
+                } else {
+                    Session::set('newMess', '');
+                }
             }
         }
         // echo Session::get('newMess');

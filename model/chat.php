@@ -76,7 +76,9 @@ class chatModel
     // Search by ID
     function searchById($receiver_id, $sender_id){
         $query = "SELECT * FROM chat WHERE ( receiver_id = $receiver_id AND sender_id = $sender_id ) or (receiver_id = $sender_id AND sender_id = $receiver_id)";
-        $result = $this->db->select($query)->fetch_all(1);
+        $data = $this->db->select($query);
+        $result = [];
+        if(!empty($data)){$result = $data->fetch_all(1);}
         return $result;
     }
 
