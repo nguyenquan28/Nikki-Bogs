@@ -13,10 +13,8 @@ class profileController extends controller
         $rqm = new profileModel();
         $category = $rqm->getCategory();
         $post = $rqm->getAllPost($id);
-        $postImg = $rqm->getPostImg($id);
         $profile = $rqm->getProfile($id);
-        // print_r($profile);
-        $this->view("profile", ["profile" => $profile, "post" => $post, "category" => $category, "postImg" => $postImg]);
+        $this->view("profile", ["profile" => $profile, "post" => $post, "category" => $category]);
     }
     function setPost()
     {
@@ -25,11 +23,12 @@ class profileController extends controller
         $title = $_POST['title'];
         $intro = $_POST['intro'];
         $content = $_POST['content'];
-        // require_once "../model/profile.php";
+        $post_img = basename( $_FILES["post_img"]["name"]);
         $rqm = new profileModel();
-        $post = $rqm->setPost($title,$intro, $content, $categories_name,$id);
+        $post = $rqm->setPost($title,$intro, $content, $categories_name,$id,$post_img);
+        $rqm->upImg("post-img","post_img");
         // header('location:index.php?c=profile&a=profileController');
-        header('location: https://www.google.com/');
+        // header('location: https://www.google.com/');
 
     }
 
@@ -52,13 +51,18 @@ class profileController extends controller
         $background =  basename( $_FILES["backgroundImg"]["name"]);
         $rqm = new profileModel();
         $rqm->setBackground($background, $id);
-        $rqm->upBackground();
+        $rqm->upImg("background-user","backgroundImg");
     }
     function setAvt(){
         $id = Session::get('user_id');
         $avt =  basename( $_FILES["fileToUpload"]["name"]);
         $rqm = new profileModel();
         $rqm->setAvt($avt, $id);
-        $rqm->upAvt();
+        if ($avt == null || $avt == "") {
+           echo  ("không có ảnh nào được tải lên avt sẽ trở lại mặc định");
+        } else {
+            $rqm->upImg("avt-user","fileToUpload");
+        }
+    
     }
 }
