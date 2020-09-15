@@ -3,13 +3,14 @@ require_once __DIR__ . '/../config/session.php';
 Session::init();
 require_once __DIR__ . '/../config/format.php';
 require __DIR__ . '/../model/user.php';
+require __DIR__ . '/../model/chat.php';
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 class userController
 {
 
     // Get all record
     function getAll()
-    {   
+    {
         Session::unset('UserResults');
 
         // panigation
@@ -63,7 +64,7 @@ class userController
 
     // Login
     function login()
-    {   
+    {
 
         if (!empty($_POST['email']) && !empty($_POST['pass'])) {
             $email = $_POST['email'];
@@ -84,6 +85,19 @@ class userController
                         Session::set('permission', $user['permission']);
                         Session::set('avatar', $user['avatar']);
                         Session::unset('loginError');
+
+                        // Send mess
+                        $chat = new chatModel();
+                        $chat_id = '';
+                        $receiver_id = Session::get('user_id');
+                        $sender_id = 1;
+                        $mess = Session::get('name') . '. Wellcome to Nikki Blog!';
+                        $status = 1;
+                        $time = date('Y-m-d H:i:s', time());
+                        $chatContent = new chat($chat_id, $receiver_id, $sender_id, $mess, $time, $status);
+                        // print_r($chatContent);
+                        $chat->insert($chatContent);
+
                         header('location: ../views');
                     } else {
                         Session::set('loginError', 'Acount was locked');
@@ -124,6 +138,7 @@ class userController
                     $permission = 0;
                     $user = new user($name, $email, $pass, $gender, $birthday, $status, $permission);
                     $userModel->insert($user);
+
                     header('location: login.php');
                 }
             } else {
@@ -165,15 +180,15 @@ class userController
     }
 
     // lock Account
-    function lockAcc(){
+    function lockAcc()
+    {
         $id = $_GET['id'];
         $user = new userModel();
         $data = $user->searchByID($id)->fetch_assoc();
         // print_r($data['lock_time']);
-        
-        $time = (strtotime($data['lock_time']) < time()) ? date('Y-m-d H:i:s', strtotime('+3 day')) : date('Y-m-d H:i:s', strtotime('-3 day')) ;
+
+        $time = (strtotime($data['lock_time']) < time()) ? date('Y-m-d H:i:s', strtotime('+3 day')) : date('Y-m-d H:i:s', strtotime('-3 day'));
         $data = $user->lock($id, $time);
         header('location: index.php?c=user');
     }
-
 }
