@@ -6,7 +6,7 @@ class homeController
 {
     function ViewHome()
     {
-        if (Session::get('user_id') != 1) {
+        if (isset($_SESSION['user_id']) && Session::get('user_id') != 1) {
             $chat = new chatModel();
             $sender_id = Session::get('user_id');
             $detail_chat = $chat->searchById(1, $sender_id);
