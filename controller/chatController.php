@@ -16,7 +16,7 @@ class chatController
         } else {
             $pageno = 1;
         }
-        $no_of_records_per_page = 10;
+        $no_of_records_per_page = 100;
         $offset = ($pageno - 1) * $no_of_records_per_page;
         $allData = $chat->getAll($offset, $no_of_records_per_page)->fetch_all(1);
         $total_pages = $chat->paginasion($no_of_records_per_page);
@@ -76,7 +76,7 @@ class chatController
         } else {
             $pageno = 1;
         }
-        $no_of_records_per_page = 10;
+        $no_of_records_per_page = 100;
         $offset = ($pageno - 1) * $no_of_records_per_page;
         $allData = $chat->getAll($offset, $no_of_records_per_page)->fetch_all(1);
         $total_pages = $chat->paginasion($no_of_records_per_page);
