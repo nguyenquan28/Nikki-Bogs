@@ -10,7 +10,8 @@
                 <span class="fas fa-clipboard ml-2 mr-2" aria-hidden="true"></span>
                 <span class="menu-collapsed">Posts</span>
             </div>
-            <span class="item text-warning pd-0 mg-0"><?php if(Session::get('postNew') == 0 ) echo '' ; else echo Session::get('postNew'); ?></span>
+            <span class="item text-warning pd-0 mg-0"><?php if (Session::get('postNew') == 0) echo '';
+                                                        else echo Session::get('postNew'); ?></span>
         </a>
 
         <a href="?c=contact" class="list-group-item list-group-item-action bg-dark text-white d-flex justify-content-between">
@@ -18,7 +19,8 @@
                 <span class="fa fa-envelope-o ml-2 mr-2" aria-hidden="true"></span>
                 <span class="menu-collapsed">Contacts</span>
             </div>
-            <span class="item text-warning pd-0 mg-0"><?php if(Session::get('conNew') == 0 ) echo '' ; else echo Session::get('conNew'); ?></span>
+            <span class="item text-warning pd-0 mg-0"><?php if (Session::get('conNew') == 0) echo '';
+                                                        else echo Session::get('conNew'); ?></span>
         </a>
 
         <a href="?c=user" class="list-group-item list-group-item-action bg-dark text-white d-flex justify-content-between">
@@ -26,7 +28,8 @@
                 <span class="fa fa-user-circle-o ml-2 mr-2" aria-hidden="true"></span>
                 <span class="menu-collapsed">Users</span>
             </div>
-            <span class="item text-warning pd-0 mg-0"><?php if(Session::get('userNew') == 0 ) echo '' ; else echo Session::get('userNew'); ?></span>
+            <span class="item text-warning pd-0 mg-0"><?php if (Session::get('userNew') == 0) echo '';
+                                                        else echo Session::get('userNew'); ?></span>
         </a>
 
         <a href="?c=report" class="list-group-item list-group-item-action bg-dark text-white d-flex justify-content-between">
@@ -34,7 +37,8 @@
                 <span class="fa fa-calendar fa-fw ml-2 mr-2" aria-hidden="true"></span>
                 <span class="menu-collapsed">Report</span>
             </div>
-            <span class="item text-warning pd-0 mg-0"><?php if(Session::get('reNew') == 0 ) echo '' ; else echo Session::get('reNew'); ?></span>
+            <span class="item text-warning pd-0 mg-0"><?php if (Session::get('reNew') == 0) echo '';
+                                                        else echo Session::get('reNew'); ?></span>
         </a>
 
         <a href="?c=category" class="list-group-item list-group-item-action bg-dark text-white">
@@ -42,9 +46,13 @@
             <span class="menu-collapsed">Categories</span>
         </a>
 
-        <a href="?c=chat" class="list-group-item list-group-item-action bg-dark text-white">
-            <span class="fab fa-facebook-messenger fa-fw ml-2 mr-2" aria-hidden="true"></span>
-            <span class="menu-collapsed">Chat</span>
+        <a href="?c=chat" class="list-group-item list-group-item-action bg-dark text-white d-flex justify-content-between">
+            <div class="group-name">
+                <span class="fab fa-facebook-messenger fa-fw ml-2 mr-2" aria-hidden="true"></span>
+                <span class="menu-collapsed">Chat</span>
+            </div>
+            <span class="item text-warning pd-0 mg-0"><?php if (Session::get('messNew') == 0) echo '';
+                                                        else echo Session::get('messNew'); ?></span>
         </a>
 
         <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">

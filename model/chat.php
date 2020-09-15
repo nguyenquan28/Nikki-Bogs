@@ -103,4 +103,12 @@ class chatModel
                 ";
         $data = $this->db->select($query);
     }
+
+    // count status
+    function countSTT(){
+        $query = "SELECT COUNT(*) FROM chat WHERE status = 1 AND receiver_id = 1";
+        $result = $this->db->select($query);
+
+        return $result;
+    }
 }

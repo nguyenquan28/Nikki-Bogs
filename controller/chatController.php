@@ -6,6 +6,9 @@ class chatController
 {
     function getAll()
     {
+        $chat = new chatModel();
+        $total = $chat->countSTT()->fetch_assoc();
+        Session::set('messNew', $total['COUNT(*)']);
 
         $chat = new chatModel();
         if (isset($_GET['pageno'])) {
@@ -60,6 +63,10 @@ class chatController
     // detail chat room
     function detailChat()
     {
+        $chat = new chatModel();
+        $total = $chat->countSTT()->fetch_assoc();
+        Session::set('messNew', $total['COUNT(*)']);
+        
         $receiver_id = $_GET['receiver_id'];
         $sender_id = $_GET['sender_id'];
 

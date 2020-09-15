@@ -41,6 +41,9 @@ class postController
         $new = $report->countStt()->fetch_assoc();
         Session::set('reNew', $new['COUNT(*)']);
 
+        $chat = new chatModel();
+        $total = $chat->countSTT()->fetch_assoc();
+        Session::set('messNew', $total['COUNT(*)']);
 
         require_once __DIR__ . '../../views/admin/post.php';
     }
