@@ -22,6 +22,14 @@ $CommentModel = new commentMoldel();
 # Header Area Start
 require_once __DIR__ . '/ins/menu.php';
 
+if (isset($_COOKIE['alertReport'])) {
+    echo '<script language="javascript">';
+    echo 'alert("Success")';
+    echo '</script>';
+} else {
+    echo '';
+}
+
 # Hero Area Start
 require_once __DIR__ . '/ins/content.php';
 ?>

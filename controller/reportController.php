@@ -93,6 +93,7 @@ class reportController
         $newRP = new report($report_id, $content, $user_id, $time, $postID, $status);
 
         $report->insert($newRP);
+        setcookie("alertReport", "Report succcss", time()+3);
         header('location: home.php');
     }
 
