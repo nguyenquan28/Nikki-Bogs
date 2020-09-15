@@ -1,9 +1,30 @@
 <?php
 
+require_once __DIR__ . '../../model/chat.php';
 require_once '../model/posts.php';
 class homeController
 {
     function ViewHome(){
+        $chat = new chatModel();
+        $sender_id = Session::get('user_id');
+        $detail_chat = $chat->searchById(1, $sender_id);
+        // echo "<pre>";
+        // print_r($detail_chat);
+        // echo "</pre>";
+        $max = 0;
+        foreach( $detail_chat as $key=>$value){
+            if($value['receiver_id'] == $sender_id){
+                $max = $key;
+            }
+        }
+        // print_r($max);
+        if($detail_chat[$max]['status']){
+            Session::set('newMess', '<i class="fa fa-circle text-primary" style="position: absolute;
+            font-size: 9px;"></i>');
+        }else{
+            Session::set('newMess', '');
+        }
+        // echo Session::get('newMess');
         require_once '../views/home.php';
     }
 

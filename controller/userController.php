@@ -84,7 +84,7 @@ class userController
                         Session::set('permission', $user['permission']);
                         Session::set('avatar', $user['avatar']);
                         Session::unset('loginError');
-                        header('location: home.php');
+                        header('location: ../views');
                     } else {
                         Session::set('loginError', 'Acount was locked');
                         header('location: login.php');

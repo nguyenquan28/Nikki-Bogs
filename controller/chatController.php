@@ -39,7 +39,15 @@ class chatController
             $record = $chat->getOne($value, Session::get('user_id'));
             array_push($result, $record);
         }
-        $detail_chat = $chat->searchById($result[0]['receiver_id'], Session::get('user_id'));
+        function date_compare($a, $b)
+        {
+            $t1 = strtotime($a['time']);
+            $t2 = strtotime($b['time']);
+            return $t2 - $t1;
+        }
+        usort($result, 'date_compare');
+        $receover = ($result[0]['receiver_id'] == Session::get('user_id')) ? $result[0]['sender_id'] : $result[0]['receiver_id'];
+        $detail_chat = $chat->searchById($receover, Session::get('user_id'));
         // echo '<pre>';
         // print_r($result);
         // echo '</pre>';
@@ -84,6 +92,7 @@ class chatController
             $record = $chat->getOne($value, Session::get('user_id'));
             array_push($result, $record);
         }
+        // print_r($result);    
         $sender = ($receiver_id == Session::get('user_id')) ? $sender_id : $receiver_id;
         $status = 0;
         $chat->change($sender, 1, $status);
@@ -110,14 +119,17 @@ class chatController
         header('location: index.php?c=chat&a=detailChat&receiver_id=' . $receiver_id . '&sender_id=' . $sender_id);
     }
 
-    function myChat(){
+    function myChat()
+    {
         $chat = new chatModel();
         $sender_id = $_GET['sender_id'];
         $detail_chat = $chat->searchById(1, $sender_id);
+        $chat->change(1, Session::get('user_id'), 0);
         require_once __DIR__ . '../../views/home.php';
     }
 
-    function sendAd(){
+    function sendAd()
+    {
         $chat = new chatModel();
         $chat_id = '';
         $receiver_id = 1;
@@ -133,4 +145,5 @@ class chatController
         }
         require_once __DIR__ . '../../views/home.php';
     }
+
 }
