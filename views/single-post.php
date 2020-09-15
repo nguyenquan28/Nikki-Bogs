@@ -162,33 +162,35 @@ Session::init();
 
                                         <!-- Post Tags & Share -->
                                         <div class="post-tags-share d-flex justify-content-between">
-                                            <div>
-                                                <!-- Report Post -->
-                                                <div class="d-flex flex-row">
-                                                    <span class="mt-2">
-                                                        <a href="#subReport" data-toggle="collapse" aria-expanded="false" title="Report" class="pin">
-                                                            <i class="fa fa-thumb-tack" aria-hidden="true"></i>
-                                                            Report</a>
-                                                    </span>
-                                                    <!-- Modal -->
-                                                    <div id='subReport' class="collapse sidebar-submenu ml-3">
-                                                        <div class="content-report p-2 d-flex flex-column" style="background: #e9ebee; border-radius: 5px;">
-                                                            <div>
-                                                                <a class="btn btn-outline-dark m-1" href="index.php?c=report&a=newReport&content=Vi phạm quy tắc&postID=<?= $_GET['idpost'] ?>">Vi phạm quy tắc</a>
-                                                                <a class="btn btn-outline-dark m-1" href="index.php?c=report&a=newReport&content=Gây kích động&postID=<?= $_GET['idpost'] ?>">Gây kích động</a>
-                                                                <a class="btn btn-outline-dark m-1" href="index.php?c=report&a=newReport&content=Spam&postID=<?= $_GET['idpost'] ?>">Spam</a>
-                                                            </div>
-                                                            <div>
-                                                                <a class="btn btn-outline-dark m-1" href="index.php?c=report&a=newReport&content=Bạo lực&postID=<?= $_GET['idpost'] ?>">Bạo lực</a>
-                                                                <a class="btn btn-outline-dark m-1" href="index.php?c=report&a=newReport&content=Quấy rối&postID=<?= $_GET['idpost'] ?>">Quấy rối</a>
-                                                                <a class="btn btn-outline-dark m-1" href="index.php?c=report&a=newReport&content=Tin giả&postID=<?= $_GET['idpost'] ?>">Tin giả</a>
-                                                                <a class="btn btn-outline-dark m-1" href="index.php?c=report&a=newReport&content=Khác&postID=<?= $_GET['idpost'] ?>">Khác</a>
-                                                            </div>
+                                            <?= 
+                                            (isset($_SESSION['user_id'])) ? '<div>
+                                            <!-- Report Post -->
+                                            <div class="d-flex flex-row">
+                                                <span class="mt-2">
+                                                    <a href="#subReport" data-toggle="collapse" aria-expanded="false" title="Report" class="pin">
+                                                        <i class="fa fa-thumb-tack" aria-hidden="true"></i>
+                                                        Report</a>
+                                                </span>
+                                                <!-- Modal -->
+                                                <div id="subReport" class="collapse sidebar-submenu ml-3">
+                                                    <div class="content-report p-2 d-flex flex-column" style="background: #e9ebee; border-radius: 5px;">
+                                                        <div>
+                                                            <a class="btn btn-outline-dark m-1" href="index.php?c=report&a=newReport&content=Vi phạm quy tắc&postID=' . $_GET['idpost'] . '">Vi phạm quy tắc</a>
+                                                            <a class="btn btn-outline-dark m-1" href="index.php?c=report&a=newReport&content=Gây kích động&postID='. $_GET['idpost'] . '">Gây kích động</a>
+                                                            <a class="btn btn-outline-dark m-1" href="index.php?c=report&a=newReport&content=Spam&postID='. $_GET['idpost'] . '">Spam</a>
+                                                        </div>
+                                                        <div>
+                                                            <a class="btn btn-outline-dark m-1" href="index.php?c=report&a=newReport&content=Bạo lực&postID='. $_GET['idpost'] . '">Bạo lực</a>
+                                                            <a class="btn btn-outline-dark m-1" href="index.php?c=report&a=newReport&content=Quấy rối&postID='. $_GET['idpost'] . '">Quấy rối</a>
+                                                            <a class="btn btn-outline-dark m-1" href="index.php?c=report&a=newReport&content=Tin giả&postID='. $_GET['idpost'] . '">Tin giả</a>
+                                                            <a class="btn btn-outline-dark m-1" href="index.php?c=report&a=newReport&content=Khác&postID='. $_GET['idpost'] . '">Khác</a>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- End modal report -->
                                             </div>
+                                            <!-- End modal report -->
+                                        </div>' : '';
+                                            ?>
 
                                             <!-- Tags -->
                                             <ol class="popular-tags d-flex flex-wrap">
