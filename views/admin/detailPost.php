@@ -69,7 +69,7 @@ require_once __DIR__ . '/ins-admin/head.php';
 
                             <!-- Post Thumbnail -->
                             <div class="post-thumbnail mb-50">
-                                <img src="img/blog-img/8.jpg" alt="">
+                                <img src="../img/post-img/<?= $imgURL['url'] ?>.jpg" alt="">
                             </div>
 
                             <!-- Post Text -->
@@ -87,21 +87,21 @@ require_once __DIR__ . '/ins-admin/head.php';
                                 <p><?= $result['content'] ?></p>
                                 <!-- <blockquote class="shortcodes">
                                     <div class="blockquote-icon">
-                                        <img src="img/core-img/quote.png" alt="">
+                                        <img src="../img/core-img/quote.png" alt="">
                                     </div>
                                     <div class="blockquote-text">
                                         <h5>That’s not to say you’ll have the exact same thing if you stop by: the restaurant’s menus change constantly, based on seasonal ingredients.</h5>
                                         <h6>Ollie Schneider - <span>CEO Colorlib</span></h6>
                                     </div>
-                                </blockquote>
+                                </blockquote> -->
                                 <div class="row">
                                     <div class="col-12 col-md-6">
-                                        <img class="mb-30" src="img/blog-img/4.jpg" alt="">
+                                        <img class="mb-30" src="../img/blog-img/4.jpg" alt="">
                                     </div>
                                     <div class="col-12 col-md-6">
-                                        <img class="mb-30" src="img/blog-img/3.jpg" alt="">
+                                        <img class="mb-30" src="../img/blog-img/3.jpg" alt="">
                                     </div>
-                                </div> -->
+                                </div>
 
                                 <!-- Post Tags & Share -->
                                 <div class="post-tags-share">

@@ -24,18 +24,19 @@
 
                         <!-- Nav Start -->
                         <div class="classynav">
-                            <ul>
+                            <ul class="mr-5 pr-5">
                                 <li><a href="index.php">Home</a></li>
                                 <li><a href="archive-blog.php">Archive Blog</a></li>
-                                <li><a href="#">Catagories</a>
-                                    <ul class="dropdown">
-                                        <li><a href="home.php">Fashion</a></li>
-                                        <li><a href="archive-blog.php">Archive Blog</a></li>
-                                        <li><a href="single-post.php">Single Post</a></li>
-                                        <li><a href="about-us.php">About</a></li>
-                                        <li><a href="contact.php">Contact</a></li>
-                                        <li><a href="typography.php">Typography</a></li>
-                                    </ul>
+                                <!-- <li><a href="#">Catagories</a>
+                                    <ul class="dropdown"> -->
+                                        <?php
+                                            // foreach($listCat as $value){
+                                        ?>
+                                            <!-- <li><a href="home.php">Fashion</a></li> -->
+                                        <?php
+                                            // }
+                                        ?>
+                                    <!-- </ul> -->
                                 </li>
                                 <li><a href="about-us.php">About</a></li>
                                 <li><a href="contact.php">Contact</a></li>

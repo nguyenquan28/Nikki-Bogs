@@ -38,17 +38,22 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                 <header class="mt-3 mb-3 d-flex justify-content-between">
                     <h4>List Posts</h4>
                     <!-- Search -->
-                    <form class="form-outline col-md-3 p-0" action="index.php?c=post&a=search" method="POST">
-                        <div class="md-form my-0">
-                            <div>
-                                <input class="form-control mr-sm-2 d-flex flex-row font-italic pr-5" name="input" type="text" id="tags" placeholder="Search for Name" aria-label="Search">
-                            </div>
+                    <div class="col-md-4 d-flex justify-content-between">
+                        <form class="form-outline col-md-7 p-0" action="index.php?c=post&a=search" method="POST">
+                            <div class="md-form my-0">
+                                <div>
+                                    <input class="form-control mr-sm-2 d-flex flex-row font-italic pr-5" name="input" type="text" id="tags" placeholder="Search for Name" aria-label="Search">
+                                </div>
 
-                            <div class="search_btn d-flex flex-row">
-                                <a class="search_icon"><i class="fas fa-search"></i></a>
+                                <div class="search_btn d-flex flex-row">
+                                    <a class="search_icon"><i class="fas fa-search"></i></a>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+
+                        <!-- New category -->
+                        <button type="button" class="btn btn-outline-info"><a href="./index.php?c=post&a=newPost">New Post</a></button>
+                    </div>
                 </header>
 
                 <!-- Alert Error -->
@@ -81,10 +86,10 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                                 <td class="text-center"><?= $userName['name'] ?></td>
                                 <td class="text-center"><?= $catName['name'] ?></td>
                                 <td><?= $value->title ?></td>
-                                <td><?= $value->intro ?></td> 
+                                <td><?= $value->intro ?></td>
                                 <td class="text-center" style="width:  8%"><?= date('d-M-Y', strtotime($value->time)) ?></th>
                                 <td class="text-center" title="Detail"><a href="./index.php?c=post&a=detailPost&id=<?= $value->post_id ?>&status=<?= $value->status ?>"><i class="fas fa-info-circle"></i></a></td>
-                                <td class="text-center" title="Change Active"><a href="./index.php?c=post&a=changeActive&id=<?= $value->post_id ?>&active=<?= $value->active ?>&sender_id=<?= Session::get('user_id') ?>&receiver_id=<?= $value->user_id ?>"><?= ($value->active) ? '<i class="fa fa-check-circle"></i>' : '<i class="fa fa-window-close text-danger"></i>' ;?></a></td>
+                                <td class="text-center" title="Change Active"><a href="./index.php?c=post&a=changeActive&id=<?= $value->post_id ?>&active=<?= $value->active ?>&sender_id=<?= Session::get('user_id') ?>&receiver_id=<?= $value->user_id ?>"><?= ($value->active) ? '<i class="fa fa-check-circle"></i>' : '<i class="fa fa-window-close text-danger"></i>'; ?></a></td>
                                 <td class="text-center" title="Delete"><a href="./index.php?c=post&a=delPost&id=<?= $value->post_id ?>"><i class="far fa-trash-alt text-danger"></i></a></td>
                             </tr>
                         <?php

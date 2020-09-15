@@ -296,6 +296,11 @@ class postModel
         return $result;
     }
 
+    function selectIMG($post_id){
+        $query = "SELECT url FROM images WHERE post_id = $post_id";
+        $result = $this->db->select($query);
 
+        return $result;
+    }
 
 }
