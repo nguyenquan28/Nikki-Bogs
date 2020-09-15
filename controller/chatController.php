@@ -66,7 +66,7 @@ class chatController
         $chat = new chatModel();
         $total = $chat->countSTT()->fetch_assoc();
         Session::set('messNew', $total['COUNT(*)']);
-        
+
         $receiver_id = $_GET['receiver_id'];
         $sender_id = $_GET['sender_id'];
 
@@ -139,6 +139,30 @@ class chatController
         $sender_id = $_GET['sender_id'];
         $detail_chat = $chat->searchById(1, $sender_id);
         $chat->change(1, Session::get('user_id'), 0);
+        if (isset($_SESSION['user_id']) && Session::get('user_id') != 1) {
+            $chat = new chatModel();
+            $sender_id = Session::get('user_id');
+            $detail_chat = $chat->searchById(1, $sender_id);
+            // echo "<pre>";
+            // print_r($detail_chat);
+            // echo "</pre>";
+            $max = 0;
+            if(!empty($detail_chat)){
+                foreach ($detail_chat as $key => $value) {
+                    if ($value['receiver_id'] == $sender_id) {
+                        $max = $key;
+                    }
+                }
+                // print_r($max);
+                // print_r($detail_chat[$max]['status']);
+                if ($detail_chat[$max]['status'] == 1) {
+                    Session::set('newMess', '<i class="fa fa-circle text-primary" style="position: absolute;
+                font-size: 9px;"></i>');
+                } else {
+                    Session::set('newMess', '');
+                }
+            }
+        }
         require_once __DIR__ . '../../views/home.php';
     }
 

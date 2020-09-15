@@ -21,7 +21,8 @@ class homeController
                     }
                 }
                 // print_r($max);
-                if ($detail_chat[$max]['status']) {
+                // print_r($detail_chat[$max]['status']);
+                if ($detail_chat[$max]['status'] == 1) {
                     Session::set('newMess', '<i class="fa fa-circle text-primary" style="position: absolute;
                 font-size: 9px;"></i>');
                 } else {
