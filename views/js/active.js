@@ -127,7 +127,6 @@ function roll() {
     header.classList.remove("sticky");
   }
 }
-// cường edit
 function myFunction() {
     var btn = document.getElementById("mybtn");
     var x = document.getElementById("myInput").value;
@@ -147,7 +146,34 @@ function myFunction() {
     }
 
 }
+function validatePost(){
+    var btn_Post = document.getElementById("btn_Post");
+    // var tag = document.getElementById("tag").value;
+    var title = document.getElementById("title").value;
+    var intro = document.getElementById("intro").value;
+    var content = document.getElementById("content").value;
+    if ( title == null || title == "" || intro == null || intro == "" || content == null || content == "") {
+        // document.getElementById("alert").innerHTML = "The cannot empty!";
+        btn_Post.disabled = true;
+    } else {
+        btn_Post.disabled = false;
+    }
+}
+$('#fusk').change(function(){
+    if (this.files && this.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+          selectedImage = e.target.result;
+          $('#chose_img').attr('src', selectedImage);
+      };
+      reader.readAsDataURL(this.files[0]);
+    }
+  });
 $(document).ready(function(){
+    document.getElementById("myInput").addEventListener("input", myFunction);
+    document.getElementById("title").addEventListener("input", validatePost);
+    document.getElementById("intro").addEventListener("input", validatePost);
+    document.getElementById("content").addEventListener("input", validatePost);
     // edit avatar
     var btn_edit = document.getElementById("btn-edit");
     var edit = document.getElementById("edit");
@@ -173,4 +199,50 @@ $(document).ready(function(){
     $(btn_background).click(function(){
         $(background).toggle("linear");
       });
+// begin menu post
+var theToggle = document.getElementById('toggle');
+
+// based on Todd Motto functions
+// https://toddmotto.com/labs/reusable-js/
+
+// hasClass
+function hasClass(elem, className) {
+	return new RegExp(' ' + className + ' ').test(' ' + elem.className + ' ');
+}
+// addClass
+function addClass(elem, className) {
+    if (!hasClass(elem, className)) {
+    	elem.className += ' ' + className;
+    }
+}
+// removeClass
+function removeClass(elem, className) {
+	var newClass = ' ' + elem.className.replace( /[\t\r\n]/g, ' ') + ' ';
+	if (hasClass(elem, className)) {
+        while (newClass.indexOf(' ' + className + ' ') >= 0 ) {
+            newClass = newClass.replace(' ' + className + ' ', ' ');
+        }
+        elem.className = newClass.replace(/^\s+|\s+$/g, '');
+    }
+}
+// toggleClass
+function toggleClass(elem, className) {
+	var newClass = ' ' + elem.className.replace( /[\t\r\n]/g, " " ) + ' ';
+    if (hasClass(elem, className)) {
+        while (newClass.indexOf(" " + className + " ") >= 0 ) {
+            newClass = newClass.replace( " " + className + " " , " " );
+        }
+        elem.className = newClass.replace(/^\s+|\s+$/g, '');
+    } else {
+        elem.className += ' ' + className;
+    }
+}
+
+theToggle.onclick = function() {
+   toggleClass(this, 'on');
+   return false;
+}
+
+
+
   });
