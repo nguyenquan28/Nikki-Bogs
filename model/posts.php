@@ -195,7 +195,7 @@ class postModel
         if($page<1) $page=1;
         if($page>$total_page) $page=$total_page;
         $start=($page-1)*$limit;
-        $qrall = "select * from posts limit $start,$limit";
+        $qrall = "select * from posts where active = '1' limit $start,$limit";
         $result = $this->db->select($qrall);
         return $result;
 //        print_r($datagetall);
@@ -218,7 +218,7 @@ class postModel
     }
     //dem co bao nhieu bai theo tag
     function countPostByIdCate($idCate){
-        $query = "SELECT COUNT(post_id) FROM posts WHERE categories_id= $idCate";
+        $query = "SELECT COUNT(post_id) FROM posts WHERE categories_id= $idCate and active = '1'";
         $data = $this->db->select($query);
         $result = $data->fetch_assoc();
         return $result;
