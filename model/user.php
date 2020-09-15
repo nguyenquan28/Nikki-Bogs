@@ -74,7 +74,17 @@ class userModel
     // get delete record in table post
     function delete($user_id)
     {
+        $queryhis = "DELETE FROM loginhistory WHERE user_id = '$user_id'";
+        $querycmt = "DELETE FROM comments WHERE user_id = '$user_id'";
+        $queryrp = "DELETE FROM report WHERE user_id = '$user_id'";
+        $querychat = "DELETE FROM chat WHERE sender_id = '$user_id'";
+        $querypost = "DELETE FROM posts WHERE user_id = '$user_id'";
         $query = "DELETE FROM user WHERE user_id = '$user_id'";
+        $this->db->delete($queryhis);
+        $this->db->delete($querycmt);
+        $this->db->delete($queryrp);
+        $this->db->delete($querychat);
+        $this->db->delete($querypost);
         $result = $this->db->delete($query);
     }
 

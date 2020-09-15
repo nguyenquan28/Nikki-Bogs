@@ -118,7 +118,13 @@ class postModel
     // get delete record in table post
     function delete($post_id)
     {
+        $queryrp = "DELETE FROM report WHERE post_id = '$post_id'";
+        $querycmt = "DELETE FROM comments WHERE post_id = '$post_id'";
+        $queryimg = "DELETE FROM images WHERE post_id = '$post_id'";
         $query = "DELETE FROM posts WHERE post_id = '$post_id'";
+        $this->db->delete($queryrp);
+        $this->db->delete($querycmt);
+        $this->db->delete($queryimg);
         $result = $this->db->delete($query);
     }
 

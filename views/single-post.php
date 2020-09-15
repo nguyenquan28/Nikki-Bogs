@@ -244,6 +244,7 @@ Session::init();
                                             <ol>
                                                 <?php
                                                 $datacmts = $CommentsModel->searchByIdPost($datasingle->post_id);
+                                                if (!empty($datacmts)){
                                                 $datacmt = $CommentsModel->pushDataComment($datacmts);
                                                 foreach ($datacmt as $datacmt) {
                                                     $nameUser = $UserModel->getName($datacmt->user_id);
@@ -262,14 +263,14 @@ Session::init();
 
                                                             </div>
                                                         </div>
-                                                        <!--                                                            <div class="reply">-->
-                                                        <!--                                                                <a href="javascript:void(0)" onclick="reply(this)">Reply</a>-->
-                                                        <!--                                                            </div>-->
+<!--                                                            <div class="reply">-->
+<!--                                                                <a href="javascript:void(0)" onclick="reply(this)">Reply</a>-->
+<!--                                                            </div>-->
 
 
                                                     </li>
                                                 <?php
-                                                }
+                                                }}
                                                 ?>
                                                 <!-- Single Comment Area -->
 
