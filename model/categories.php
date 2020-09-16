@@ -58,7 +58,7 @@ class categoryModel
 
     function getActive()
     {
-        $query = "SELECT * FROM categories WHERE active = 0";
+        $query = "SELECT * FROM categories WHERE active = 1";
         $result = $this->db->select($query);
         return $result;
     }
@@ -74,7 +74,7 @@ class categoryModel
     // Get name category by id
     function getName($category_id)
     {
-        $query = "SELECT name FROM categories WHERE active = '0' and categories_id = '$category_id' ";
+        $query = "SELECT name FROM categories WHERE active = '1' and categories_id = '$category_id' ";
         $data = $this->db->select($query);
         $result = [];
         if (!empty($data)) {

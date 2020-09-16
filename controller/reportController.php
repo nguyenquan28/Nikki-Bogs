@@ -39,7 +39,11 @@ class reportController
         $post = new postModel();
 
         $data = $post->searchByID($postID);
-
+        $imgURL = $post->selectIMG($postID);
+        if(!empty($imgURL)){
+            $imgURL = $imgURL->fetch_assoc();
+        }
+        print_r($imgURL);
         $result = $data->fetch_assoc();
 
 
@@ -52,7 +56,7 @@ class reportController
 
         $report = new reportModel();
         $report->delete($id);
-
+        
         header('location: index.php?c=report');
     }
 

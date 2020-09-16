@@ -79,7 +79,7 @@ class categoryController
             $tags = $_POST['tags'];
             $des = $_POST['des'];
             $slug = $_POST['name'];
-            $active = 1;
+            $active = 0;
             $cat = new category($category_id, $name, $tags, $des, $slug, $active);
 
             // var_dump($cat);
