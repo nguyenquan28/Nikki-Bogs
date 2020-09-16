@@ -171,6 +171,7 @@ class postController
             $rqm = new postModel();
             $post = $rqm->setPost($title, $intro, $content, $categories_name, $id, $post_img);
             $rqm->upImg("post-img", "post_img");
+            print_r('hello');
             header('location: index.php');
         } else {
             $cat = new categoryModel();
