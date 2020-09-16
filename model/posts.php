@@ -329,7 +329,7 @@ class postModel
 
     function upImg($folder, $form_name)
     {
-        $target_dir = "../views/img/" . $folder . "/";
+        $target_dir = "../../views/img/" . $folder . "/";
         $target_file = $target_dir . basename($_FILES[$form_name]["name"]);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));

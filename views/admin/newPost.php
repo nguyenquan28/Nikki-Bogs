@@ -28,7 +28,12 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                 </header>
                 <hr>
                 <div class="d-flex justify-content-center mt-5">
+
                     <form method="POST" action="?c=post&a=savePost" class="col-md-6 border border-info p-4" role="form" method="post" id="reused_form" enctype="multipart/form-data">
+                        <small class="text-danger font-italic d-flex justify-content-start mb-3">
+                            <?php if (isset($_SESSION['newPostErr'])) echo Session::get('newPostErr');
+                            else echo ''; ?>
+                        </small>
                         <div class="form-group">
                             <input type="hidden" class="form-control" value="" name="category_id" placeholder="Enter name">
                         </div>
@@ -46,6 +51,11 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                             <p>Click select image to upload</p>
                         </label>
                         <input id="fusk" type="file" name="post_img" class="d-none">
+                        <div class="col-md-6 col-md-offset-3 form-container">
+                            <div class="chose_img">
+                                <img id="chose_img">
+                            </div>
+                        </div>
                         <div class="form-group">
                             <input type="text" class="form-control" value="" name="title" placeholder="Title">
                         </div>

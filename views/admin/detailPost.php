@@ -94,14 +94,14 @@ require_once __DIR__ . '/ins-admin/head.php';
                                         <h6>Ollie Schneider - <span>CEO Colorlib</span></h6>
                                     </div>
                                 </blockquote> -->
-                                <div class="row">
+                                <!-- <div class="row">
                                     <div class="col-12 col-md-6">
                                         <img class="mb-30" src="../img/blog-img/4.jpg" alt="">
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <img class="mb-30" src="../img/blog-img/3.jpg" alt="">
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <!-- Post Tags & Share -->
                                 <div class="post-tags-share">

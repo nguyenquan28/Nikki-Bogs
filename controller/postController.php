@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/../config/session.php';
 Session::init();
+require_once __DIR__ . '/../config/format.php';
 require __DIR__ . '/../model/user.php';
 require __DIR__ . '/../model/posts.php';
 require __DIR__ . '/../model/contacts.php';
@@ -56,19 +57,21 @@ class postController
 
         $post = new postModel();
         $dataPost = $post->searchByID($id)->fetch_assoc();
-        
+
         // print_r($data);
-        $chat = new chatModel();
-        $chat_id = '';
-        $receiver_id = $_GET['receiver_id'];
-        $sender_id = Session::get('user_id');
-        $mess = 'Your Post will be delete: ' . $dataPost['title'];
-        $status = 1;
-        $time = date('Y-m-d H:i:s', time());
-        // print_r($time);
-        $chatContent = new chat($chat_id, $receiver_id, $sender_id, $mess, $time, $status);
-        // print_r($chatContent);
-        $chat->insert($chatContent);
+        if (Session::get('permission') == 0) {
+            $chat = new chatModel();
+            $chat_id = '';
+            $receiver_id = $_GET['receiver_id'];
+            $sender_id = Session::get('user_id');
+            $mess = 'Your Post will be delete: ' . $dataPost['title'];
+            $status = 1;
+            $time = date('Y-m-d H:i:s', time());
+            // print_r($time);
+            $chatContent = new chat($chat_id, $receiver_id, $sender_id, $mess, $time, $status);
+            // print_r($chatContent);
+            $chat->insert($chatContent);
+        }
 
         $post->delete($id);
 
@@ -87,16 +90,18 @@ class postController
         // print_r($data);
         $chat = new chatModel();
 
-        $chat_id = '';
-        $receiver_id = $_GET['receiver_id'];
-        $sender_id = Session::get('user_id');
-        $mess = ($active) ? 'Your Post will be accept: ' . $data['title'] : 'Your Post will be block: ' . $data['title'];
-        $status = 1;
-        $time = date('Y-m-d H:i:s', time());
-        // print_r($time);
-        $chatContent = new chat($chat_id, $receiver_id, $sender_id, $mess, $time, $status);
-        // print_r($chatContent);
-        $chat->insert($chatContent);
+        if (Session::get('permission') == 0) {
+            $chat_id = '';
+            $receiver_id = $_GET['receiver_id'];
+            $sender_id = Session::get('user_id');
+            $mess = ($active) ? 'Your Post will be accept: ' . $data['title'] : 'Your Post will be block: ' . $data['title'];
+            $status = 1;
+            $time = date('Y-m-d H:i:s', time());
+            // print_r($time);
+            $chatContent = new chat($chat_id, $receiver_id, $sender_id, $mess, $time, $status);
+            // print_r($chatContent);
+            $chat->insert($chatContent);
+        }
 
         header('location: index.php');
     }
@@ -109,7 +114,7 @@ class postController
 
         $status =  ($_GET['status']) ? 0 : 0;
         $post->changeStt($id, $status);
-        
+
         $data = $post->searchByID($id);
         $result = $data->fetch_assoc();
         $imgURL = $post->selectIMG($id)->fetch_assoc();
@@ -141,23 +146,34 @@ class postController
         }
     }
 
-    function newPost(){
+    function newPost()
+    {
         $cat = new categoryModel();
         $listCat = $cat->getAll(0, 100)->fetch_all(1);
         // print_r($listCat['name']);
         require_once __DIR__ . '../../views/admin/newPost.php';
     }
 
-    function savePost(){
-        print_r($_POST);
-        $id = Session::get('user_id');
-        $categories_name = $_POST['categories'];
-        $title = $_POST['title'];
-        $intro = $_POST['intro'];
-        $content = $_POST['content'];
-        $post_img = basename( $_FILES["post_img"]["name"]);
-        $rqm = new postModel();
-        $post = $rqm->setPost($title,$intro, $content, $categories_name,$id,$post_img);
-        $rqm->upImg("post-img","post_img");
+    function savePost()
+    {
+        // print_r($_POST);
+        Session::unset('newPostErr');
+        if (!empty($_POST['categories']) && !empty($_POST['title']) && !empty($_POST['intro']) && !empty($_POST['content'])) {
+            $id = Session::get('user_id');
+            $categories_name = $_POST['categories'];
+            $title = $_POST['title'];
+            $intro = $_POST['intro'];
+            $content = $_POST['content'];
+            $post_img = basename($_FILES["post_img"]["name"]);
+            $rqm = new postModel();
+            $post = $rqm->setPost($title, $intro, $content, $categories_name, $id, $post_img);
+            $rqm->upImg("post-img", "post_img");
+            header('location: index.php');
+        } else {
+            $cat = new categoryModel();
+            $listCat = $cat->getAll(0, 100)->fetch_all(1);
+            Session::set('newPostErr', 'Input not empty!');
+            require_once __DIR__ . '../../views/admin/newPost.php';
+        }
     }
 }
