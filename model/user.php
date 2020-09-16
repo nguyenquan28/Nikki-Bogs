@@ -156,4 +156,11 @@ class userModel
         $query = "UPDATE user SET lock_time = '$time' WHERE user_id = $id";
         $result = $this->db->update($query);
     }
+//    lay avater cho comment
+    function getimguser($user_id){
+        $query = "SELECT avatar FROM `user` WHERE user_id = $user_id  limit 1";
+        $data = $this->db->select($query);
+        $result =$data->fetch_assoc();
+        return $result;
+    }
 }

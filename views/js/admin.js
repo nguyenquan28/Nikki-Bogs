@@ -26,3 +26,19 @@ function SidebarCollapse() {
     // Collapse/Expand icon
     $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
 }
+
+$('#fusk').change(function(){
+    if (this.files && this.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+          selectedImage = e.target.result;
+          $('#chose_img').attr('src', selectedImage);
+      };
+      reader.readAsDataURL(this.files[0]);
+    }
+  });
+
+  
+$( document ).ready(function() {
+    $('#detail').animate({scrollTop: document.body.scrollHeight},"fast");
+});

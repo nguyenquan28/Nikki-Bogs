@@ -23,7 +23,7 @@ require_once __DIR__ . '/ins-admin/head.php';
             <div class="row">
                 <div class="col-12">
                     <nav aria-label="breadcrumb" class="d-flex justify-content-between">
-                        <ol class="breadcrumb">
+                        <ol class="breadcrumb d-flex flex-row">
                             <li class="breadcrumb-item"><a href="?"><i class="fa fa-home"></i> Admin</a></li>
                             <li class="breadcrumb-item"><a href="?index.php">Blog</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Single Post</li>
@@ -69,7 +69,7 @@ require_once __DIR__ . '/ins-admin/head.php';
 
                             <!-- Post Thumbnail -->
                             <div class="post-thumbnail mb-50">
-                                <img src="../img/post-img/<?= $imgURL['url'] ?>.jpg" alt="">
+                                <img src="../img/post-img/<?= $imgURL['url'] ?>" alt="">
                             </div>
 
                             <!-- Post Text -->
@@ -94,14 +94,14 @@ require_once __DIR__ . '/ins-admin/head.php';
                                         <h6>Ollie Schneider - <span>CEO Colorlib</span></h6>
                                     </div>
                                 </blockquote> -->
-                                <div class="row">
+                                <!-- <div class="row">
                                     <div class="col-12 col-md-6">
                                         <img class="mb-30" src="../img/blog-img/4.jpg" alt="">
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <img class="mb-30" src="../img/blog-img/3.jpg" alt="">
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <!-- Post Tags & Share -->
                                 <div class="post-tags-share">

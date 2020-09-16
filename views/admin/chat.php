@@ -38,7 +38,7 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                                 <!-- header -->
 
                                 <div class="recent_heading d-flex justify-content-start">
-                                    <h4>New</h4>
+                                    <h4>Chat</h4>
                                     <a href="index.php?c=chat&&a=newChat"><i class="far fa-plus-square pt-1 pl-3"></i></a>
                                 </div>
 
@@ -53,17 +53,26 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                                 </div>
                             </div>
 
-
+                            <small class="text-danger font-italic d-flex justify-content-start">
+                                <?php if (isset($_COOKIE['ErrSearchChat'])) {
+                                    print_r($_COOKIE('ErrSearchChat'));
+                                } else echo 'hi'; ?>
+                            </small>
                             <!-- List chat -->
                             <div class="inbox_chat">
                                 <?php
                                 foreach ($result as $value) {
                                     $name = $user->getName(($value['sender_id'] != Session::get('user_id')) ? $value['sender_id'] : $value['receiver_id']);
+                                    $avt = $user->searchByID(($value['sender_id'] != Session::get('user_id')) ? $value['sender_id'] : $value['receiver_id'])->fetch_assoc();
+                                    // print_r($avt['avatar']);
+                                    // if(!empty($avt){
+                                    //     $avt = $avt->fetch_assoc();
+                                    // }
                                 ?>
                                     <a href="?c=chat&a=detailChat&receiver_id=<?= $value['receiver_id'] ?>&sender_id=<?= $value['sender_id'] ?>">
                                         <div class="chat_list <?= ($value['status'] == 1 && $value['sender_id'] != Session::get('user_id')) ? 'new_chat' : 'active_chat' ?> <?= (isset($_GET['receiver_id']) && $_GET['receiver_id'] == $value['receiver_id']) ? 'action_chat' : '' ?>">
                                             <div class="chat_people">
-                                                <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                                <div class="chat_img"><img src="<?= (!empty($avt['avatar'])) ? '../img/avt-user/'. $avt['avatar'] : 'https://ptetutorials.com/images/user-profile.png'?>" alt="sunil"> </div>
                                                 <div class="chat_ib">
                                                     <h5><?= $name['name'] ?> <span class="chat_date"><?= date('d-M | g:i a', strtotime($value['time']))  ?></span></h5>
                                                     <p><?= $value['message'] ?></p>
@@ -78,9 +87,9 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                         </div>
 
                         <!-- List message -->
-                        
+
                         <div class="mesgs">
-                            <div class="msg_history">
+                            <div class="msg_history" id="detail">
 
                                 <?php
                                 foreach ($detail_chat as $value) {
@@ -108,7 +117,7 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                                 ?>
                             </div>
                             <div class="type_msg">
-                                <form class="input_msg_write" action="?c=chat&a=sendMess&receiver_id=<?= ($_GET['receiver_id'] != Session::get('user_id')) ? $_GET['receiver_id'] : $_GET['sender_id']?>" method="POST">
+                                <form class="input_msg_write" action="?c=chat&a=sendMess&receiver_id=<?= ($_GET['receiver_id'] != Session::get('user_id')) ? $_GET['receiver_id'] : $_GET['sender_id'] ?>" method="POST">
                                     <input type="text" class="write_msg" name="message" placeholder="Type a message" />
                                     <button class="msg_send_btn ml-3" type="submit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
                                 </form>

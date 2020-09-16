@@ -74,12 +74,12 @@ class categoryController
 
         if (!empty($_POST['name']) && !empty($_POST['tags']) && !empty($_POST['des'])) {
             Session::unset('CatErr');
-            $category_id = '';
+            $category_id = (($_GET['p']) != 'edit') ? '' : $_POST['categories_id'];
             $name = $_POST['name'];
             $tags = $_POST['tags'];
             $des = $_POST['des'];
             $slug = $_POST['name'];
-            $active = 1;
+            $active = 0;
             $cat = new category($category_id, $name, $tags, $des, $slug, $active);
 
             // var_dump($cat);
@@ -122,7 +122,7 @@ class categoryController
             // $catEdit = new Category();
             $catModel = new categoryModel();
             $cat = $catModel->searchByID($id)->fetch_assoc();
-            
+            print_r($cat);
             require_once __DIR__ . '../../views/admin/newCat.php';
 
         }

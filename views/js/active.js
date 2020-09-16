@@ -111,21 +111,24 @@
     }
 
 })(jQuery);
+$("#clickChat").click(function () {
+    $('#detailChat').animate({ scrollTop: document.body.scrollHeight }, "fast");
+});
 // cường nha
-window.onscroll = function() {roll()};
+window.onscroll = function () { roll() };
 var header = document.getElementById("profile");
 var background = document.getElementById("img-background");
 var sticky = header.offsetTop - 70;
 
 function roll() {
-  if (window.pageYOffset > sticky) {
-    background.classList.add("sticky-background");
-    header.classList.add("sticky");
-    header.classList.remove("position-absolute");
-  } else {
-    header.classList.add("position-absolute");
-    header.classList.remove("sticky");
-  }
+    if (window.pageYOffset > sticky) {
+        background.classList.add("sticky-background");
+        header.classList.add("sticky");
+        header.classList.remove("position-absolute");
+    } else {
+        header.classList.add("position-absolute");
+        header.classList.remove("sticky");
+    }
 }
 function myFunction() {
     var btn = document.getElementById("mybtn");
@@ -140,26 +143,26 @@ function myFunction() {
             btn.disabled = true;
         }
         else {
-        document.getElementById("demo").innerHTML = "valid name";
-        btn.disabled = false;
-    }
+            document.getElementById("demo").innerHTML = "valid name";
+            btn.disabled = false;
+        }
     }
 
 }
-function validatePost(){
+function validatePost() {
     var btn_Post = document.getElementById("btn_Post");
     // var tag = document.getElementById("tag").value;
     var title = document.getElementById("title").value;
     var intro = document.getElementById("intro").value;
     var content = document.getElementById("content").value;
-    if ( title == null || title == "" || intro == null || intro == "" || content == null || content == "") {
+    if (title == null || title == "" || intro == null || intro == "" || content == null || content == "") {
         // document.getElementById("alert").innerHTML = "The cannot empty!";
         btn_Post.disabled = true;
     } else {
         btn_Post.disabled = false;
     }
 }
-$('#fusk').change(function(){
+$('#fusk').change(function () {
     if (this.files && this.files[0]) {
       var reader = new FileReader();
       reader.onload = function (e) {
@@ -185,6 +188,7 @@ $('.remove_post').click(function(event) {
     }
 });
 $(document).ready(function(){
+
     document.getElementById("myInput").addEventListener("input", myFunction);
     document.getElementById("title").addEventListener("input", validatePost);
     document.getElementById("intro").addEventListener("input", validatePost);
@@ -202,69 +206,65 @@ $(document).ready(function(){
     // edit background
     var btn_background = document.getElementById("btn-background");
     var background = document.getElementById("background");
-    // edit post
-    // var edit_post = document.getElementById("edit_post");
-    // var form_post = document.getElementById("form_post");
-    $(btn_name).click(function(){
+
+
+    $(btn_name).click(function () {
         $(name).toggle("linear");
-      });
-      $(btn_introduce).click(function(){
-        $(introduce).toggle("linear");
-      });
-    $(btn_edit).click(function(){
-      $(edit).toggle("linear");
     });
-    $(btn_background).click(function(){
+    $(btn_introduce).click(function () {
+        $(introduce).toggle("linear");
+    });
+    $(btn_edit).click(function () {
+        $(edit).toggle("linear");
+    });
+    $(btn_background).click(function () {
         $(background).toggle("linear");
-      });
-    //   $(edit_post).click(function(){
-    //     $(form_post).toggle("linear");
-    //     $(form_edit).toggle("linear");
-    //   });
-// begin menu post
-var theToggle = document.getElementById('toggle');
 
-// based on Todd Motto functions
-// https://toddmotto.com/labs/reusable-js/
+    });
+    // begin menu post
+    var theToggle = document.getElementById('toggle');
 
-// hasClass
-function hasClass(elem, className) {
-	return new RegExp(' ' + className + ' ').test(' ' + elem.className + ' ');
-}
-// addClass
-function addClass(elem, className) {
-    if (!hasClass(elem, className)) {
-    	elem.className += ' ' + className;
+    // based on Todd Motto functions
+    // https://toddmotto.com/labs/reusable-js/
+
+    // hasClass
+    function hasClass(elem, className) {
+        return new RegExp(' ' + className + ' ').test(' ' + elem.className + ' ');
     }
-}
-// removeClass
-function removeClass(elem, className) {
-	var newClass = ' ' + elem.className.replace( /[\t\r\n]/g, ' ') + ' ';
-	if (hasClass(elem, className)) {
-        while (newClass.indexOf(' ' + className + ' ') >= 0 ) {
-            newClass = newClass.replace(' ' + className + ' ', ' ');
+    // addClass
+    function addClass(elem, className) {
+        if (!hasClass(elem, className)) {
+            elem.className += ' ' + className;
         }
-        elem.className = newClass.replace(/^\s+|\s+$/g, '');
     }
-}
-// toggleClass
-function toggleClass(elem, className) {
-	var newClass = ' ' + elem.className.replace( /[\t\r\n]/g, " " ) + ' ';
-    if (hasClass(elem, className)) {
-        while (newClass.indexOf(" " + className + " ") >= 0 ) {
-            newClass = newClass.replace( " " + className + " " , " " );
+    // removeClass
+    function removeClass(elem, className) {
+        var newClass = ' ' + elem.className.replace(/[\t\r\n]/g, ' ') + ' ';
+        if (hasClass(elem, className)) {
+            while (newClass.indexOf(' ' + className + ' ') >= 0) {
+                newClass = newClass.replace(' ' + className + ' ', ' ');
+            }
+            elem.className = newClass.replace(/^\s+|\s+$/g, '');
         }
-        elem.className = newClass.replace(/^\s+|\s+$/g, '');
-    } else {
-        elem.className += ' ' + className;
     }
-}
+    // toggleClass
+    function toggleClass(elem, className) {
+        var newClass = ' ' + elem.className.replace(/[\t\r\n]/g, " ") + ' ';
+        if (hasClass(elem, className)) {
+            while (newClass.indexOf(" " + className + " ") >= 0) {
+                newClass = newClass.replace(" " + className + " ", " ");
+            }
+            elem.className = newClass.replace(/^\s+|\s+$/g, '');
+        } else {
+            elem.className += ' ' + className;
+        }
+    }
 
-theToggle.onclick = function() {
-   toggleClass(this, 'on');
-   return false;
-}
+    theToggle.onclick = function () {
+        toggleClass(this, 'on');
+        return false;
+    }
 
 
 
-  });
+});

@@ -34,7 +34,7 @@ class reportModel
         $this->db = new Database();
         $this->fm = new Format();
     }
-    
+
     // Function paginasion
     function paginasion($no_of_records_per_page)
     {
@@ -51,8 +51,10 @@ class reportModel
     {
 
         $query = "SELECT * FROM report ORDER BY status DESC, time DESC LIMIT $offset, $no_of_records_per_page";
-        $data = $this->db->select($query)->fetch_all(1);
-
+        $result = $this->db->select($query);
+        if (!empty($result)) {
+            $data = $result->fetch_all(1);
+        }
         return $data;
     }
 
@@ -89,7 +91,7 @@ class reportModel
     //  Search all $report_id, $content, $user_id, $time, $post_id, $status
     function search($tags)
     {
-        
+
         $result = [];
         $query = "SELECT * FROM report, user
 

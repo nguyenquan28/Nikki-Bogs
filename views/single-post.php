@@ -8,6 +8,8 @@
 require_once __DIR__ . '/ins/head.php';
 ?>
 <?php
+require_once '../model/images.php';
+$ImagesModel = new imagesModel();
 require_once '../model/posts.php';
 $PostsModel = new postModel();
 require_once '../model/user.php';
@@ -19,28 +21,12 @@ $CommentsModel = new commentMoldel();
 require_once '../model/user.php';
 $UserModel = new userModel();
 require_once '../config/session.php';
+
 Session::init();
 
 //    session_start();
 //    $_SESSION['a']='a';
 
-?>
-<?php
-require_once '../model/posts.php';
-$PostsModel = new postModel();
-require_once '../model/user.php';
-$UserModel = new userModel();
-require_once '../model/categories.php';
-$CategoryModel = new categoryModel();
-require_once '../model/comments.php';
-$CommentsModel = new commentMoldel();
-require_once '../model/user.php';
-$UserModel = new userModel();
-require_once '../config/session.php';
-Session::init();
-
-//    session_start();
-//    $_SESSION['a']='a';
 ?>
 
 <body>
@@ -86,6 +72,8 @@ Session::init();
                             $SinglePost = $PostsModel->pushDataPost($data);
                             //                                print_r($SinglePost);
                             foreach ($SinglePost as $datasingle) {
+                                // lay img theo id post
+                                $urlImg = $ImagesModel->getImgByIdPost($datasingle->post_id);
                                 //lay ten cua category theo id
                                 $namecate = $CategoryModel->getName($datasingle->categories_id);
                                 $countCommert = $CommentsModel->countCommentByIdPost($datasingle->post_id);
@@ -105,7 +93,7 @@ Session::init();
 
                                     <!-- Post Thumbnail -->
                                     <div class="post-thumbnail mb-50">
-                                        <img src="img/blog-img/8.jpg" alt="">
+                                        <img src="img/post-img/<?=$urlImg['url']?>" alt="">
                                     </div>
 
                                     <!-- Post Text -->
@@ -162,33 +150,35 @@ Session::init();
 
                                         <!-- Post Tags & Share -->
                                         <div class="post-tags-share d-flex justify-content-between">
-                                            <div>
-                                                <!-- Report Post -->
-                                                <div class="d-flex flex-row">
-                                                    <span class="mt-2">
-                                                        <a href="#subReport" data-toggle="collapse" aria-expanded="false" title="Report" class="pin">
-                                                            <i class="fa fa-thumb-tack" aria-hidden="true"></i>
-                                                            Report</a>
-                                                    </span>
-                                                    <!-- Modal -->
-                                                    <div id='subReport' class="collapse sidebar-submenu ml-3">
-                                                        <div class="content-report p-2 d-flex flex-column" style="background: #e9ebee; border-radius: 5px;">
-                                                            <div>
-                                                                <a class="btn btn-outline-dark m-1" href="index.php?c=report&a=newReport&content=Vi phạm quy tắc&postID=<?= $_GET['idpost'] ?>">Vi phạm quy tắc</a>
-                                                                <a class="btn btn-outline-dark m-1" href="index.php?c=report&a=newReport&content=Gây kích động&postID=<?= $_GET['idpost'] ?>">Gây kích động</a>
-                                                                <a class="btn btn-outline-dark m-1" href="index.php?c=report&a=newReport&content=Spam&postID=<?= $_GET['idpost'] ?>">Spam</a>
-                                                            </div>
-                                                            <div>
-                                                                <a class="btn btn-outline-dark m-1" href="index.php?c=report&a=newReport&content=Bạo lực&postID=<?= $_GET['idpost'] ?>">Bạo lực</a>
-                                                                <a class="btn btn-outline-dark m-1" href="index.php?c=report&a=newReport&content=Quấy rối&postID=<?= $_GET['idpost'] ?>">Quấy rối</a>
-                                                                <a class="btn btn-outline-dark m-1" href="index.php?c=report&a=newReport&content=Tin giả&postID=<?= $_GET['idpost'] ?>">Tin giả</a>
-                                                                <a class="btn btn-outline-dark m-1" href="index.php?c=report&a=newReport&content=Khác&postID=<?= $_GET['idpost'] ?>">Khác</a>
-                                                            </div>
+                                            <?= 
+                                            (isset($_SESSION['user_id'])) ? '<div>
+                                            <!-- Report Post -->
+                                            <div class="d-flex flex-row">
+                                                <span class="mt-2">
+                                                    <a href="#subReport" data-toggle="collapse" aria-expanded="false" title="Report" class="pin">
+                                                        <i class="fa fa-thumb-tack" aria-hidden="true"></i>
+                                                        Report</a>
+                                                </span>
+                                                <!-- Modal -->
+                                                <div id="subReport" class="collapse sidebar-submenu ml-3">
+                                                    <div class="content-report p-2 d-flex flex-column" style="background: #e9ebee; border-radius: 5px;">
+                                                        <div>
+                                                            <a class="btn btn-outline-dark m-1" href="index.php?c=report&a=newReport&content=Vi phạm quy tắc&postID=' . $_GET['idpost'] . '">Vi phạm quy tắc</a>
+                                                            <a class="btn btn-outline-dark m-1" href="index.php?c=report&a=newReport&content=Gây kích động&postID='. $_GET['idpost'] . '">Gây kích động</a>
+                                                            <a class="btn btn-outline-dark m-1" href="index.php?c=report&a=newReport&content=Spam&postID='. $_GET['idpost'] . '">Spam</a>
+                                                        </div>
+                                                        <div>
+                                                            <a class="btn btn-outline-dark m-1" href="index.php?c=report&a=newReport&content=Bạo lực&postID='. $_GET['idpost'] . '">Bạo lực</a>
+                                                            <a class="btn btn-outline-dark m-1" href="index.php?c=report&a=newReport&content=Quấy rối&postID='. $_GET['idpost'] . '">Quấy rối</a>
+                                                            <a class="btn btn-outline-dark m-1" href="index.php?c=report&a=newReport&content=Tin giả&postID='. $_GET['idpost'] . '">Tin giả</a>
+                                                            <a class="btn btn-outline-dark m-1" href="index.php?c=report&a=newReport&content=Khác&postID='. $_GET['idpost'] . '">Khác</a>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- End modal report -->
                                             </div>
+                                            <!-- End modal report -->
+                                        </div>' : '';
+                                            ?>
 
                                             <!-- Tags -->
                                             <ol class="popular-tags d-flex flex-wrap">
@@ -211,17 +201,20 @@ Session::init();
                                                 $datarelates = $PostsModel->RelatedByIdCateTop2($datasingle->categories_id);
                                                 $relatePosts = $PostsModel->pushDataPost($datarelates);
                                                 foreach ($relatePosts as $datarela) {
+                                                    // lay img theo id post
+                                                    $urlImg = $ImagesModel->getImgByIdPost($datarela->post_id);
+                                                    $slug = str_replace(' ','+',$datarela->title);
                                                 ?>
                                                     <div class="col-12 col-lg-6">
                                                         <div class="single-blog-post mb-50">
                                                             <!-- Thumbnail -->
                                                             <div class="post-thumbnail">
-                                                                <a href="#"><img src="img/blog-img/1.jpg" alt=""></a>
+                                                                <a href="#"><img src="img/post-img/<?=$urlImg['url']?>" alt=""></a>
                                                             </div>
                                                             <!-- Content -->
                                                             <div class="post-content">
                                                                 <p class="post-date"><?= $datarela->time ?> / <?= $namecate['name'] ?></p>
-                                                                <a href="#" class="post-title">
+                                                                <a href="index.php?<?=$slug?>&c=home&a=viewSinglePost&idpost=<?=$datarela->post_id?>" class="post-title">
                                                                     <h4><?= $datarela->title ?></h4>
                                                                 </a>
                                                                 <p class="post-excerpt"><?= $datarela->intro ?></p>
@@ -245,30 +238,31 @@ Session::init();
                                                 <?php
                                                 $datacmts = $CommentsModel->searchByIdPost($datasingle->post_id);
                                                 if (!empty($datacmts)){
-                                                $datacmt = $CommentsModel->pushDataComment($datacmts);
-                                                foreach ($datacmt as $datacmt) {
-                                                    $nameUser = $UserModel->getName($datacmt->user_id);
-                                                ?>
-                                                    <li class="single_comment_area">
-                                                        <div class="comment-wrapper d-flex">
-                                                            <!-- Comment Meta -->
-                                                            <div class="comment-author">
-                                                                <img src="img/blog-img/11.jpg" alt="">
+                                                    $datacmt = $CommentsModel->pushDataComment($datacmts);
+                                                    foreach ($datacmt as $datacmt) {
+                                                        $nameUser = $UserModel->getName($datacmt->user_id);
+                                                        $imguser = $UserModel->getimguser($datacmt->user_id);
+                                                    ?>
+                                                        <li class="single_comment_area">
+                                                            <div class="comment-wrapper d-flex">
+                                                                <!-- Comment Meta -->
+                                                                <div class="comment-author">
+                                                                    <img src="img/avt-user/<?=$imguser['avatar']?>" alt="">
+                                                                </div>
+                                                                <!-- Comment Content -->
+                                                                <div class="comment-content">
+                                                                    <span class="comment-date"><?= $datacmt->time ?></span>
+                                                                    <h5><?= $nameUser['name'] ?></h5>
+                                                                    <p><?= $datacmt->content ?></p>
+
+                                                                </div>
                                                             </div>
-                                                            <!-- Comment Content -->
-                                                            <div class="comment-content">
-                                                                <span class="comment-date"><?= $datacmt->time ?></span>
-                                                                <h5><?= $nameUser['name'] ?></h5>
-                                                                <p><?= $datacmt->content ?></p>
-
-                                                            </div>
-                                                        </div>
-<!--                                                            <div class="reply">-->
-<!--                                                                <a href="javascript:void(0)" onclick="reply(this)">Reply</a>-->
-<!--                                                            </div>-->
+    <!--                                                            <div class="reply">-->
+    <!--                                                                <a href="javascript:void(0)" onclick="reply(this)">Reply</a>-->
+    <!--                                                            </div>-->
 
 
-                                                    </li>
+                                                        </li>
                                                 <?php
                                                 }}
                                                 ?>

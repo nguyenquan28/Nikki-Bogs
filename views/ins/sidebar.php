@@ -9,22 +9,7 @@ $CategoryModel = new categoryModel();
 
 <div class="col-12 col-sm-9 col-md-6 col-lg-4">
     <div class="post-sidebar-area">
-        <!-- ##### Single Widget Area ##### -->
-        <div class="single-widget-area mb-30">
-            <!-- Title -->
-            <div class="widget-title">
-                <h6>About Me</h6>
-            </div>
-            <!-- Thumbnail -->
-            <div class="about-thumbnail">
-                <img src="img/blog-img/about-me.jpg" alt="">
-            </div>
-            <!-- Content -->
-            <div class="widget-content text-center">
-                <img src="img/core-img/signature.png" alt="">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ipsum adipisicing</p>
-            </div>
-        </div>
+        
 
         <!-- ##### Single Widget Area ##### -->
         <div class="single-widget-area mb-30">
@@ -55,6 +40,9 @@ $CategoryModel = new categoryModel();
             $data = $PostsModel->PostsTop(5);
             $dataLimitPost5 = $PostsModel->pushDataPost($data);
             foreach ($dataLimitPost5 as $Posts5){
+                // lay img theo id post
+                $urlImg = $ImagesModel->getImgByIdPost($Posts5->post_id);
+
                 $byName = $UserModel->getName($Posts5->user_id);
                 $slug5 = str_replace(' ','+',$Posts5->title);
 
@@ -62,7 +50,7 @@ $CategoryModel = new categoryModel();
                 <!-- Single Latest Posts -->
                 <div class="single-latest-post d-flex">
                     <div class="post-thumb">
-                        <img src="img/blog-img/lp1.jpg" alt="">
+                        <img src="img/post-img/<?=$urlImg['url']?>" alt="">
                     </div>
                     <div class="post-content">
                         <a href="index.php?<?=$slug5?>&c=home&a=viewSinglePost&idpost=<?=$Posts5->post_id?>" class="post-title">

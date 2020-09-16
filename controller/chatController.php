@@ -16,7 +16,7 @@ class chatController
         } else {
             $pageno = 1;
         }
-        $no_of_records_per_page = 10;
+        $no_of_records_per_page = 1000;
         $offset = ($pageno - 1) * $no_of_records_per_page;
         $allData = $chat->getAll($offset, $no_of_records_per_page)->fetch_all(1);
         $total_pages = $chat->paginasion($no_of_records_per_page);
@@ -76,7 +76,7 @@ class chatController
         } else {
             $pageno = 1;
         }
-        $no_of_records_per_page = 10;
+        $no_of_records_per_page = 100;
         $offset = ($pageno - 1) * $no_of_records_per_page;
         $allData = $chat->getAll($offset, $no_of_records_per_page)->fetch_all(1);
         $total_pages = $chat->paginasion($no_of_records_per_page);
@@ -147,7 +147,7 @@ class chatController
             // print_r($detail_chat);
             // echo "</pre>";
             $max = 0;
-            if(!empty($detail_chat)){
+            if (!empty($detail_chat)) {
                 foreach ($detail_chat as $key => $value) {
                     if ($value['receiver_id'] == $sender_id) {
                         $max = $key;
@@ -186,11 +186,47 @@ class chatController
     }
 
     // Search mess
-    function searchMess(){
+    function searchMess()
+    {
         $tags = $_POST['input'];
+        $user = new userModel();
         $chat = new chatModel();
-        $data = $chat->searchMess($tags);
-        print_r($data);
+        $user_name = $user->searchName($tags);
+        $data = [];
+        $result = [];
+        if (!empty($user_name)) {
+            $user_name = $user_name->fetch_all(1);
+            foreach ($user_name as $value) {
+                if ($value['user_id'] != 1) {
+                    array_push($data, $value['user_id']);
+                    // print_r($value);
+                }
+            }
+            foreach ($data as $value) {
+                $record = $chat->getOne($value, Session::get('user_id'));
+                array_push($result, $record);
+            }
+            function date_compare($a, $b)
+            {
+                $t1 = strtotime($a['time']);
+                $t2 = strtotime($b['time']);
+                return $t2 - $t1;
+            }
+            usort($result, 'date_compare');
+            $receover = ($result[0]['receiver_id'] == Session::get('user_id')) ? $result[0]['sender_id'] : $result[0]['receiver_id'];
+            $detail_chat = $chat->searchById($receover, Session::get('user_id'));
+            // echo '<pre>';
+            // print_r($result);
+            // echo '</pre>';
+            // echo '<pre>';
+            // print_r($result);
+            // echo '</pre>';
+            setcookie("ErrSearchChat", "Result for " . $tags, time()+10);
+            require_once __DIR__ . '../../views/admin/chat.php';
+        } else {
+            setcookie("ErrSearchChat", "Input not match!", time()+3);
+            header('location: index.php?c=chat');
+        }
+        // print_r($data);
     }
-
 }

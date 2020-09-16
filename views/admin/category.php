@@ -52,7 +52,6 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th class="text-center" scope="col">ID</th>
                             <th class="text-center" scope="col">Name</th>
                             <th class="text-center" scope="col">Tags</th>
                             <th class="text-center" scope="col">Desciption</th>
@@ -63,13 +62,12 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                         <?php
                         foreach ($data->fetch_all() as $key => $value) {
                         ?>
-                            <tr class=<?php if ($value['5'] == true) echo ' "tr-color" ';
+                            <tr class=<?php if ($value['5'] == false) echo ' "tr-color" ';
                                         else echo '""'; ?>>
-                                <td class="text-center"><?= $value['0'] ?></td>
                                 <td class="text-center"><?= $value['1'] ?></td>
                                 <td class="text-center"><?= $value['2'] ?></td>
-                                <td><?= $value['4'] ?></td>
-                                <td class="text-center" title="Update"><a href="./index.php?c=category&a=editStatus&id=<?= $value['0'] ?>&status=<?= $value['5'] ?>"><?= ($value['5'] == 0 ) ? '<i class="fas fa-unlock"></i>' : '<i class="fas fa-lock"></i>' ; ?></a></td>
+                                <td><?= $value['3'] ?></td>
+                                <td class="text-center" title="ACtive"><a href="./index.php?c=category&a=editStatus&id=<?= $value['0'] ?>&status=<?= $value['5'] ?>"><?= ($value['5'] == 1 ) ? '<i class="fas fa-unlock"></i>' : '<i class="fas fa-lock"></i>' ; ?></a></td>
                                 <td class="text-center" title="Update"><a href="./index.php?c=category&a=edit&id=<?= $value['0'] ?>"><i class="fas fa-tools"></i></a></td>
                                 <td class="text-center" title="Delete"><a href="./index.php?c=category&a=delCat&id=<?= $value['0'] ?>"><i class="far fa-trash-alt text-danger"></i></a></td>
                             </tr>

@@ -63,9 +63,11 @@ require __DIR__.'/ins-admin/headerAdmin.php';
                     </thead>
                     <tbody>
                         <?php
-                        foreach ($data as $key => $value) {
-                            $userName = $user->getName($value['user_id']);
-                            
+                        if(!empty($data)){
+                            foreach ($data as $key => $value) {
+                                $userName = $user->getName($value['user_id']);
+                              
+                          
                         ?>
                             <tr class = <?php if($value['status'] == true) echo ' "tr-color" '; else echo '""';?>>
                                 <td class="text-center"><?= $userName['name'] ?></td>
@@ -76,7 +78,7 @@ require __DIR__.'/ins-admin/headerAdmin.php';
 
                             </tr>
                         <?php
-                        }
+                        }}
                         ?>
                     </tbody>
                 </table>
