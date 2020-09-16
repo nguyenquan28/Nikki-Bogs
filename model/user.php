@@ -98,17 +98,10 @@ class userModel
         return $result;
     }
 
-    // Seaerch by email
+    // Seaerch by Name
     function searchByEmai($email)
     {
         $query = "SELECT * FROM user WHERE email = '$email' LIMIT 1";
-        $result = $this->db->select($query);
-        return $result;
-    }
-
-    // Search name
-    function searchName($tags){
-        $query = "SELECT * FROM user WHERE name REGEXP '" . $tags . "'";
         $result = $this->db->select($query);
         return $result;
     }
@@ -162,5 +155,12 @@ class userModel
     function lock($id, $time){
         $query = "UPDATE user SET lock_time = '$time' WHERE user_id = $id";
         $result = $this->db->update($query);
+    }
+//    lay avater cho comment
+    function getimguser($user_id){
+        $query = "SELECT avatar FROM `user` WHERE user_id = $user_id  limit 1";
+        $data = $this->db->select($query);
+        $result =$data->fetch_assoc();
+        return $result;
     }
 }

@@ -241,12 +241,13 @@ Session::init();
                                                     $datacmt = $CommentsModel->pushDataComment($datacmts);
                                                     foreach ($datacmt as $datacmt) {
                                                         $nameUser = $UserModel->getName($datacmt->user_id);
+                                                        $imguser = $UserModel->getimguser($datacmt->user_id);
                                                     ?>
                                                         <li class="single_comment_area">
                                                             <div class="comment-wrapper d-flex">
                                                                 <!-- Comment Meta -->
                                                                 <div class="comment-author">
-                                                                    <img src="img/blog-img/11.jpg" alt="">
+                                                                    <img src="img/avt-user/<?=$imguser['avatar']?>" alt="">
                                                                 </div>
                                                                 <!-- Comment Content -->
                                                                 <div class="comment-content">
