@@ -58,8 +58,12 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
 
                 <!-- Alert Error -->
                 <small class="text-danger font-italic d-flex justify-content-start mb-3">
-                    <?php if (isset($_SESSION['erSearch'])) echo Session::get('erSearch');
+                    <?php if (isset($_SESSION['postSearchErr'])) echo Session::get('postSearchErr');
+                    else 
+                        if (isset($_SESSION['postResults'])) echo Session::get('postResults');
+
                     else echo ''; ?>
+
                 </small>
 
                 <!-- list post -->
@@ -90,7 +94,7 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                                 <td class="text-center" style="width:  8%"><?= date('d-M-Y', strtotime($value->time)) ?></th>
                                 <td class="text-center" title="Detail"><a href="./index.php?c=post&a=detailPost&id=<?= $value->post_id ?>&status=<?= $value->status ?>"><i class="fas fa-info-circle"></i></a></td>
                                 <td class="text-center" title="Change Active"><a href="./index.php?c=post&a=changeActive&id=<?= $value->post_id ?>&active=<?= $value->active ?>&sender_id=<?= Session::get('user_id') ?>&receiver_id=<?= $value->user_id ?>"><?= ($value->active) ? '<i class="fa fa-check-circle"></i>' : '<i class="fa fa-window-close text-danger"></i>'; ?></a></td>
-                                <td class="text-center" title="Delete"><a href="./index.php?c=post&a=delPost&id=<?= $value->post_id ?>"><i class="far fa-trash-alt text-danger"></i></a></td>
+                                <td class="text-center" title="Delete"><a href="./index.php?c=post&a=delPost&id=<?= $value->post_id ?>&sender_id=<?= Session::get('user_id') ?>&receiver_id=<?= $value->user_id ?>""><i class=" far fa-trash-alt text-danger"></i></a></td>
                             </tr>
                         <?php
                         }

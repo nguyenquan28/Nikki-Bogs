@@ -69,7 +69,7 @@ require_once __DIR__ . '/ins-admin/head.php';
 
                             <!-- Post Thumbnail -->
                             <div class="post-thumbnail mb-50">
-                                <img src="../img/post-img/<?= $imgURL['url'] ?>.jpg" alt="">
+                                <img src="../img/post-img/<?= $imgURL['url'] ?>" alt="">
                             </div>
 
                             <!-- Post Text -->

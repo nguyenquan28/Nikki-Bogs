@@ -6,6 +6,7 @@ require __DIR__ . '/../model/posts.php';
 require __DIR__ . '/../model/contacts.php';
 require __DIR__ . '/../model/chat.php';
 require __DIR__ . '/../model/report.php';
+require __DIR__ . '/../model/categories.php';
 
 
 class postController
@@ -13,6 +14,7 @@ class postController
 
     function getAll()
     {
+        Session::unset('postResults');
         // Session::unset('erSearch');
         if (isset($_GET['pageno'])) {
             $pageno = $_GET['pageno'];
@@ -53,6 +55,21 @@ class postController
         $id = $_GET['id'];
 
         $post = new postModel();
+        $dataPost = $post->searchByID($id)->fetch_assoc();
+        
+        // print_r($data);
+        $chat = new chatModel();
+        $chat_id = '';
+        $receiver_id = $_GET['receiver_id'];
+        $sender_id = Session::get('user_id');
+        $mess = 'Your Post will be delete: ' . $dataPost['title'];
+        $status = 1;
+        $time = date('Y-m-d H:i:s', time());
+        // print_r($time);
+        $chatContent = new chat($chat_id, $receiver_id, $sender_id, $mess, $time, $status);
+        // print_r($chatContent);
+        $chat->insert($chatContent);
+
         $post->delete($id);
 
         header('location: index.php');
@@ -66,13 +83,14 @@ class postController
         $active =  ($_GET['active']) ? 0 : 1;
 
         $post->changeActive($id, $active);
-
+        $data = $post->searchByID($id)->fetch_assoc();
+        // print_r($data);
         $chat = new chatModel();
 
         $chat_id = '';
         $receiver_id = $_GET['receiver_id'];
         $sender_id = Session::get('user_id');
-        $mess = ($active) ? 'Your Post will be accept' : 'Your Post will be block';
+        $mess = ($active) ? 'Your Post will be accept: ' . $data['title'] : 'Your Post will be block: ' . $data['title'];
         $status = 1;
         $time = date('Y-m-d H:i:s', time());
         // print_r($time);
@@ -91,7 +109,7 @@ class postController
 
         $status =  ($_GET['status']) ? 0 : 0;
         $post->changeStt($id, $status);
-
+        
         $data = $post->searchByID($id);
         $result = $data->fetch_assoc();
         $imgURL = $post->selectIMG($id)->fetch_assoc();
@@ -107,22 +125,39 @@ class postController
             $data = $post->search($search);
 
             if (empty($data)) {
-                Session::set('erSearch', 'Input not Exist');
+                Session::unset('postSearchErr');
+                Session::set('postResults', 'No results for ' . $_POST["input"]);
                 header('location: index.php');
             } else {
-                Session::unset('erSearch');
-                // echo '<pre>';
-                // print_r($data);
-                // echo '</pre>';
-                require_once __DIR__ . '../../views/admin/post.php';
+                Session::set('postSearchErr', 'Results for ' . $_POST["input"]);
+                echo '<pre>';
+                print_r($data);
+                echo '</pre>';
+                // require_once __DIR__ . '../../views/admin/post.php';
             }
         } else {
-            Session::set('erSearch', 'Please enter Keyword');
+            Session::set('postSearchErr', 'No results for ' . $_POST["input"]);
             header('location: index.php');
         }
     }
 
     function newPost(){
-        echo 'hi';
+        $cat = new categoryModel();
+        $listCat = $cat->getAll(0, 100)->fetch_all(1);
+        // print_r($listCat['name']);
+        require_once __DIR__ . '../../views/admin/newPost.php';
+    }
+
+    function savePost(){
+        print_r($_POST);
+        $id = Session::get('user_id');
+        $categories_name = $_POST['categories'];
+        $title = $_POST['title'];
+        $intro = $_POST['intro'];
+        $content = $_POST['content'];
+        $post_img = basename( $_FILES["post_img"]["name"]);
+        $rqm = new postModel();
+        $post = $rqm->setPost($title,$intro, $content, $categories_name,$id,$post_img);
+        $rqm->upImg("post-img","post_img");
     }
 }
