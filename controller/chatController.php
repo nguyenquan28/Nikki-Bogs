@@ -221,7 +221,7 @@ class chatController
             // echo '<pre>';
             // print_r($result);
             // echo '</pre>';
-            setcookie("ErrSearchChat", "Result for " . $tags, time()+3);
+            setcookie("ErrSearchChat", "Result for " . $tags, time()+10);
             require_once __DIR__ . '../../views/admin/chat.php';
         } else {
             setcookie("ErrSearchChat", "Input not match!", time()+3);

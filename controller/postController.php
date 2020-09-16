@@ -22,7 +22,7 @@ class postController
         } else {
             $pageno = 1;
         }
-        $no_of_records_per_page = 10;
+        $no_of_records_per_page = 6;
         $offset = ($pageno - 1) * $no_of_records_per_page;
 
         $post = new postModel();
@@ -138,10 +138,10 @@ class postController
                 header('location: index.php');
             } else {
                 Session::set('postSearchErr', 'Results for ' . $_POST["input"]);
-                echo '<pre>';
-                print_r($data);
-                echo '</pre>';
-                // require_once __DIR__ . '../../views/admin/post.php';
+                // echo '<pre>';
+                // print_r($data);
+                // echo '</pre>';
+                require_once __DIR__ . '../../views/admin/post.php';
             }
         } else {
             Session::set('postSearchErr', 'No results for ' . $_POST["input"]);
