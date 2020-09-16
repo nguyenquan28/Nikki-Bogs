@@ -40,7 +40,7 @@ class profileModel
         $description = $categories["description"];
         $slug = $categories["slug"];
         $time = (date("Y-m-d", time()));
-        $query = 'INSERT INTO `posts`(`categories_id`,`title`,`intro`, `content`, `tag`,`description`,`slug`,`active`, `time`, `status`,`user_id`) VALUES (' . $categoris_id . ',"' . $title . '","' . $intro . '","' . $content . '","' . $tag . '","' . $description . '","' . $slug . '",0,"' . $time . '",0,' . $id . ')';
+        $query = 'INSERT INTO `posts`(`categories_id`,`title`,`intro`, `content`, `tag`,`description`,`slug`,`active`, `time`, `status`,`user_id`) VALUES (' . $categoris_id . ',"' . $title . '","' . $intro . '","' . $content . '","' . $tag . '","' . $description . '","' . $slug . '",0,"' . $time . '",1,' . $id . ')';
         $result = $this->db->insert($query);
         $post_id = 'SELECT post_id FROM posts where user_id = '.$id.' ORDER BY post_id DESC LIMIT 1';
         $result_post_id = $this->db->select($post_id)->fetch_assoc();

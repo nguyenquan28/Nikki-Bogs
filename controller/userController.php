@@ -86,18 +86,19 @@ class userController
                         Session::set('avatar', $user['avatar']);
                         Session::unset('loginError');
 
-                        // Send mess
-                        $chat = new chatModel();
-                        $chat_id = '';
-                        $receiver_id = Session::get('user_id');
-                        $sender_id = 1;
-                        $mess = Session::get('name') . '. Wellcome to Nikki Blog!';
-                        $status = 1;
-                        $time = date('Y-m-d H:i:s', time());
-                        $chatContent = new chat($chat_id, $receiver_id, $sender_id, $mess, $time, $status);
-                        // print_r($chatContent);
-                        $chat->insert($chatContent);
-
+                        if (Session::get('permission') == 0) {
+                            // Send mess
+                            $chat = new chatModel();
+                            $chat_id = '';
+                            $receiver_id = Session::get('user_id');
+                            $sender_id = 1;
+                            $mess = Session::get('name') . '. Wellcome to Nikki Blog!';
+                            $status = 1;
+                            $time = date('Y-m-d H:i:s', time());
+                            $chatContent = new chat($chat_id, $receiver_id, $sender_id, $mess, $time, $status);
+                            // print_r($chatContent);
+                            $chat->insert($chatContent);
+                        }
                         header('location: ../views');
                     } else {
                         Session::set('loginError', 'Acount was locked');
