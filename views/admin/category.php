@@ -46,8 +46,12 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
 
                 <!-- Alert Error -->
                 <small class="text-danger font-italic d-flex justify-content-start mb-3">
-                    <?php if (isset($_SESSION['CarSearchErr'])) echo Session::get('CarSearchErr');
+                    <?php if (isset($_SESSION['catResults'])) echo Session::get('catResults');
+                    else 
+                        if (isset($_SESSION['catSearchErr'])) echo Session::get('catSearchErr');
+
                     else echo ''; ?>
+
                 </small>
                 <table class="table table-bordered table-striped">
                     <thead>

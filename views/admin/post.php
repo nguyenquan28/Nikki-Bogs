@@ -58,9 +58,9 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
 
                 <!-- Alert Error -->
                 <small class="text-danger font-italic d-flex justify-content-start mb-3">
-                    <?php if (isset($_SESSION['postSearchErr'])) echo Session::get('postSearchErr');
+                    <?php if (isset($_SESSION['postResults'])) echo Session::get('postResults');
                     else 
-                        if (isset($_SESSION['postResults'])) echo Session::get('postResults');
+                        if (isset($_SESSION['postSearchErr'])) echo Session::get('postSearchErr');
 
                     else echo ''; ?>
 

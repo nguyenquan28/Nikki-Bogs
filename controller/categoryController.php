@@ -7,6 +7,7 @@ class categoryController
     // Get all categories
     function getAll()
     {
+        Session::unset('catResults');
         if (isset($_GET['pageno'])) {
             $pageno = $_GET['pageno'];
         } else {
@@ -103,15 +104,17 @@ class categoryController
         if (isset($_POST["input"])) {
             $search = str_replace(", ", "|", $_POST["input"]);
             $data = $catModel->search($search);
-            if(!empty($data)){
-                Session::unset('CarSearchErr');
-                require_once __DIR__ . '../../views/admin/category.php'; 
-            }else{
-                Session::set('CarSearchErr', 'Input not match!');
+            if(empty($data)){
+                Session::unset('catResults');
+                Session::set('catSearchErr', 'No results for ' . $_POST["input"]);
                 header('location: index.php?c=category');
+            }else{
+                Session::unset('catSearchErr');
+                Session::set('catResults', 'Results for ' . $_POST["input"]);
+                require_once __DIR__ . '../../views/admin/category.php'; 
             }
         } else {
-            Session::set('CarSearchErr', 'Input not match!');
+            Session::set('catSearchErr', 'No results for ' . $_POST["input"]);
             header('location: index.php?c=category');
         }
     }

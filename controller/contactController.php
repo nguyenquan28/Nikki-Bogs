@@ -7,6 +7,7 @@ class contactController
 
     function getAll()
     {
+        Session::unset('conResults');
         if (isset($_GET['pageno'])) {
             $pageno = $_GET['pageno'];
         } else {
@@ -43,15 +44,17 @@ class contactController
         if (isset($_POST["input"])) {
             $search = str_replace(", ", "|", $_POST["input"]);
             $data = $contact->search($search);
-            if(!empty($data)){
-                Session::unset('ConSearchErr');
-                require_once __DIR__ . '../../views/admin/contact.php'; 
-            }else{
-                Session::set('ConSearchErr', 'Input not match!');
+            if(empty($data)){
+                Session::unset('conResults');
+                Session::set('conSearchErr', 'No results for ' . $_POST["input"]);
                 header('location: index.php?c=contact');
+            }else{
+                Session::unset('conSearchErr');
+                Session::set('conResults', 'Results for ' . $_POST["input"]);
+                require_once __DIR__ . '../../views/admin/contact.php'; 
             }
         } else {
-            Session::set('ConSearchErr', 'Input not empty!');
+            Session::set('conSearchErr', 'No results for ' . $_POST["input"]);
             header('location: index.php?c=contact');
         }
     }

@@ -47,9 +47,14 @@ require __DIR__.'/ins-admin/headerAdmin.php';
                 </header>
                 <!-- Alert Error -->
                 <small class="text-danger font-italic d-flex justify-content-start mb-3">
-                    <?php if (isset($_SESSION['erRPSearch'])) echo Session::get('erRPSearch');
+                    <?php if (isset($_SESSION['repResults'])) echo Session::get('repResults');
+                    else 
+                        if (isset($_SESSION['repSearchErr'])) echo Session::get('repSearchErr');
+
                     else echo ''; ?>
+
                 </small>
+
 
                 <table class="table table-bordered table-striped">
 

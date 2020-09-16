@@ -6,6 +6,7 @@ class chatController
 {
     function getAll()
     {
+        Session::unset('chatResults');
         $chat = new chatModel();
         $total = $chat->countSTT()->fetch_assoc();
         Session::set('messNew', $total['COUNT(*)']);
@@ -188,43 +189,48 @@ class chatController
     // Search mess
     function searchMess()
     {
-        $tags = $_POST['input'];
-        $user = new userModel();
-        $chat = new chatModel();
-        $user_name = $user->searchName($tags);
-        $data = [];
-        $result = [];
-        if (!empty($user_name)) {
-            $user_name = $user_name->fetch_all(1);
-            foreach ($user_name as $value) {
-                if ($value['user_id'] != 1) {
-                    array_push($data, $value['user_id']);
-                    // print_r($value);
+        if (!empty($_POST['input'])) {
+
+            $tags = $_POST['input'];
+            $user = new userModel();
+            $chat = new chatModel();
+            $user_name = $user->searchName($tags);
+            $data = [];
+            $result = [];
+            if (!empty($user_name)) {
+                $user_name = $user_name->fetch_all(1);
+                foreach ($user_name as $value) {
+                    if ($value['user_id'] != 1) {
+                        array_push($data, $value['user_id']);
+                        // print_r($value);
+                    }
                 }
+                foreach ($data as $value) {
+                    $record = $chat->getOne($value, Session::get('user_id'));
+                    array_push($result, $record);
+                }
+                function date_compare($a, $b)
+                {
+                    $t1 = strtotime($a['time']);
+                    $t2 = strtotime($b['time']);
+                    return $t2 - $t1;
+                }
+                usort($result, 'date_compare');
+                $receover = ($result[0]['receiver_id'] == Session::get('user_id')) ? $result[0]['sender_id'] : $result[0]['receiver_id'];
+                $detail_chat = $chat->searchById($receover, Session::get('user_id'));
+                // echo '<pre>';
+                // print_r($result);
+                // echo '</pre>';
+                Session::unset('chatSearchErr');
+                Session::set('chatResults', 'Results for ' . $_POST["input"]);
+                require_once __DIR__ . '../../views/admin/chat.php';
+            } else {
+                Session::unset('catResults');
+                Session::set('chatSearchErr', 'No results for ' . $_POST["input"]);
+                header('location: index.php?c=chat');
             }
-            foreach ($data as $value) {
-                $record = $chat->getOne($value, Session::get('user_id'));
-                array_push($result, $record);
-            }
-            function date_compare($a, $b)
-            {
-                $t1 = strtotime($a['time']);
-                $t2 = strtotime($b['time']);
-                return $t2 - $t1;
-            }
-            usort($result, 'date_compare');
-            $receover = ($result[0]['receiver_id'] == Session::get('user_id')) ? $result[0]['sender_id'] : $result[0]['receiver_id'];
-            $detail_chat = $chat->searchById($receover, Session::get('user_id'));
-            // echo '<pre>';
-            // print_r($result);
-            // echo '</pre>';
-            // echo '<pre>';
-            // print_r($result);
-            // echo '</pre>';
-            setcookie("ErrSearchChat", "Result for " . $tags, time()+10);
-            require_once __DIR__ . '../../views/admin/chat.php';
         } else {
-            setcookie("ErrSearchChat", "Input not match!", time()+3);
+            Session::set('chatSearchErr', 'No results for ' . $_POST["input"]);
             header('location: index.php?c=chat');
         }
         // print_r($data);

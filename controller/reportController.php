@@ -8,6 +8,7 @@ class reportController
 {
     function getAll()
     {
+        Session::unset('repResults');
         if (isset($_GET['pageno'])) {
             $pageno = $_GET['pageno'];
         } else {
@@ -68,17 +69,19 @@ class reportController
             $data = $report->search($search);
 
             if(empty($data)){
-                Session::set('erRPSearch', 'Input not Exist');
+                Session::unset('repResults');
+                Session::set('repSearchErr', 'No results for ' . $_POST["input"]);
                 header('location: index.php?c=report');
             }else{
-                Session::unset('erRPSearch');
+                Session::unset('repSearchErr');
+                Session::set('repResults', 'Results for ' . $_POST["input"]);
                 // echo '<pre>';
                 // print_r($data);
                 // echo '</pre>';
                 require_once __DIR__ . '../../views/admin/report.php';
             }
         } else {
-            Session::set('erRPSearch', 'Please enter Keyword');
+            Session::set('repSearchErr', 'No results for ' . $_POST["input"]);
             header('location: index.php?c=report');
         }
 

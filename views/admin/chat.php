@@ -53,10 +53,13 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                                 </div>
                             </div>
 
-                            <small class="text-danger font-italic d-flex justify-content-start">
-                                <?php if (isset($_COOKIE['ErrSearchChat'])) {
-                                    print_r($_COOKIE('ErrSearchChat'));
-                                } else echo 'hi'; ?>
+                            <small class="text-danger font-italic d-flex justify-content-start mb-3">
+                                <?php if (isset($_SESSION['chatResults'])) echo Session::get('chatResults');
+                                else 
+                                    if (isset($_SESSION['chatSearchErr'])) echo Session::get('chatSearchErr');
+
+                                else echo ''; ?>
+
                             </small>
                             <!-- List chat -->
                             <div class="inbox_chat">
@@ -72,7 +75,7 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                                     <a href="?c=chat&a=detailChat&receiver_id=<?= $value['receiver_id'] ?>&sender_id=<?= $value['sender_id'] ?>">
                                         <div class="chat_list <?= ($value['status'] == 1 && $value['sender_id'] != Session::get('user_id')) ? 'new_chat' : 'active_chat' ?> <?= (isset($_GET['receiver_id']) && $_GET['receiver_id'] == $value['receiver_id']) ? 'action_chat' : '' ?>">
                                             <div class="chat_people">
-                                                <div class="chat_img"><img src="<?= (!empty($avt['avatar'])) ? '../img/avt-user/'. $avt['avatar'] : 'https://ptetutorials.com/images/user-profile.png'?>" alt="sunil"> </div>
+                                                <div class="chat_img"><img src="<?= (!empty($avt['avatar'])) ? '../img/avt-user/' . $avt['avatar'] : 'https://ptetutorials.com/images/user-profile.png' ?>" alt="sunil"> </div>
                                                 <div class="chat_ib">
                                                     <h5><?= $name['name'] ?> <span class="chat_date"><?= date('d-M | g:i a', strtotime($value['time']))  ?></span></h5>
                                                     <p><?= $value['message'] ?></p>

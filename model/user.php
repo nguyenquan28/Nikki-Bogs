@@ -120,6 +120,15 @@ class userModel
         return $result;
     }
 
+    // Search name
+    function searchName($tags){
+        $query = "SELECT * FROM user 
+        WHERE name REGEXP '". $tags ."'";
+        $result = $this->db->select($query);
+
+        return $result;
+    }
+
     function changeStt($id, $status)
     {
         $query = "UPDATE user SET status = $status WHERE user_id = $id";

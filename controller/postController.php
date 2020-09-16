@@ -16,7 +16,6 @@ class postController
     function getAll()
     {
         Session::unset('postResults');
-        // Session::unset('erSearch');
         if (isset($_GET['pageno'])) {
             $pageno = $_GET['pageno'];
         } else {
@@ -133,11 +132,12 @@ class postController
             $data = $post->search($search);
 
             if (empty($data)) {
-                Session::unset('postSearchErr');
-                Session::set('postResults', 'No results for ' . $_POST["input"]);
+                Session::unset('postResults');
+                Session::set('postSearchErr', 'No results for ' . $_POST["input"]);
                 header('location: index.php');
             } else {
-                Session::set('postSearchErr', 'Results for ' . $_POST["input"]);
+                Session::unset('postSearchErr');
+                Session::set('postResults', 'Results for ' . $_POST["input"]);
                 // echo '<pre>';
                 // print_r($data);
                 // echo '</pre>';

@@ -47,11 +47,16 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                     </form>
                 </header>
 
-                <!-- list post -->
+                <!-- Alert Error -->
                 <small class="text-danger font-italic d-flex justify-content-start mb-3">
-                    <?php if (isset($_SESSION['ConSearchErr'])) echo Session::get('ConSearchErr');
+                    <?php if (isset($_SESSION['conResults'])) echo Session::get('conResults');
+                    else 
+                        if (isset($_SESSION['conSearchErr'])) echo Session::get('conSearchErr');
+
                     else echo ''; ?>
+
                 </small>
+
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
