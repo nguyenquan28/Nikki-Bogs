@@ -98,10 +98,17 @@ class userModel
         return $result;
     }
 
-    // Seaerch by Name
+    // Seaerch by email
     function searchByEmai($email)
     {
         $query = "SELECT * FROM user WHERE email = '$email' LIMIT 1";
+        $result = $this->db->select($query);
+        return $result;
+    }
+
+    // Search name
+    function searchName($tags){
+        $query = "SELECT * FROM user WHERE name REGEXP '" . $tags . "'";
         $result = $this->db->select($query);
         return $result;
     }

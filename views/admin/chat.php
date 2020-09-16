@@ -38,7 +38,7 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                                 <!-- header -->
 
                                 <div class="recent_heading d-flex justify-content-start">
-                                    <h4>New</h4>
+                                    <h4>Chat</h4>
                                     <a href="index.php?c=chat&&a=newChat"><i class="far fa-plus-square pt-1 pl-3"></i></a>
                                 </div>
 
@@ -52,7 +52,10 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                                     </form>
                                 </div>
                             </div>
-
+                            <small class="text-danger font-italic d-flex justify-content-start mb-3">
+                                <?php if (isset($_COOKIE['ErrSearchChat'])) echo Session::get('ErrSearchChat');
+                                else echo ''; ?>
+                            </small>
 
                             <!-- List chat -->
                             <div class="inbox_chat">
@@ -78,7 +81,7 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                         </div>
 
                         <!-- List message -->
-                        
+
                         <div class="mesgs">
                             <div class="msg_history" id="detail">
 
@@ -108,7 +111,7 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                                 ?>
                             </div>
                             <div class="type_msg">
-                                <form class="input_msg_write" action="?c=chat&a=sendMess&receiver_id=<?= ($_GET['receiver_id'] != Session::get('user_id')) ? $_GET['receiver_id'] : $_GET['sender_id']?>" method="POST">
+                                <form class="input_msg_write" action="?c=chat&a=sendMess&receiver_id=<?= ($_GET['receiver_id'] != Session::get('user_id')) ? $_GET['receiver_id'] : $_GET['sender_id'] ?>" method="POST">
                                     <input type="text" class="write_msg" name="message" placeholder="Type a message" />
                                     <button class="msg_send_btn ml-3" type="submit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
                                 </form>
