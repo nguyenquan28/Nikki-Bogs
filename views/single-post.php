@@ -93,7 +93,7 @@ Session::init();
 
                                     <!-- Post Thumbnail -->
                                     <div class="post-thumbnail mb-50">
-                                        <img src="img/post-img/<?=$urlImg['url']?>.jpg" alt="">
+                                        <img src="img/post-img/<?=$urlImg['url']?>" alt="">
                                     </div>
 
                                     <!-- Post Text -->
@@ -209,7 +209,7 @@ Session::init();
                                                         <div class="single-blog-post mb-50">
                                                             <!-- Thumbnail -->
                                                             <div class="post-thumbnail">
-                                                                <a href="#"><img src="img/post-img/<?=$urlImg['url']?>.jpg" alt=""></a>
+                                                                <a href="#"><img src="img/post-img/<?=$urlImg['url']?>" alt=""></a>
                                                             </div>
                                                             <!-- Content -->
                                                             <div class="post-content">

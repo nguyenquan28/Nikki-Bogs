@@ -65,7 +65,7 @@ $CategoryModel = new categoryModel();
                 <!-- Single Latest Posts -->
                 <div class="single-latest-post d-flex">
                     <div class="post-thumb">
-                        <img src="img/post-img/<?=$urlImg['url']?>.jpg" alt="">
+                        <img src="img/post-img/<?=$urlImg['url']?>" alt="">
                     </div>
                     <div class="post-content">
                         <a href="index.php?<?=$slug5?>&c=home&a=viewSinglePost&idpost=<?=$Posts5->post_id?>" class="post-title">

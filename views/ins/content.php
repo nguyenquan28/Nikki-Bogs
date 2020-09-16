@@ -38,7 +38,7 @@ $CategoryModel = new categoryModel();
             <div class="single-hero-post d-flex flex-wrap">
                 <!-- Post Thumbnail -->
                 <div class="slide-post-thumbnail h-100 bg-img">
-                    <img src="img/post-img/<?=$urlImg['url']?>.jpg" alt="">
+                    <img src="img/post-img/<?=$urlImg['url']?>" alt="">
                 </div>
                 <!-- Post Content -->
                 <div class="slide-post-content h-100 d-flex align-items-center">

@@ -66,7 +66,7 @@ require_once __DIR__ . '/ins/content.php';
                                 <div class="featured-post-area mb-50">
                                     <!-- Thumbnail -->
                                     <div class="post-thumbnail mb-30">
-                                        <a href="index.php?<?=$slug1?>&c=home&a=viewSinglePost&idpost=<?=$post1->post_id?>"><img src="img/post-img/<?=$urlImg['url']?>.jpg" alt=""></a>
+                                        <a href="index.php?<?=$slug1?>&c=home&a=viewSinglePost&idpost=<?=$post1->post_id?>"><img src="img/post-img/<?=$urlImg['url']?>" alt=""></a>
                                     </div>
                                     <!-- Featured Post Content -->
                                     <div class="featured-post-content">
@@ -115,7 +115,7 @@ require_once __DIR__ . '/ins/content.php';
                                 <div class="single-blog-post mb-50">
                                     <!-- Thumbnail -->
                                     <div class="post-thumbnail">
-                                        <a href="#"><img src="img/post-img/<?=$urlImg['url']?>.jpg" alt=""></a>
+                                        <a href="#"><img src="img/post-img/<?=$urlImg['url']?>" alt=""></a>
                                     </div>
                                     <!-- Content -->
                                     <div class="post-content">
