@@ -9,7 +9,6 @@ class profileModel
     {
         $this->db = new Database();
         $this->fm = new Format();
-
     }
 
     function getAllPost($id)
@@ -31,7 +30,7 @@ class profileModel
         $query = 'SELECT * FROM categories where active = 1';
         return $result = $this->db->select($query)->fetch_all(1);
     }
-    function setPost($title, $intro, $content, $categories_name, $id,$post_img)
+    function setPost($title, $intro, $content, $categories_name, $id, $post_img)
     {
         $query = 'SELECT * FROM categories where name = "' . $categories_name . '"';
         $categories = $this->db->select($query)->fetch_assoc();
@@ -42,10 +41,28 @@ class profileModel
         $time = (date("Y-m-d", time()));
         $query = 'INSERT INTO `posts`(`categories_id`,`title`,`intro`, `content`, `tag`,`description`,`slug`,`active`, `time`, `status`,`user_id`) VALUES (' . $categoris_id . ',"' . $title . '","' . $intro . '","' . $content . '","' . $tag . '","' . $description . '","' . $slug . '",0,"' . $time . '",1,' . $id . ')';
         $result = $this->db->insert($query);
-        $post_id = 'SELECT post_id FROM posts where user_id = '.$id.' ORDER BY post_id DESC LIMIT 1';
+        $post_id = 'SELECT post_id FROM posts where user_id = ' . $id . ' ORDER BY post_id DESC LIMIT 1';
         $result_post_id = $this->db->select($post_id)->fetch_assoc();
-        $query_img = 'INSERT INTO `images`(`url`, `post_id`) VALUES ("'.$post_img.'",'.$result_post_id["post_id"].')';
+        $query_img = 'INSERT INTO `images`(`url`, `post_id`) VALUES ("' . $post_img . '",' . $result_post_id["post_id"] . ')';
         $insert_img = $this->db->insert($query_img);
+    }
+    function editPost($title, $intro, $content, $id_post)
+    {
+        $query =  'UPDATE `posts` SET `title` = "' . $title . '", `intro` = "' . $intro . '", `content` = "' . $content . '" WHERE (`post_id` = "' . $id_post . '")';
+        $result = $this->db->update($query);
+    }
+    function removePost($id_post)
+    {
+        $query_img = 'SELECT url FROM images where post_id = '.$id_post;
+        $img_name = $this->db->select($query_img)->fetch_assoc();
+        $delete_img_post = 'DELETE FROM `images` WHERE (`post_id` = ' . $id_post . ')';
+        $delete = $this->db->delete($delete_img_post);
+        $query = 'DELETE FROM `posts` WHERE (`post_id` = ' . $id_post . ')';
+        $result = $this->db->delete($query);
+        if (file_exists('../views/img/post-img/'.$img_name["url"])) {
+            unlink('../views/img/post-img/'.$img_name["url"]);
+        }
+        // unlink('../views/img/post-img/image5.jpg');
     }
     function setIntroduce($introduce, $id)
     {

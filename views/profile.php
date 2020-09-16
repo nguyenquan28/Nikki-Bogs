@@ -152,10 +152,10 @@ require_once __DIR__ . '/ins/head.php'; ?>
                                 </label>
                                 <input id="fusk" type="file" name="post_img" class="d-none">
                                 <div class="form-group">
-                                    <input class="form-control" type="text" placeholder="title" name="title" id="title">
+                                    <input class="form-control" type="text" placeholder="title" name="title" id="title" autocomplete="off">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" type="text" placeholder="into" name="intro" id="intro">
+                                    <input class="form-control" type="text" placeholder="into" name="intro" id="intro" autocomplete="off">
                                 </div>
                                 <div class="form-group">
                                     <textarea class="form-control" name="content" id="content" cols="30" rows="10" placeholder="<?= !empty(Session::get('name')) ? Session::get('name') : ''; ?>, bạn muốn chia sẻ gì nào? "></textarea>
@@ -201,35 +201,41 @@ require_once __DIR__ . '/ins/head.php'; ?>
                             <div class="single-blog-post mb-50">
                                 <!-- Thumbnail -->
                                 <div class="post-thumbnail">
-                                <a href="#menu" class="position-absolute" id="toggle"><span></span></a>
                                 <!-- menu post -->
-                                    <div id="edit_menu" class="position-absolute">
-                                    <ul>
-                                        <li><a href="#home">edit post</a></li>
-                                        <li><a href="#about">remove post</a></li>
-                                    </ul>
+                                    <div class="position-absolute" id="toggle"><span></span>
+                                        <div id="edit_menu">
+                                            <ul>
+                                                <li id="'.$data["post"][$x]["post_id"].'" class="edit_post"><a href="#home">edit post</a></li>
+                                                <li id="'.$data["post"][$x]["post_id"].'" class="remove_post"><a href="#about">remove post</a></li>
+                                            </ul>
+                                        </div>
                                     </div>
                                     <a href="#"><img src="img/post-img/' . $data["post"][$x]["url"] . '" alt=""></a>
                                 </div>
                                 <!-- Content -->
-                                <div class="post-content ">
+                                <div id="form_post_'.$data["post"][$x]["post_id"].'" class="post-content ">
                                     <p class="post-date">' . $data["post"][$x]["time"] . ' / ' . '' . $data["post"][$x]["tag"] . '' . '</p>
                                     <a href="index.php?idpost=$idpost" class="post-title">
                                         <h4>' . $data["post"][$x]["title"] . '</h4>
                                     </a>
-                                    <p class="post-excerpt">' . $data["post"][$x]["title"] . '...</p>
+                                    <p class="post-excerpt">' . $data["post"][$x]["intro"] . '...</p>
                                     <p class="post-excerpt" style="color:red;">' . $active . '</p>
                                 </div>
-                                <div class="d-none"> 
-                                <div class="form-group">
-                                    <input class="form-control" type="text" placeholder="title" name="title" id="title">
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" type="text" placeholder="into" name="intro" id="intro">
-                                </div>
-                                <div class="form-group">
-                                    <textarea class="form-control" name="content" id="content" cols="30" rows="3" placeholder="bạn muốn chia sẻ gì nào? "></textarea>
-                                </div>
+                                <div id="form_edit_'.$data["post"][$x]["post_id"].'" style="display:none;" class="contact-form-area"> 
+                                    <form action="index.php?c=profile&a=editPost" role="form" method="post"  enctype="multipart/form-data">
+
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" placeholder="title" name="title" id="title">
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" placeholder="into" name="intro" id="intro">
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea class="form-control" name="content" id="content" cols="30" rows="3" placeholder="bạn muốn chia sẻ gì nào? "></textarea>
+                                    </div>
+                                    <input class="d-none" type="number" value="'.$data["post"][$x]["post_id"].'" name="post_id">
+                                    <button id="btn_Post" type="submit" class="btn nikki-btn mt-15">Submit</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>';
@@ -240,7 +246,7 @@ require_once __DIR__ . '/ins/head.php'; ?>
                         </div>
                     </div>
                     <!--  -->
-
+  
                     <!-- Pager -->
                     <ol class="nikki-pager">
                         <li><a href="#"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Newer</a></li>
