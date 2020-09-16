@@ -19,6 +19,8 @@ require_once '../model/categories.php';
 $CategoryModel = new categoryModel();
 require_once '../model/comments.php';
 $CommentModel = new commentMoldel();
+require_once '../model/images.php';
+$ImagesModel = new imagesModel();
 # Header Area Start
 require_once __DIR__ . '/ins/menu.php';
 
@@ -53,14 +55,18 @@ require_once __DIR__ . '/ins/content.php';
                             $nameCategory = $CategoryModel->getName($post1->categories_id);
                             //lay name user theo id cate cua post
                             $nameUser = $UserModel->getName($post1->user_id);
+                            // lay img theo id post
+                            $urlImg = $ImagesModel->getImgByIdPost($post1->post_id);
+
                             $countComment = $CommentModel->countCommentByIdPost($post1->post_id);
                                 $slug1 = str_replace(' ','+',$post1->title);
+
                             ?>
                             <div class="col-12">
                                 <div class="featured-post-area mb-50">
                                     <!-- Thumbnail -->
                                     <div class="post-thumbnail mb-30">
-                                        <a href="index.php?<?=$slug1?>&c=home&a=viewSinglePost&idpost=<?=$post1->post_id?>"><img src="img/blog-img/12.jpg" alt=""></a>
+                                        <a href="index.php?<?=$slug1?>&c=home&a=viewSinglePost&idpost=<?=$post1->post_id?>"><img src="img/post-img/<?=$urlImg['url']?>.jpg" alt=""></a>
                                     </div>
                                     <!-- Featured Post Content -->
                                     <div class="featured-post-content">
@@ -99,14 +105,17 @@ require_once __DIR__ . '/ins/content.php';
                         $data = $PostsModel->GetAllPostsPage();
                         $dataGetAllPost = $PostsModel->pushDataPost($data);
                         foreach ($dataGetAllPost as $getallpost){
+//                            lay name cate
                             $nameCategory = $CategoryModel->getName($getallpost->categories_id);
+                            // lay img theo id post
+                            $urlImg = $ImagesModel->getImgByIdPost($getallpost->post_id);
                                 $slug = str_replace(' ','+',$getallpost->title);
                             ?>
                             <div class="col-12 col-sm-6">
                                 <div class="single-blog-post mb-50">
                                     <!-- Thumbnail -->
                                     <div class="post-thumbnail">
-                                        <a href="#"><img src="img/blog-img/1.jpg" alt=""></a>
+                                        <a href="#"><img src="img/post-img/<?=$urlImg['url']?>.jpg" alt=""></a>
                                     </div>
                                     <!-- Content -->
                                     <div class="post-content">

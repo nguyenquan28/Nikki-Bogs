@@ -27,6 +27,8 @@ $CategoryModel = new categoryModel();
         $data = $PostsModel->PostsTop(3);
         $dataLimitPost3 = $PostsModel->pushDataPost($data);
         foreach ($dataLimitPost3 as $post3){
+            // lay img theo id post
+            $urlImg = $ImagesModel->getImgByIdPost($post3->post_id);
             $nameCategory = $CategoryModel->getName($post3->categories_id);
             $slug3 = str_replace(' ','+',$post3->title);
 
@@ -36,7 +38,7 @@ $CategoryModel = new categoryModel();
             <div class="single-hero-post d-flex flex-wrap">
                 <!-- Post Thumbnail -->
                 <div class="slide-post-thumbnail h-100 bg-img">
-                    <img src="img/blog-img/14.jpg" alt="">
+                    <img src="img/post-img/<?=$urlImg['url']?>.jpg" alt="">
                 </div>
                 <!-- Post Content -->
                 <div class="slide-post-content h-100 d-flex align-items-center">

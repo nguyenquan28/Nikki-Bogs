@@ -55,6 +55,9 @@ $CategoryModel = new categoryModel();
             $data = $PostsModel->PostsTop(5);
             $dataLimitPost5 = $PostsModel->pushDataPost($data);
             foreach ($dataLimitPost5 as $Posts5){
+                // lay img theo id post
+                $urlImg = $ImagesModel->getImgByIdPost($Posts5->post_id);
+
                 $byName = $UserModel->getName($Posts5->user_id);
                 $slug5 = str_replace(' ','+',$Posts5->title);
 
@@ -62,7 +65,7 @@ $CategoryModel = new categoryModel();
                 <!-- Single Latest Posts -->
                 <div class="single-latest-post d-flex">
                     <div class="post-thumb">
-                        <img src="img/blog-img/lp1.jpg" alt="">
+                        <img src="img/post-img/<?=$urlImg['url']?>.jpg" alt="">
                     </div>
                     <div class="post-content">
                         <a href="index.php?<?=$slug5?>&c=home&a=viewSinglePost&idpost=<?=$Posts5->post_id?>" class="post-title">

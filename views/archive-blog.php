@@ -15,6 +15,8 @@ require_once __DIR__ . '/ins/head.php';
     $UserModel = new userModel();
     require_once '../model/categories.php';
     $CategoryModel = new categoryModel();
+    require_once '../model/images.php';
+    $ImagesModel = new imagesModel();
 ?>
 
 <body>
@@ -124,6 +126,9 @@ require_once __DIR__ . '/ins/head.php';
                             if (!empty($data)){
                                 $dataGetAllPost = $PostsModel->pushDataPost($data);
                                 foreach ($dataGetAllPost as $getallpost){
+                                    // lay img theo id post
+                                    $urlImg = $ImagesModel->getImgByIdPost($getallpost->post_id);
+
                                     $nameCategory = $CategoryModel->getName($getallpost->categories_id);
                                     $slug = str_replace(' ','+',$getallpost->title);
 
@@ -133,7 +138,7 @@ require_once __DIR__ . '/ins/head.php';
                                         <div class="single-blog-post mb-50">
                                             <!-- Thumbnail -->
                                             <div class="post-thumbnail">
-                                                <a href="#"><img src="img/blog-img/1.jpg" alt=""></a>
+                                                <a href="#"><img src="img/post-img/<?=$urlImg['url']?>.jpg" alt=""></a>
                                             </div>
                                             <!-- Content -->
                                             <div class="post-content">
@@ -240,6 +245,8 @@ require_once __DIR__ . '/ins/head.php';
                             $data= $PostsModel->PostsTop(5);
                             $dataLimitPost5 = $PostsModel->pushDataPost($data);
                             foreach ($dataLimitPost5 as $Posts5){
+                                // lay img theo id post
+                                $urlImg = $ImagesModel->getImgByIdPost($Posts5->post_id);
                                 $byName = $UserModel->getName($Posts5->user_id);
                                 $slug5 = str_replace(' ','+',$Posts5->title);
 
@@ -247,7 +254,7 @@ require_once __DIR__ . '/ins/head.php';
                                 <!-- Single Latest Posts -->
                                 <div class="single-latest-post d-flex">
                                     <div class="post-thumb">
-                                        <img src="img/blog-img/lp1.jpg" alt="">
+                                        <img src="img/post-img/<?=$urlImg['url']?>.jpg" alt="">
                                     </div>
                                     <div class="post-content">
                                         <a href="index.php?<?=$slug5?>&c=home&a=viewSinglePost&idpost=<?=$Posts5->post_id?>" class="post-title">

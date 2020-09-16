@@ -8,6 +8,8 @@
 require_once __DIR__ . '/ins/head.php';
 ?>
 <?php
+require_once '../model/images.php';
+$ImagesModel = new imagesModel();
 require_once '../model/posts.php';
 $PostsModel = new postModel();
 require_once '../model/user.php';
@@ -19,28 +21,12 @@ $CommentsModel = new commentMoldel();
 require_once '../model/user.php';
 $UserModel = new userModel();
 require_once '../config/session.php';
+
 Session::init();
 
 //    session_start();
 //    $_SESSION['a']='a';
 
-?>
-<?php
-require_once '../model/posts.php';
-$PostsModel = new postModel();
-require_once '../model/user.php';
-$UserModel = new userModel();
-require_once '../model/categories.php';
-$CategoryModel = new categoryModel();
-require_once '../model/comments.php';
-$CommentsModel = new commentMoldel();
-require_once '../model/user.php';
-$UserModel = new userModel();
-require_once '../config/session.php';
-Session::init();
-
-//    session_start();
-//    $_SESSION['a']='a';
 ?>
 
 <body>
@@ -86,6 +72,8 @@ Session::init();
                             $SinglePost = $PostsModel->pushDataPost($data);
                             //                                print_r($SinglePost);
                             foreach ($SinglePost as $datasingle) {
+                                // lay img theo id post
+                                $urlImg = $ImagesModel->getImgByIdPost($datasingle->post_id);
                                 //lay ten cua category theo id
                                 $namecate = $CategoryModel->getName($datasingle->categories_id);
                                 $countCommert = $CommentsModel->countCommentByIdPost($datasingle->post_id);
@@ -105,7 +93,7 @@ Session::init();
 
                                     <!-- Post Thumbnail -->
                                     <div class="post-thumbnail mb-50">
-                                        <img src="img/blog-img/8.jpg" alt="">
+                                        <img src="img/post-img/<?=$urlImg['url']?>.jpg" alt="">
                                     </div>
 
                                     <!-- Post Text -->
@@ -213,17 +201,20 @@ Session::init();
                                                 $datarelates = $PostsModel->RelatedByIdCateTop2($datasingle->categories_id);
                                                 $relatePosts = $PostsModel->pushDataPost($datarelates);
                                                 foreach ($relatePosts as $datarela) {
+                                                    // lay img theo id post
+                                                    $urlImg = $ImagesModel->getImgByIdPost($datarela->post_id);
+                                                    $slug = str_replace(' ','+',$datarela->title);
                                                 ?>
                                                     <div class="col-12 col-lg-6">
                                                         <div class="single-blog-post mb-50">
                                                             <!-- Thumbnail -->
                                                             <div class="post-thumbnail">
-                                                                <a href="#"><img src="img/blog-img/1.jpg" alt=""></a>
+                                                                <a href="#"><img src="img/post-img/<?=$urlImg['url']?>.jpg" alt=""></a>
                                                             </div>
                                                             <!-- Content -->
                                                             <div class="post-content">
                                                                 <p class="post-date"><?= $datarela->time ?> / <?= $namecate['name'] ?></p>
-                                                                <a href="#" class="post-title">
+                                                                <a href="index.php?<?=$slug?>&c=home&a=viewSinglePost&idpost=<?=$datarela->post_id?>" class="post-title">
                                                                     <h4><?= $datarela->title ?></h4>
                                                                 </a>
                                                                 <p class="post-excerpt"><?= $datarela->intro ?></p>
@@ -247,30 +238,30 @@ Session::init();
                                                 <?php
                                                 $datacmts = $CommentsModel->searchByIdPost($datasingle->post_id);
                                                 if (!empty($datacmts)){
-                                                $datacmt = $CommentsModel->pushDataComment($datacmts);
-                                                foreach ($datacmt as $datacmt) {
-                                                    $nameUser = $UserModel->getName($datacmt->user_id);
-                                                ?>
-                                                    <li class="single_comment_area">
-                                                        <div class="comment-wrapper d-flex">
-                                                            <!-- Comment Meta -->
-                                                            <div class="comment-author">
-                                                                <img src="img/blog-img/11.jpg" alt="">
+                                                    $datacmt = $CommentsModel->pushDataComment($datacmts);
+                                                    foreach ($datacmt as $datacmt) {
+                                                        $nameUser = $UserModel->getName($datacmt->user_id);
+                                                    ?>
+                                                        <li class="single_comment_area">
+                                                            <div class="comment-wrapper d-flex">
+                                                                <!-- Comment Meta -->
+                                                                <div class="comment-author">
+                                                                    <img src="img/blog-img/11.jpg" alt="">
+                                                                </div>
+                                                                <!-- Comment Content -->
+                                                                <div class="comment-content">
+                                                                    <span class="comment-date"><?= $datacmt->time ?></span>
+                                                                    <h5><?= $nameUser['name'] ?></h5>
+                                                                    <p><?= $datacmt->content ?></p>
+
+                                                                </div>
                                                             </div>
-                                                            <!-- Comment Content -->
-                                                            <div class="comment-content">
-                                                                <span class="comment-date"><?= $datacmt->time ?></span>
-                                                                <h5><?= $nameUser['name'] ?></h5>
-                                                                <p><?= $datacmt->content ?></p>
-
-                                                            </div>
-                                                        </div>
-<!--                                                            <div class="reply">-->
-<!--                                                                <a href="javascript:void(0)" onclick="reply(this)">Reply</a>-->
-<!--                                                            </div>-->
+    <!--                                                            <div class="reply">-->
+    <!--                                                                <a href="javascript:void(0)" onclick="reply(this)">Reply</a>-->
+    <!--                                                            </div>-->
 
 
-                                                    </li>
+                                                        </li>
                                                 <?php
                                                 }}
                                                 ?>
