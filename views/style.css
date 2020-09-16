@@ -2217,6 +2217,8 @@ blockquote.shortcodes {
 }
 /* menu post */
 /* Important styles */
+
+
 #toggle {
   display: block;
   width: 28px;
@@ -2262,28 +2264,21 @@ blockquote.shortcodes {
   transform: rotate(-45deg) translate(7px, -8px);
 }
 #toggle:hover + #edit_menu {
-  /* opacity: 1; */
-  /* visibility: visible; */
   display: block;
 
 }
-
-/* menu appearance*/
 #edit_menu {
-  /* position: relative; */
+  position: absolute;
   color: #f00;
   width: 150px;
-  padding: 10px;
-  margin: auto;
   font-family: "Segoe UI", Candara, "Bitstream Vera Sans", "DejaVu Sans", "Bitstream Vera Sans", "Trebuchet MS", Verdana, "Verdana Ref", sans-serif;
   text-align: center;
   border-radius: 4px;
   background: white;
   box-shadow: 0 1px 8px rgba(0,0,0,0.05);
   display: none;
-  /* transition: opacity .4s; */
   right: 0;
-  top: 42px;
+  top: 20px;
 }
 ul, li, li a {
   list-style: none;
@@ -2301,6 +2296,9 @@ li a:hover,
 li a:focus {
   background: #1ABC9C;
   color: #fff;
+}
+#toggle:hover > #edit_menu{
+  display:block;
 }
 
 

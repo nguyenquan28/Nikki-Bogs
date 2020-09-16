@@ -31,7 +31,19 @@ class profileController extends controller
         // header('location: https://www.google.com/');
 
     }
-
+    function editPost(){
+        $id_post =  $_POST['post_id'];
+        $title = $_POST['title'];
+        $intro = $_POST['intro'];
+        $content = $_POST['content'];
+        $rqm = new profileModel();
+        $rqm->editPost($title,$intro, $content,$id_post);
+    }
+    function removePost(){
+        $id_post =  $_GET['post_id'];
+        $rqm = new profileModel();
+        $rqm->removePost($id_post);
+    }
     function setName()
     {
         $id = Session::get('user_id');

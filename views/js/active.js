@@ -169,11 +169,27 @@ $('#fusk').change(function(){
       reader.readAsDataURL(this.files[0]);
     }
   });
+//   edit post
+  $('.edit_post').click(function(event) {
+    var id_post = $(this).attr('id');
+    var form_post = document.getElementById("form_post_"+id_post);
+    var form_edit = document.getElementById("form_edit_"+id_post);
+        $(form_post).toggle("linear");
+        $(form_edit).toggle("linear");
+});
+// remove post
+$('.remove_post').click(function(event) {
+    var id_post = $(this).attr('id');
+    if (confirm("Are you sure you want to delete this post?") == 1) {
+    window.location="index.php?c=profile&a=removePost&post_id="+id_post;
+    }
+});
 $(document).ready(function(){
     document.getElementById("myInput").addEventListener("input", myFunction);
     document.getElementById("title").addEventListener("input", validatePost);
     document.getElementById("intro").addEventListener("input", validatePost);
     document.getElementById("content").addEventListener("input", validatePost);
+
     // edit avatar
     var btn_edit = document.getElementById("btn-edit");
     var edit = document.getElementById("edit");
@@ -186,7 +202,9 @@ $(document).ready(function(){
     // edit background
     var btn_background = document.getElementById("btn-background");
     var background = document.getElementById("background");
-
+    // edit post
+    // var edit_post = document.getElementById("edit_post");
+    // var form_post = document.getElementById("form_post");
     $(btn_name).click(function(){
         $(name).toggle("linear");
       });
@@ -199,6 +217,10 @@ $(document).ready(function(){
     $(btn_background).click(function(){
         $(background).toggle("linear");
       });
+    //   $(edit_post).click(function(){
+    //     $(form_post).toggle("linear");
+    //     $(form_edit).toggle("linear");
+    //   });
 // begin menu post
 var theToggle = document.getElementById('toggle');
 

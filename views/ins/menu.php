@@ -67,8 +67,8 @@
                                                 <i class="fa fa-sign-out"></i>
                                             </a>';
                                     } else {
-                                        echo '<a href="index.php?c=profile&a=profileController">'
-
+      
+                                            echo '<a href="index.php?c=profile&a=profileController">'
                                             .   Session::get('name') . '</a>'
                                             .   '<a href="#subChat" data-toggle="collapse" aria-expanded="false"  class="nav-link noti-icon" title="Message">
                                                     <i class="fa fa-comment"></i>'
