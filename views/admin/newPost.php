@@ -27,26 +27,28 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                     <button type="button" class="btn btn-outline-danger"><a href="./index.php">Back</a></button>
                 </header>
                 <hr>
-                <div class="d-flex justify-content-center mt-5">
+                <div class="d-flex justify-content-center mt-4">
 
-                    <form method="POST" action="?c=post&a=savePost" class="col-md-6 border border-info p-4" role="form" method="post" id="reused_form" enctype="multipart/form-data">
+                    <form method="POST" action="?c=post&a=savePost" class="col-md-6 border border-info pl-5 pr-5 d-flex flex-column" role="form" method="post" id="reused_form" enctype="multipart/form-data">
                         <small class="text-danger font-italic d-flex justify-content-start mb-3">
                             <?php if (isset($_SESSION['newPostErr'])) echo Session::get('newPostErr');
                             else echo ''; ?>
                         </small>
                         <div class="form-group">
-                            <input type="hidden" class="form-control" value="" name="category_id" placeholder="Enter name">
+                            <input type="hidden" class="form-control form-control-sm" value="" name="category_id">
                         </div>
-                        <?php
-                        foreach ($listCat as $value) {
-                        ?>
-                            <label class="radio-inline pr-3 mb-3">
-                                <input type="radio" name="categories" id="radio_experience" value="Fashion">
-                                <?= $value['name'] ?>
-                            </label>
-                        <?php
-                        }
-                        ?>
+                        <div class="form-group">
+                            <?php
+                            foreach ($listCat as $value) {
+                            ?>
+                                <label class="radio-inline pr-3 mb-3">
+                                    <input type="radio" name="categories" id="radio_experience" value="Fashion">
+                                    <?= $value['name'] ?>
+                                </label>
+                            <?php
+                            }
+                            ?>
+                        </div>
                         <label for="fusk">
                             <p>Click select image to upload</p>
                         </label>

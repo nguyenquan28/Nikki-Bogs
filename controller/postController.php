@@ -117,7 +117,10 @@ class postController
 
         $data = $post->searchByID($id);
         $result = $data->fetch_assoc();
-        $imgURL = $post->selectIMG($id)->fetch_assoc();
+        $imgURL = $post->selectIMG($id);
+        if(!empty($imgURL)){
+            $imgURL = $imgURL->fetch_assoc();
+        }
         // print_r($imgURL['url']);
         require_once __DIR__ . '../../views/admin/detailPost.php';
     }
@@ -149,7 +152,7 @@ class postController
     function newPost()
     {
         $cat = new categoryModel();
-        $listCat = $cat->getAll(0, 100)->fetch_all(1);
+        $listCat = $cat->getActive()->fetch_all(1);
         // print_r($listCat['name']);
         require_once __DIR__ . '../../views/admin/newPost.php';
     }

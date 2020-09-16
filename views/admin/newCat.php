@@ -10,7 +10,7 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
 
         <!-- Header -->
         <?php
-        require __DIR__ . '/ins-admin/menu.php';
+        // require __DIR__ . '/ins-admin/menu.php';
         ?>
 
         <!-- container -->
@@ -27,9 +27,9 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                     <button type="button" class="btn btn-outline-info"><a href="./index.php?c=category">Back</a></button>
                 </header>
                 <div class="d-flex justify-content-center">
-                    <form method="POST" action="?c=category&a=saveCat&p=<?= (isset($cat['category_id'])) ? 'edit' : ''; ?>" class="col-md-6 border border-info p-4">
+                    <form method="POST" action="?c=category&a=saveCat&p=<?= (isset($cat['categories_id'])) ? 'edit' : ''; ?>" class="col-md-6 border border-info p-4">
                         <div class="form-group">
-                            <input type="hidden" class="form-control" value="<?= (isset($cat['category_id'])) ? $cat['category_id'] : ''; ?>" name="category_id" placeholder="Enter name">
+                            <input type="text" class="form-control" value="<?= (isset($cat['categories_id'])) ? $cat['categories_id'] : ''; ?>" name="categories_id" placeholder="Enter name">
                         </div>
                         <div class="form-group">
                             <label>Name</label>

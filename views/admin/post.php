@@ -81,9 +81,11 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                     </thead>
                     <tbody>
                         <?php
-                        foreach ($data as $value) {
-                            $catName = $category->getName($value->categories_id);
-                            $userName = $user->getName($value->user_id);
+                        if(!empty($data)){
+                            foreach ($data as $value) {
+                                $catName = $category->getName($value->categories_id);
+                                $userName = $user->getName($value->user_id);
+                        
                         ?>
                             <tr class=<?php if ($value->status == true) echo ' "tr-color" ';
                                         else echo '""'; ?>>
@@ -97,7 +99,7 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                                 <td class="text-center" title="Delete"><a href="./index.php?c=post&a=delPost&id=<?= $value->post_id ?>&sender_id=<?= Session::get('user_id') ?>&receiver_id=<?= $value->user_id ?>""><i class=" far fa-trash-alt text-danger"></i></a></td>
                             </tr>
                         <?php
-                        }
+                        }}
                         ?>
                     </tbody>
                 </table>

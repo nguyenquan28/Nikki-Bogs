@@ -56,10 +56,17 @@ class categoryModel
         return $result;
     }
 
+    function getActive()
+    {
+        $query = "SELECT * FROM categories WHERE active = 0";
+        $result = $this->db->select($query);
+        return $result;
+    }
     // Edit category $category_id, $name, $tag, $description, $slug, $active
-    function edit(category $category){
-        $query = "UPDATE categories SET categories_id = $category->category_id, name = '$category->name', 
-        tag = '$category->tag', description = '$category->description',  slug = '$category->slug', active = '$category->active'";
+    function edit(category $category)
+    {
+        $query = "UPDATE categories SET name = '$category->name', 
+        tag = '$category->tag', description = '$category->description',  slug = '$category->slug', active = '$category->active' WHERE  categories_id = $category->category_id";
         $result = $this->db->update($query);
     }
 
@@ -67,9 +74,12 @@ class categoryModel
     // Get name category by id
     function getName($category_id)
     {
-        $query = "SELECT name FROM categories WHERE active = '1' and categories_id = '$category_id' ";
+        $query = "SELECT name FROM categories WHERE active = '0' and categories_id = '$category_id' ";
         $data = $this->db->select($query);
-        $result = $data->fetch_assoc();
+        $result = [];
+        if (!empty($data)) {
+            $result = $data->fetch_assoc();
+        }
         // $cat = new category($result[0],$result[1],$result[2],$result[3],$result[4],$result[5]);
         return $result;
     }
@@ -112,9 +122,9 @@ class categoryModel
         $data = $this->db->select($query);
         return $data;
     }
-    
 
-    
+
+
     // Change status
     function changeStt($id, $status)
     {
@@ -139,5 +149,4 @@ class categoryModel
         //        print_r($data);
         return $data;
     }
-
 }
