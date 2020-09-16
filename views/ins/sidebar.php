@@ -9,22 +9,7 @@ $CategoryModel = new categoryModel();
 
 <div class="col-12 col-sm-9 col-md-6 col-lg-4">
     <div class="post-sidebar-area">
-        <!-- ##### Single Widget Area ##### -->
-        <div class="single-widget-area mb-30">
-            <!-- Title -->
-            <div class="widget-title">
-                <h6>About Me</h6>
-            </div>
-            <!-- Thumbnail -->
-            <div class="about-thumbnail">
-                <img src="img/blog-img/about-me.jpg" alt="">
-            </div>
-            <!-- Content -->
-            <div class="widget-content text-center">
-                <img src="img/core-img/signature.png" alt="">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ipsum adipisicing</p>
-            </div>
-        </div>
+        
 
         <!-- ##### Single Widget Area ##### -->
         <div class="single-widget-area mb-30">
