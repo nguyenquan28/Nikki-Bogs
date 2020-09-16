@@ -14,9 +14,9 @@
                 <!-- Notification -->
                 <ul class="navbar-nav nav-flex-icons pr-5">
                     <li class="nav-item avatar">
-                        <img src="../img/avt.png">
+                        <img src="../img/avt-user/<?= Session::get('avatar') ?>">
                         <small style="color: #a8c5de">
-                            <a href="index.php?c=profile&a=profileController">Administrator</a>
+                            <a href="../index.php?c=profile&a=profileController">Administrator</a>
                         </small>
                     </li>
                     <li class="nav-item">
