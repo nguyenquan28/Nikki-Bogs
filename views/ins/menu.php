@@ -70,7 +70,7 @@
                                         echo '<a href="index.php?c=profile&a=profileController">'
 
                                             .   Session::get('name') . '</a>'
-                                            .   '<a href="#subChat" data-toggle="collapse" aria-expanded="false"  class="nav-link noti-icon" title="Message">
+                                            .   '<a id="clickChat" href="#subChat" data-toggle="collapse" aria-expanded="false"  class="nav-link noti-icon" title="Message">
                                                     <i class="fa fa-comment"></i>'
                                                     . Session::get('newMess') . '
                                                 </a>'

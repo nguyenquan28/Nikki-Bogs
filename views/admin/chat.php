@@ -80,7 +80,7 @@ require __DIR__ . '/ins-admin/headerAdmin.php';
                         <!-- List message -->
                         
                         <div class="mesgs">
-                            <div class="msg_history">
+                            <div class="msg_history" id="detail">
 
                                 <?php
                                 foreach ($detail_chat as $value) {

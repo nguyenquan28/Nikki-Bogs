@@ -37,3 +37,8 @@ $('#fusk').change(function(){
       reader.readAsDataURL(this.files[0]);
     }
   });
+
+  
+$( document ).ready(function() {
+    $('#detail').animate({scrollTop: document.body.scrollHeight},"fast");
+});
