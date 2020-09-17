@@ -213,7 +213,7 @@ require_once __DIR__ . '/ins/head.php'; ?>
                                             </ul>
                                         </div>
                                     </div>
-                                    <a href="#"><img src="img/post-img/' . $data["post"][$x]["url"] . '" alt=""></a>
+                                    <a href="index.php?c=home&a=viewSinglePost&idpost='.$data["post"][$x]["post_id"].'"><img src="img/post-img/' . $data["post"][$x]["url"] . '" alt=""></a>
                                 </div>
                                 <!-- Content -->
                                 <div id="form_post_'.$data["post"][$x]["post_id"].'" class="post-content ">
