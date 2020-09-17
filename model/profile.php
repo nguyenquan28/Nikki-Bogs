@@ -81,8 +81,13 @@ class profileModel
     }
     function setAvt($avt, $id)
     {
+        $query_avt = 'SELECT avatar FROM user where user_id = '.$id;
+        $avt_name = $this->db->select($query_avt)->fetch_assoc();
         $query = 'UPDATE user SET avatar = "' . $avt . '" WHERE user_id =' . $id;
         $result = $this->db->update($query);
+        if (file_exists('../views/img/avt-user/'.$avt_name["avatar"])) {
+            unlink('../views/img/avt-user/'.$avt_name["avatar"]);
+        }
     }
     function upImg($folder, $form_name)
     {
