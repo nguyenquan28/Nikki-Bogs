@@ -17,18 +17,20 @@ require_once __DIR__ . '/ins/head.php'; ?>
             <!-- <div class="row"> -->
             <div class="col-12 p-0 position-inherit">
                 <div class="background ">
-                    <label for="backgroundImg">
+                    <label for="backgroundImg" style="position: absolute;z-index: 2;">
                         <i class="fa fa-camera btn-custom p-3 " id="btn-background"></i>
                     </label>
-                    <div class="edit position-absolute p-5" id="background">
+                    <div class=" position-absolute p-5" id="background">
                         <form action="index.php?c=profile&a=setBackground" method="post" enctype="multipart/form-data">
                             <input type="file" name="backgroundImg" id="backgroundImg" class="d-none">
-                            <input type="submit" value="backgroundImg" name="submit">
+                            <!-- <input type="submit" value="" name="submit" id="sub_backgroundImg"  class="d-none"> -->
+                            <button class="btn d-none" id="sub_background" style="position: absolute;left: 4px;z-index: 3;"><i class="fa fa-check-circle" ></i></button>
+                            <!-- <p ><i class="fa fa-check-circle" for="sub_backgroundImg" style="position: absolute;z-index: 100;"></i></p> -->
                         </form>
                     </div>
                     <!-- Thumbnail -->
                     <div class="img-background" id="img-background">
-                        <img src="img/background-user/<?php
+                        <img id="chose_background" src="img/background-user/<?php
                                                         if ($data["profile"]["background"] == "") {
                                                             echo "background_default.jpg";
                                                         } else {
@@ -45,7 +47,7 @@ require_once __DIR__ . '/ins/head.php'; ?>
                     <div class="single-widget-area mb-30">
                         <!-- Thumbnail -->
                         <div class="about-thumbnail box">
-                            <img src="img/avt-user/<?php
+                            <img id="chose_avt" src="img/avt-user/<?php
                                                     if ($data["profile"]["avatar"] == "") {
                                                         if ($data["profile"]["gender"] == 1) {
                                                             echo "man.jpg";
@@ -64,10 +66,11 @@ require_once __DIR__ . '/ins/head.php'; ?>
                             </label>
                             <!-- <i class="fa fa-camera btn-custom" id="btn-edit"></i> -->
                             <!-- edit -->
-                            <div class="edit" id="edit">
+                            <div id="edit">
                                 <form action="index.php?c=profile&a=setAvt" method="post" enctype="multipart/form-data">
                                     <input type="file" name="fileToUpload" id="fileToUpload" class="d-none">
-                                    <input type="submit" value="fileToUpload" name="submit">
+                                    <!-- <input type="submit" value="fileToUpload" name="submit"> -->
+                                <button class="btn btn-outline-light d-none" id="sub_avt" style="position: absolute;top: 129px;right: 99px;"><i class="fa fa-check-circle"></i></button>
                                 </form>
                                 </form>
                             </div>
@@ -87,12 +90,12 @@ require_once __DIR__ . '/ins/head.php'; ?>
                                 </form>
                                 <p id="demo"></p>
                             </div>
-                            <p id=""><?= $data["profile"]["introduce"] ?></p>
+                            <p id="introduce_form"><?= $data["profile"]["introduce"] ?></p>
                             <i class="fa fa-pencil" id="btn-introduce"></i>
                             <div class="edit" id="introduce">
                                 <form action="index.php?c=profile&a=setIntroduce" method="post" autocomplete="off">
                                     <div class="form-group">
-                                        <textarea class="form-control" name="introduce" id="" cols="30" rows="5" placeholder="Brief introduction about yourself"></textarea>
+                                        <textarea class="form-control" name="introduce" id="" cols="30" rows="5" placeholder="Brief introduction about yourself"><?= $data["profile"]["introduce"] ?></textarea>
                                     </div>
                                     <!-- <input type="text" name="introduce" placeholder="Brief introduction about yourself"> -->
                                     <button style="background:black;color:white" type="submit">ok</button>
@@ -107,9 +110,9 @@ require_once __DIR__ . '/ins/head.php'; ?>
                         <div class="widget-title">
                             <div class="widget-social-info text-center">
                                 <!-- <a href="#"><i class="fa fa-email"></i></a> -->
-                                <a href="https://www.facebook.com/quoccuong0699"><i class="fa fa-twitter"></i></a>
-                                <!-- <a href="#"><i class="fa fa-instagram"></i></a> -->
-                                <!-- <h5 ><?= $data["profile"]["email"] ?></h5> -->
+                                <!-- <a href="https://www.facebook.com/quoccuong0699"><i class="fa fa-twitter"></i></a> -->
+                                <a href="https://mail.google.com/mail/u/0/?tab=um#inbox?compose=jrjtWvNPPSDtPwnjfrrwcszHvgDcqkhHjSWcMsmlcrWKPNmfLLlhRZZjhJSrgxTBcPrkDFDz"><i class="fa fa-google"></i></a> 
+                                 <!-- <h5 ><?= $data["profile"]["email"] ?></h5> -->
                             </div>
                         </div>
                         <!-- Widget Social Info -->
@@ -225,16 +228,16 @@ require_once __DIR__ . '/ins/head.php'; ?>
                                     <form action="index.php?c=profile&a=editPost" role="form" method="post"  enctype="multipart/form-data">
 
                                     <div class="form-group">
-                                        <input class="form-control" type="text" placeholder="title" name="title" id="title">
+                                        <input class="form-control" type="text" placeholder="title" name="title" id="title_edit" value="'.$data["post"][$x]["title"].'">
                                     </div>
                                     <div class="form-group">
-                                        <input class="form-control" type="text" placeholder="into" name="intro" id="intro">
+                                        <input class="form-control" type="text" placeholder="into" name="intro" id="intro_edit" value="'.$data["post"][$x]["intro"].'">
                                     </div>
                                     <div class="form-group">
-                                        <textarea class="form-control" name="content" id="content" cols="30" rows="3" placeholder="bạn muốn chia sẻ gì nào? "></textarea>
+                                        <textarea class="form-control" name="content" id="content_edit" cols="30" rows="3" placeholder="bạn muốn chia sẻ gì nào? ">'.$data["post"][$x]["content"].'</textarea>
                                     </div>
                                     <input class="d-none" type="number" value="'.$data["post"][$x]["post_id"].'" name="post_id">
-                                    <button id="btn_Post" type="submit" class="btn nikki-btn mt-15">Submit</button>
+                                    <button disabled id="btn_Post" type="submit" class="btn nikki-btn mt-15">Submit</button>
                                     </form>
                                 </div>
                             </div>
@@ -261,18 +264,6 @@ require_once __DIR__ . '/ins/head.php'; ?>
         require_once __DIR__ . '/ins/footer.php';
         require_once __DIR__ . '/ins/script.php';
         ?>
-        <?php
-
-        ?>
-
-        <!--  -->
-        <script>
-            // function Redirect() {
-            //    window.location="index.php?c=profile&a=profileController";
-            // }
-            // document.write("You will be redirected to main page in 10 sec.");
-            // setTimeout('Redirect()', 1000);
-        </script>
 </body>
 
 </html>

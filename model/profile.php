@@ -94,16 +94,17 @@ class profileModel
         if (isset($_POST["submit"])) {
             $check = getimagesize($_FILES[$form_name]["tmp_name"]);
             if ($check !== false) {
-                echo "File is an image - " . $check["mime"] . ".";
+            echo "<script type='text/javascript'> document.location = 'index.php?c=profile&a=profileController'; </script>";
+                // echo "File is an image - " . $check["mime"] . ".";
                 $uploadOk = 1;
             } else {
-                echo "File is not an image.";
+                echo "<script type='text/javascript'> document.location = 'index.php?c=profile&a=profileController'; </script>";
                 $uploadOk = 0;
             }
         }
         // Check if file already exists
         if (file_exists($target_file)) {
-            echo "Sorry, file already exists.";
+            echo "<script type='text/javascript'> document.location = 'index.php?c=profile&a=profileController'; </script>";
             $uploadOk = 0;
         }
         // Check file size
@@ -116,20 +117,23 @@ class profileModel
             $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
             && $imageFileType != "gif"
         ) {
-            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+            // echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
             $uploadOk = 0;
         }
         // Check if $uploadOk is set to 0 by an error
         if ($uploadOk == 0) {
-            echo "Sorry, your file was not uploaded.";
+            echo "<script type='text/javascript'> document.location = 'index.php?c=profile&a=profileController'; </script>";
             // if everything is ok, try to upload file
         } else {
             if (move_uploaded_file($_FILES[$form_name]["tmp_name"], $target_file)) {
-                // header("Location:../views/index.php?c=profile&a=profileController");
+                echo "<script type='text/javascript'> document.location = 'index.php?c=profile&a=profileController'; </script>";
                 die();
             } else {
-                echo "Sorry, there was an error uploading your file.";
+                // echo "Sorry, there was an error uploading your file.";
             }
         }
+    }
+    function redirect(){
+        echo "<script type='text/javascript'> document.location = 'index.php?c=profile&a=profileController'; </script>";
     }
 }

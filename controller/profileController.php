@@ -27,9 +27,6 @@ class profileController extends controller
         $rqm = new profileModel();
         $post = $rqm->setPost($title,$intro, $content, $categories_name,$id,$post_img);
         $rqm->upImg("post-img","post_img");
-        // header('location:index.php?c=profile&a=profileController');
-        // header('location: https://www.google.com/');
-
     }
     function editPost(){
         $id_post =  $_POST['post_id'];
@@ -38,11 +35,13 @@ class profileController extends controller
         $content = $_POST['content'];
         $rqm = new profileModel();
         $rqm->editPost($title,$intro, $content,$id_post);
+        $rqm->redirect();
     }
     function removePost(){
         $id_post =  $_GET['post_id'];
         $rqm = new profileModel();
         $rqm->removePost($id_post);
+        $rqm->redirect();
     }
     function setName()
     {
@@ -50,6 +49,7 @@ class profileController extends controller
         $ten = $_POST['name'];
         $rqm = new profileModel();
         $rqm->setName($ten, $id);
+        // $rqm->redirect();
     }
     function setIntroduce()
     {
@@ -57,6 +57,8 @@ class profileController extends controller
         $introduce = $_POST['introduce'];
         $rqm = new profileModel();
         $rqm->setIntroduce($introduce, $id);
+        // $rqm->redirect();
+
     }
     function setBackground(){
         $id = Session::get('user_id');
@@ -64,6 +66,8 @@ class profileController extends controller
         $rqm = new profileModel();
         $rqm->setBackground($background, $id);
         $rqm->upImg("background-user","backgroundImg");
+        $rqm->redirect();
+
     }
     function setAvt(){
         $id = Session::get('user_id');
@@ -72,8 +76,10 @@ class profileController extends controller
         $rqm->setAvt($avt, $id);
         if ($avt == null || $avt == "") {
            echo  ("không có ảnh nào được tải lên avt sẽ trở lại mặc định");
+
         } else {
             $rqm->upImg("avt-user","fileToUpload");
+            $rqm->redirect();
         }
     
     }
