@@ -151,17 +151,44 @@ function myFunction() {
 }
 function validatePost() {
     var btn_Post = document.getElementById("btn_Post");
-    // var tag = document.getElementById("tag").value;
     var title = document.getElementById("title").value;
     var intro = document.getElementById("intro").value;
     var content = document.getElementById("content").value;
     if (title == null || title == "" || intro == null || intro == "" || content == null || content == "") {
-        // document.getElementById("alert").innerHTML = "The cannot empty!";
         btn_Post.disabled = true;
     } else {
         btn_Post.disabled = false;
     }
 }
+// live change img background
+$('#backgroundImg').change(function () {
+    if (this.files && this.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+          selectedImage = e.target.result;
+        if (selectedImage != "") {
+            $('#chose_background').attr('src', selectedImage);
+            document.getElementById("sub_background").classList.remove('d-none');
+        }
+      };
+      reader.readAsDataURL(this.files[0]);
+    }
+  });
+// live change img avt
+$('#fileToUpload').change(function () {
+    if (this.files && this.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+          selectedImage = e.target.result;
+        if (selectedImage != "") {
+            $('#chose_avt').attr('src', selectedImage);
+            document.getElementById("sub_avt").classList.remove('d-none');
+        }
+      };
+      reader.readAsDataURL(this.files[0]);
+    }
+  });
+// 
 $('#fusk').change(function () {
     if (this.files && this.files[0]) {
       var reader = new FileReader();
@@ -193,33 +220,19 @@ $(document).ready(function(){
     document.getElementById("title").addEventListener("input", validatePost);
     document.getElementById("intro").addEventListener("input", validatePost);
     document.getElementById("content").addEventListener("input", validatePost);
-
-    // edit avatar
-    var btn_edit = document.getElementById("btn-edit");
-    var edit = document.getElementById("edit");
-    // edit introduce
     var btn_introduce = document.getElementById("btn-introduce");
     var introduce = document.getElementById("introduce");
+    var introduce_form = document.getElementById("introduce_form");
+
     // edit name
     var btn_name = document.getElementById("btn-name");
     var name = document.getElementById("name");
-    // edit background
-    var btn_background = document.getElementById("btn-background");
-    var background = document.getElementById("background");
-
-
     $(btn_name).click(function () {
         $(name).toggle("linear");
     });
     $(btn_introduce).click(function () {
         $(introduce).toggle("linear");
-    });
-    $(btn_edit).click(function () {
-        $(edit).toggle("linear");
-    });
-    $(btn_background).click(function () {
-        $(background).toggle("linear");
-
+        $(introduce_form).toggle("linear");
     });
     // begin menu post
     var theToggle = document.getElementById('toggle');
@@ -264,7 +277,4 @@ $(document).ready(function(){
         toggleClass(this, 'on');
         return false;
     }
-
-
-
 });
