@@ -49,7 +49,7 @@ class profileController extends controller
         $ten = $_POST['name'];
         $rqm = new profileModel();
         $rqm->setName($ten, $id);
-        // $rqm->redirect();
+        $rqm->redirect();
     }
     function setIntroduce()
     {
