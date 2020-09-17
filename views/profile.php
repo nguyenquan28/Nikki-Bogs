@@ -218,7 +218,7 @@ require_once __DIR__ . '/ins/head.php'; ?>
                                 <!-- Content -->
                                 <div id="form_post_'.$data["post"][$x]["post_id"].'" class="post-content ">
                                     <p class="post-date">' . $data["post"][$x]["time"] . ' / ' . '' . $data["post"][$x]["tag"] . '' . '</p>
-                                    <a href="index.php?idpost=$idpost" class="post-title">
+                                    <a href="index.php?c=home&a=viewSinglePost&idpost='.$data["post"][$x]["post_id"].'" class="post-title">
                                         <h4>' . $data["post"][$x]["title"] . '</h4>
                                     </a>
                                     <p class="post-excerpt">' . $data["post"][$x]["intro"] . '...</p>
